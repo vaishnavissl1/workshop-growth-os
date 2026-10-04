@@ -13,10 +13,22 @@ const STATS = [
   ["2027", "batch · every engineering branch"],
 ];
 
+/**
+ * Real student reviews of NxtWave's EXISTING Generative AI workshop, copied word for word from ccbp.in/ai-workshop
+ * (checked 5 Oct 2026). They are about that workshop, not this prototype, and the page says so.
+ * Do not add, edit or invent entries here.
+ */
+const REVIEWS = [
+  { quote: "This workshop exceeded my expectations, the hands-on experience with cutting-edge tools and the practical application of generative AI were truly awesome.", name: "Roshan Kumar Mahato", place: "Telangana" },
+  { quote: "The workshop was excellent and definitely opened a path to AI.", name: "Goutham Das P C", place: "Kerala" },
+  { quote: "The workshop was very interesting. We learned so many new things from this workshop and would appreciate additional classes on generative AI.", name: "Prema", place: "Noida, Uttar Pradesh" },
+];
+
 /** NxtWave's own published figures for its existing Generative AI workshop. Source: ccbp.in/ai-workshop */
 const PROOF = [
   { stat: "400K+", label: "students registered", note: "for NxtWave's Generative AI workshop" },
   { stat: "50K+", label: "learners", note: "who took the existing workshop" },
+  { stat: "2500+", label: "companies", note: "have hired NxtWave learners" },
   { stat: "60 min", label: "instead of 2 hours", note: "same build: set up, build, deploy, share" },
 ];
 
@@ -110,7 +122,7 @@ export default async function HomePage() {
             NxtWave already runs a Generative AI workshop for students across all branches. This is the same build, cut to one hour and aimed at final-years in placement season.
           </p>
         </div>
-        <ul className="grid gap-6 md:grid-cols-3">
+        <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {PROOF.map((p) => (
             <li key={p.label} className="card !p-8 text-center">
               <p className="text-5xl font-bold gradient-text">{p.stat}</p>
@@ -120,8 +132,9 @@ export default async function HomePage() {
           ))}
         </ul>
         <p className="mt-6 text-center text-sm text-slate-500">
-          Figures for NxtWave&apos;s existing workshop, as published on{" "}
-          <a href="https://www.ccbp.in/ai-workshop" target="_blank" rel="noopener noreferrer">ccbp.in/ai-workshop</a> (checked 5 Oct 2026).
+          NxtWave&apos;s own published figures, from{" "}
+          <a href="https://www.ccbp.in/ai-workshop" target="_blank" rel="noopener noreferrer">ccbp.in/ai-workshop</a> and{" "}
+          <a href="https://www.ccbp.in" target="_blank" rel="noopener noreferrer">ccbp.in</a> (checked 5 Oct 2026).
         </p>
       </section>
 
@@ -142,6 +155,28 @@ export default async function HomePage() {
             </li>
           ))}
         </ul>
+      </section>
+
+      {/* Real, published reviews of NxtWave's existing workshop */}
+      <section className="container-wide pt-24">
+        <div className="mb-12 text-center">
+          <p className="eyebrow mb-3">Reviews</p>
+          <h2 className="section-title">What students say about NxtWave&apos;s AI workshop</h2>
+        </div>
+        <ul className="grid gap-6 md:grid-cols-3">
+          {REVIEWS.map((r) => (
+            <li key={r.name} className="card flex flex-col !p-8">
+              <span aria-hidden="true" className="text-5xl leading-none text-[#E5B8BB]">&ldquo;</span>
+              <blockquote className="mt-2 flex-1 text-[1.0125rem] leading-relaxed text-slate-700">{r.quote}</blockquote>
+              <p className="mt-6 font-semibold">{r.name}</p>
+              <p className="text-sm text-slate-500">{r.place}</p>
+            </li>
+          ))}
+        </ul>
+        <p className="mt-6 text-center text-sm text-slate-500">
+          Reviews of NxtWave&apos;s existing Generative AI workshop, as published on{" "}
+          <a href="https://www.ccbp.in/ai-workshop" target="_blank" rel="noopener noreferrer">ccbp.in/ai-workshop</a>.
+        </p>
       </section>
 
       {/* How it works */}

@@ -16,7 +16,7 @@ export default function CareerSections() {
       {/* Roles */}
       <section className="container-wide pt-24">
         <div className="mb-12 text-center">
-          <p className="eyebrow mb-3">What you can become</p>
+          <p className="eyebrow mb-3">Career paths</p>
           <h2 className="section-title">Roles this project speaks to</h2>
           <p className="lead mx-auto mt-4 max-w-2xl">
             A deployed AI app shows hiring managers you can build with these tools. These are the kinds of roles where that matters.
@@ -28,6 +28,11 @@ export default function CareerSections() {
               <span aria-hidden="true" className="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-[#FBF2F3] text-3xl">{r.icon}</span>
               <h3 className="text-xl font-semibold">{r.title}</h3>
               <p className="mt-2 text-slate-500">{r.does}</p>
+              <ul className="mt-4 flex flex-wrap gap-2" aria-label="Skills">
+                {r.skills.map((sk) => (
+                  <li key={sk} className="rounded-lg border border-slate-200 bg-slate-50 px-2.5 py-1 text-sm font-medium text-slate-700">{sk}</li>
+                ))}
+              </ul>
               <p className="mt-4 text-[0.95rem] text-slate-800">
                 <strong className="text-[var(--color-primary-light)]">Your project shows: </strong>
                 {r.proof}

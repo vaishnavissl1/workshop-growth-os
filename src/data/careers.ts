@@ -15,6 +15,8 @@ export type Role = {
   does: string;
   proof: string;
   next: string;
+  /** Skills the role is built on. The first few are the ones the workshop touches. */
+  skills: string[];
 };
 
 export const ROLES: Role[] = [
@@ -24,6 +26,7 @@ export const ROLES: Role[] = [
     does: "Builds chatbots, assistants and summarisers on top of language-model APIs.",
     proof: "Your workshop app is exactly this: a prompt, a model and an interface, deployed publicly.",
     next: "Add retrieval over your own documents, then evaluation and logging.",
+    skills: ["Python", "Prompt design", "LLM APIs", "Gradio", "Hugging Face"],
   },
   {
     icon: "🧠",
@@ -31,6 +34,7 @@ export const ROLES: Role[] = [
     does: "Works with models, data and evaluation to make AI features reliable.",
     proof: "You've shipped a model-backed product end to end, which most fresh graduates haven't.",
     next: "Learn model evaluation, fine-tuning basics and data pipelines.",
+    skills: ["Python", "Model evaluation", "Transformers", "Data pipelines"],
   },
   {
     icon: "🛠️",
@@ -38,6 +42,7 @@ export const ROLES: Role[] = [
     does: "Adds AI features to existing web and mobile products.",
     proof: "You've integrated an external AI API, handled secrets safely and deployed to a public URL.",
     next: "Build the same feature inside a larger app with auth, a database and tests.",
+    skills: ["Python", "APIs", "Deployment", "Secrets handling", "Git"],
   },
   {
     icon: "📊",
@@ -45,6 +50,7 @@ export const ROLES: Role[] = [
     does: "Uses language models to clean, summarise and explain data and reports faster.",
     proof: "Your project turns messy text into a clear answer, the core move in AI-assisted analysis.",
     next: "Pair it with SQL, spreadsheets and a dashboard tool.",
+    skills: ["Python", "SQL", "LLM summarising", "Dashboards"],
   },
   {
     icon: "⚙️",
@@ -52,6 +58,7 @@ export const ROLES: Role[] = [
     does: "Designs prompts and workflows that automate repetitive business tasks.",
     proof: "You've tuned a prompt until an app behaved, and you can show it running.",
     next: "Learn workflow tools and how to test prompts systematically.",
+    skills: ["Prompt design", "LLM APIs", "Workflow tools", "Testing prompts"],
   },
   {
     icon: "🤝",
@@ -59,6 +66,7 @@ export const ROLES: Role[] = [
     does: "Demonstrates AI features to customers and turns their needs into product ideas.",
     proof: "A live link lets you demo a real working thing instead of describing one.",
     next: "Practise explaining trade-offs: cost, accuracy and limits of models.",
+    skills: ["Demoing", "Prompt design", "Cost vs accuracy", "Writing"],
   },
 ];
 
