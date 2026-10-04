@@ -11,13 +11,13 @@ export const WORKSHOP_CONFIG = {
 
   // ── Dates (ISO 8601, Asia/Kolkata) ────────────────────────────────────────
   /** Workshop date/time for Session 1 */
-  sessionDate: "2025-11-15T15:00:00+05:30",
+  sessionDate: "2026-10-17T15:00:00+05:30",
   /** Workshop date/time for Session 2 (overflow) */
-  session2Date: "2025-11-22T15:00:00+05:30",
+  session2Date: "2026-10-24T15:00:00+05:30",
   /** Registration closes (end of Day 7) */
-  registrationCloses: "2025-11-14T23:59:59+05:30",
+  registrationCloses: "2026-10-14T23:59:59+05:30",
   /** Campaign start date (Day 1) */
-  campaignStart: "2025-11-08T00:00:00+05:30",
+  campaignStart: "2026-10-08T00:00:00+05:30",
 
   // ── Capacity ──────────────────────────────────────────────────────────────
   /** Maximum real registrations in Session 1 before overflow to Session 2 */

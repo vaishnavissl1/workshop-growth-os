@@ -19,6 +19,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(WORKSHOP_CONFIG.siteUrl),
   title: {
     default: WORKSHOP_CONFIG.title,
     template: `%s | ${WORKSHOP_CONFIG.shortTitle}`,
@@ -30,14 +31,6 @@ export const metadata: Metadata = {
     title: WORKSHOP_CONFIG.title,
     description: WORKSHOP_CONFIG.ogDescription,
     url: WORKSHOP_CONFIG.siteUrl,
-    images: [
-      {
-        url: `${WORKSHOP_CONFIG.siteUrl}/api/og`,
-        width: 1200,
-        height: 630,
-        alt: WORKSHOP_CONFIG.ogImageAlt,
-      },
-    ],
   },
   twitter: {
     card: "summary_large_image",

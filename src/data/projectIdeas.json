@@ -1,0 +1,47 @@
+{
+  "CSE / IT": [
+    { "title": "Resume-to-JD match coach", "description": "Paste a job description and your resume; get a tailored gap list and rewrite tips.", "stack": "Gradio + LLM API" },
+    { "title": "Code-review buddy", "description": "Paste a function and get plain-English review comments and test ideas.", "stack": "Gradio + LLM API" },
+    { "title": "Interview question simulator", "description": "Pick a company and role; practise with AI follow-up questions and scoring.", "stack": "Gradio + LLM API" }
+  ],
+  "ECE": [
+    { "title": "Datasheet summariser", "description": "Paste a component datasheet and ask questions about pinouts and limits.", "stack": "Gradio + LLM API" },
+    { "title": "Circuit fault explainer", "description": "Describe the symptoms of a faulty circuit and get likely causes to check.", "stack": "Gradio + LLM API" },
+    { "title": "Embedded interview prep bot", "description": "Practise microcontroller and signals questions with instant feedback.", "stack": "Gradio + LLM API" }
+  ],
+  "EEE": [
+    { "title": "Power-system concept tutor", "description": "Ask any load-flow or protection question and get a worked, step-by-step answer.", "stack": "Gradio + LLM API" },
+    { "title": "Electricity-bill explainer", "description": "Paste a bill and see where the units and charges come from, plus saving tips.", "stack": "Gradio + LLM API" },
+    { "title": "Motor fault diagnosis assistant", "description": "Describe how a motor behaves and get a ranked list of probable faults.", "stack": "Gradio + LLM API" }
+  ],
+  "Mechanical": [
+    { "title": "Machine-fault explainer chatbot", "description": "Describe a noise or vibration and get likely causes and checks.", "stack": "Gradio + LLM API" },
+    { "title": "Material selection assistant", "description": "Give the load and environment and get a shortlist of materials with trade-offs.", "stack": "Gradio + LLM API" },
+    { "title": "Core-subject viva trainer", "description": "Practise thermodynamics and design viva questions with AI feedback.", "stack": "Gradio + LLM API" }
+  ],
+  "Civil": [
+    { "title": "Building-code Q&A assistant", "description": "Ask about IS code clauses and get plain-language answers.", "stack": "Gradio + LLM API" },
+    { "title": "Site-report summariser", "description": "Paste daily site notes and get a clean progress and risk summary.", "stack": "Gradio + LLM API" },
+    { "title": "Quantity-estimate helper", "description": "Describe a small structure and get a rough bill-of-quantities outline.", "stack": "Gradio + LLM API" }
+  ],
+  "Chemical": [
+    { "title": "Process-safety checklist generator", "description": "Describe a process step and get a hazard and safety checklist.", "stack": "Gradio + LLM API" },
+    { "title": "Reaction-condition explainer", "description": "Enter a reaction and see why temperature and pressure matter.", "stack": "Gradio + LLM API" },
+    { "title": "Plant interview prep bot", "description": "Practise unit-operations questions with instant AI feedback.", "stack": "Gradio + LLM API" }
+  ],
+  "Biotech": [
+    { "title": "Research-paper summariser", "description": "Paste an abstract and get methods, findings and limits in simple language.", "stack": "Gradio + LLM API" },
+    { "title": "Lab-protocol explainer", "description": "Turn a long lab protocol into numbered steps with the why behind each.", "stack": "Gradio + LLM API" },
+    { "title": "Bioinformatics concept tutor", "description": "Ask about sequence alignment or BLAST and get examples you can follow.", "stack": "Gradio + LLM API" }
+  ],
+  "Other Engineering": [
+    { "title": "Core-subject doubt solver", "description": "Ask a doubt from your branch and get a step-by-step explanation.", "stack": "Gradio + LLM API" },
+    { "title": "Resume-to-JD match coach", "description": "Compare your resume to a job description and get tailored fixes.", "stack": "Gradio + LLM API" },
+    { "title": "Interview question simulator", "description": "Practise role-specific questions with AI follow-ups.", "stack": "Gradio + LLM API" }
+  ],
+  "Non-engineering": [
+    { "title": "Study-notes summariser", "description": "Paste long notes and get a one-page summary with key terms.", "stack": "Gradio + LLM API" },
+    { "title": "Resume polisher", "description": "Paste your resume and get clearer, stronger bullet points.", "stack": "Gradio + LLM API" },
+    { "title": "Interview question simulator", "description": "Practise common questions with AI feedback.", "stack": "Gradio + LLM API" }
+  ]
+}
