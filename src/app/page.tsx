@@ -1,6 +1,7 @@
 import { WORKSHOP_CONFIG as cfg } from "@/config";
 import Countdown from "@/components/Countdown";
 import PageGlow from "@/components/PageGlow";
+import RealityCheck from "@/components/RealityCheck";
 import { Subhead } from "@/components/RegisterForm";
 import { closesLabel, seatsLeft, sessionLabel } from "@/lib/seats";
 
@@ -111,6 +112,16 @@ export default async function HomePage() {
             </div>
           ))}
         </dl>
+      </section>
+
+      {/* One-minute self-check: the hook before any sign-up */}
+      <section className="container-wide pt-20">
+        <div className="mb-10 text-center">
+          <p className="eyebrow mb-3">One-minute check</p>
+          <h2 className="section-title">Can you show a recruiter something you built?</h2>
+          <p className="lead mx-auto mt-4 max-w-2xl">Five yes-or-no questions. No sign-up needed to see your result.</p>
+        </div>
+        <RealityCheck />
       </section>
 
       {/* NxtWave's own published numbers (ccbp.in/ai-workshop, ccbp.in) */}
