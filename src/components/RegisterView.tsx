@@ -5,6 +5,7 @@ import RegisterForm from "@/components/RegisterForm";
 import { closesLabel, seatsLeft, sessionLabel } from "@/lib/seats";
 
 const PERKS = [
+  ["🎁", "Starter code for your project, the moment you register"],
   ["🔗", "A live public link to your AI app"],
   ["📜", "Certificate with your name + project title"],
   ["🏆", "Proof you built it before your batch"],

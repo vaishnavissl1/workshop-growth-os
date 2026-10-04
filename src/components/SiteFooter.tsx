@@ -19,6 +19,7 @@ const NAV = [
   ["/register", "Register"],
   ["/program", "Program"],
   ["/certificate", "Certificate"],
+  ["/evaluate", "Project checker"],
   ["/faq", "FAQ"],
   ["/leaderboard", "Leaderboard"],
 ];

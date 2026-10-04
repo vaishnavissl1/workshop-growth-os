@@ -6,6 +6,7 @@ import CopyButton from "@/components/CopyButton";
 import RememberMe from "@/components/RememberMe";
 import SeatsCounter from "@/components/SeatsCounter";
 import ideas from "@/data/projectIdeas.json";
+import { STARTER_REQUIREMENTS, starterApp } from "@/lib/starter";
 import { WORKSHOP_CONFIG as cfg } from "@/config";
 import { db } from "@/lib/supabase";
 import { calendarUrl, inviteUrl, sessionStart, shareMessage, waShareUrl } from "@/lib/share";
@@ -53,6 +54,7 @@ export default async function ThanksPage({
   const branchIdeas = (ideas as Record<string, { title: string; description: string; stack: string }[]>)[me.branch] ?? [];
   const idea = branchIdeas.find((i) => i.title === me.project_idea) ?? branchIdeas[0];
   const firstName = me.name.trim().split(/\s+/)[0];
+  const starter = idea ? starterApp(firstName, me.branch, idea) : null;
 
   const when = new Date(sessionStart(me.session)).toLocaleString("en-IN", {
     dateStyle: "full",
@@ -88,6 +90,30 @@ export default async function ThanksPage({
             <h2 className="mt-1 text-lg font-bold">{firstName}, you&apos;ll build: {idea.title}</h2>
             <p className="mt-1 text-sm text-[var(--color-muted)]">{idea.description}</p>
             <p className="mt-2 text-xs font-semibold text-[var(--color-primary-light)]">{idea.stack} · deployed live in 60 minutes</p>
+          </div>
+        )}
+
+        {starter && (
+          <div className="card space-y-4">
+            <div>
+              <p className="eyebrow !text-xs">Yours to keep</p>
+              <h2 className="mt-1 text-lg font-bold">Your starter kit is ready</h2>
+              <p className="mt-1 text-sm text-[var(--color-muted)]">
+                Working starter code for your project, with your prompt already written. Open it before the workshop and you&apos;ll be a step ahead.
+              </p>
+            </div>
+            <div className="flex flex-wrap gap-3">
+              <a className="btn-primary" href={`/api/starter/${code}?t=${t}`}>Download app.py</a>
+              <CopyButton text={starter} label="Copy the code" />
+              <CopyButton text={STARTER_REQUIREMENTS} label="Copy requirements.txt" />
+            </div>
+            <details className="group">
+              <summary className="cursor-pointer text-sm font-semibold text-[var(--color-primary)]">See the code</summary>
+              <pre className="inset mt-3 max-h-80 overflow-auto p-4 text-xs leading-relaxed text-slate-700"><code>{starter}</code></pre>
+            </details>
+            <p className="text-sm text-[var(--color-muted)]">
+              When your app is live, <Link href="/evaluate">check it against the rubric</Link>.
+            </p>
           </div>
         )}
 

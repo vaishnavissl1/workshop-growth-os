@@ -13,6 +13,13 @@ const STATS = [
   ["2027", "batch · every engineering branch"],
 ];
 
+/** NxtWave's own published figures for its existing Generative AI workshop. Source: ccbp.in/ai-workshop */
+const PROOF = [
+  { stat: "400K+", label: "students registered", note: "for NxtWave's Generative AI workshop" },
+  { stat: "50K+", label: "learners", note: "who took the existing workshop" },
+  { stat: "60 min", label: "instead of 2 hours", note: "same build: set up, build, deploy, share" },
+];
+
 const WALK_AWAY = [
   { icon: "🔗", title: "A live public link to your AI app", note: "Add it to your resume tonight. Interviewers can open it and try it." },
   { icon: "📜", title: "Certificate with your name + project title", note: "LinkedIn-ready, issued when you finish the build." },
@@ -53,7 +60,7 @@ export default async function HomePage() {
             {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
             <a href="/program" className="btn-secondary btn-lg">See the program →</a>
           </div>
-          <p className="mt-5 text-sm text-slate-500">No coding background needed. A laptop, internet and a Google account is all it takes.</p>
+          <p className="mt-5 text-sm text-slate-500">Register and get starter code for your project straight away. No coding background needed.</p>
         </div>
 
         {/* Live seat card */}
@@ -92,6 +99,30 @@ export default async function HomePage() {
             </div>
           ))}
         </dl>
+      </section>
+
+      {/* Sourced proof: NxtWave's own published numbers, with the source named */}
+      <section className="container-wide pt-24">
+        <div className="mb-12 text-center">
+          <p className="eyebrow mb-3">Why this format</p>
+          <h2 className="section-title">Built on a workshop students already show up for</h2>
+          <p className="lead mx-auto mt-4 max-w-2xl">
+            NxtWave already runs a Generative AI workshop for students across all branches. This is the same build, cut to one hour and aimed at final-years in placement season.
+          </p>
+        </div>
+        <ul className="grid gap-6 md:grid-cols-3">
+          {PROOF.map((p) => (
+            <li key={p.label} className="card !p-8 text-center">
+              <p className="text-5xl font-bold gradient-text">{p.stat}</p>
+              <p className="mt-3 text-[1.0125rem] font-semibold">{p.label}</p>
+              <p className="mt-1 text-sm text-slate-500">{p.note}</p>
+            </li>
+          ))}
+        </ul>
+        <p className="mt-6 text-center text-sm text-slate-500">
+          Figures for NxtWave&apos;s existing workshop, as published on{" "}
+          <a href="https://www.ccbp.in/ai-workshop" target="_blank" rel="noopener noreferrer">ccbp.in/ai-workshop</a> (checked 5 Oct 2026).
+        </p>
       </section>
 
       {/* Walk away with */}

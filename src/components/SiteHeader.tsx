@@ -8,6 +8,7 @@ import { authClient } from "@/lib/supabaseBrowser";
 const LINKS = [
   { href: "/program", label: "Program" },
   { href: "/certificate", label: "Certificate" },
+  { href: "/evaluate", label: "Checker" },
   { href: "/faq", label: "FAQ" },
   { href: "/leaderboard", label: "Leaderboard" },
 ];
