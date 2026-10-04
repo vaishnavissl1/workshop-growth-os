@@ -1,12 +1,19 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { authClient } from "@/lib/supabaseBrowser";
 import AuthShell, { Field, Notice, PasswordInput } from "@/components/auth/AuthShell";
 
 export default function LoginForm() {
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
+  const [nextQ, setNextQ] = useState("");
+
+  useEffect(() => {
+    const n = new URLSearchParams(window.location.search).get("next");
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- reading the URL after mount
+    if (n) setNextQ(`?next=${encodeURIComponent(n)}`);
+  }, []);
 
   async function submit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -42,7 +49,7 @@ export default function LoginForm() {
         <>
           New here?{" "}
           {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
-          <a href="/signup" className="font-semibold">Create an account</a>
+          <a href={`/signup${nextQ}`} className="font-semibold">Create an account</a>
         </>
       }
     >

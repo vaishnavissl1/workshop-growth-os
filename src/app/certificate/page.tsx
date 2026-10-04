@@ -1,3 +1,4 @@
+import AuthGate from "@/components/auth/AuthGate";
 import PageGlow from "@/components/PageGlow";
 import PageHero from "@/components/PageHero";
 import { WORKSHOP_CONFIG as cfg } from "@/config";
@@ -26,6 +27,7 @@ const LINKEDIN = [
 
 export default function CertificatePage() {
   return (
+    <AuthGate>
     <>
       <PageGlow tone="amber" />
       <PageHero
@@ -99,5 +101,6 @@ export default function CertificatePage() {
         </div>
       </section>
     </>
+    </AuthGate>
   );
 }

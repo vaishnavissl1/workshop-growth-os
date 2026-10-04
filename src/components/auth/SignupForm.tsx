@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { authClient } from "@/lib/supabaseBrowser";
 import AuthShell, { Field, Notice, PasswordInput } from "@/components/auth/AuthShell";
 
@@ -8,6 +8,14 @@ export default function SignupForm() {
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
   const [sentTo, setSentTo] = useState("");
+  const [next, setNext] = useState("/register");
+
+  // Where they were heading when they were sent here (only same-site paths are accepted).
+  useEffect(() => {
+    const n = new URLSearchParams(window.location.search).get("next");
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- reading the URL after mount
+    if (n && n.startsWith("/") && !n.startsWith("//")) setNext(n);
+  }, []);
 
   async function submit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -25,7 +33,7 @@ export default function SignupForm() {
       password,
       options: {
         data: { name: String(f.get("name")).trim() },
-        emailRedirectTo: `${window.location.origin}/account`,
+        emailRedirectTo: `${window.location.origin}${next}`,
       },
     });
     setBusy(false);
@@ -45,7 +53,7 @@ export default function SignupForm() {
     }
     if (data.session) {
       // Email confirmation is off: they're signed in, so go straight to reserving a seat.
-      window.location.assign("/register");
+      window.location.assign(next);
       return;
     }
     setSentTo(email);
@@ -71,12 +79,12 @@ export default function SignupForm() {
     <AuthShell
       eyebrow="Create your account"
       title="Sign up"
-      lead="Save your details, edit them any time, and keep your invite link."
+      lead={next === "/register" ? "Save your details, edit them any time, and keep your invite link." : "Create a free account to continue. It takes a minute, and you'll pick up right where you left off."}
       footer={
         <>
           Already have an account?{" "}
           {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
-          <a href="/login" className="font-semibold">Log in</a>
+          <a href={`/login?next=${encodeURIComponent(next)}`} className="font-semibold">Log in</a>
         </>
       }
     >
@@ -98,7 +106,7 @@ export default function SignupForm() {
           {busy ? "Creating account…" : "Create account"}
         </button>
         <p className="text-center text-sm text-gray-400">
-          Signing up doesn&apos;t reserve a seat. You&apos;ll do that next, in one minute.
+          Signing up doesn&apos;t reserve a seat. You can do that once you&apos;re in.
         </p>
       </form>
     </AuthShell>

@@ -1,4 +1,5 @@
 import { WORKSHOP_CONFIG as cfg } from "@/config";
+import AuthGate from "@/components/auth/AuthGate";
 import PageGlow from "@/components/PageGlow";
 import PageHero from "@/components/PageHero";
 import ideas from "@/data/projectIdeas.json";
@@ -66,6 +67,7 @@ const TOOLS = ["Google Colab", "Python", "Gradio", "Hugging Face Spaces", "An LL
 
 export default function ProgramPage() {
   return (
+    <AuthGate>
     <>
       <PageGlow tone="blue" />
       <PageHero
@@ -185,5 +187,6 @@ export default function ProgramPage() {
         </div>
       </section>
     </>
+    </AuthGate>
   );
 }

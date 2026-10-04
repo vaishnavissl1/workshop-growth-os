@@ -1,3 +1,4 @@
+import AuthGate from "@/components/auth/AuthGate";
 import PageGlow from "@/components/PageGlow";
 import PageHero from "@/components/PageHero";
 import { WORKSHOP_CONFIG as cfg } from "@/config";
@@ -42,6 +43,7 @@ const GROUPS: { title: string; items: [string, string][] }[] = [
 
 export default function FaqPage() {
   return (
+    <AuthGate>
     <>
       <PageGlow tone="violet" />
       <PageHero
@@ -78,5 +80,6 @@ export default function FaqPage() {
         </section>
       </div>
     </>
+    </AuthGate>
   );
 }

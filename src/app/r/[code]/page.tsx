@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import AuthGate from "@/components/auth/AuthGate";
 import RegisterView from "@/components/RegisterView";
 import { getInviter } from "@/lib/inviter";
 import { WORKSHOP_CONFIG as cfg } from "@/config";
@@ -19,5 +20,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function ReferralPage({ params }: Props) {
   const code = (await params).code.toUpperCase();
   const inviter = await getInviter(code);
-  return <RegisterView refCode={inviter ? code : undefined} inviter={inviter ?? undefined} />;
+  return (
+    <AuthGate refCode={inviter ? code : undefined}>
+      <RegisterView refCode={inviter ? code : undefined} inviter={inviter ?? undefined} />
+    </AuthGate>
+  );
 }
