@@ -1,5 +1,8 @@
 import { notFound } from "next/navigation";
 import CopyButton from "@/components/CopyButton";
+import RememberMe from "@/components/RememberMe";
+import SeatsCounter from "@/components/SeatsCounter";
+import ideas from "@/data/projectIdeas.json";
 import { WORKSHOP_CONFIG as cfg } from "@/config";
 import { db } from "@/lib/supabase";
 import { calendarUrl, inviteUrl, sessionStart, shareMessage, waShareUrl } from "@/lib/share";
@@ -21,12 +24,13 @@ export default async function ThanksPage({
 
   const { data: me } = await supabase
     .from("registrations")
-    .select("name, college, session, is_verified")
+    .select("name, college, branch, project_idea, session, is_verified")
     .eq("ref_code", code)
     .maybeSingle();
   if (!me) notFound();
 
-  const [{ data: mine }, { data: top }, { data: colleges }] = await Promise.all([
+  const [{ data: seats }, { data: mine }, { data: top }, { data: colleges }] = await Promise.all([
+    supabase.rpc("seats_left"),
     supabase.from("leaderboard_public").select("verified_referral_count, referrer_rank").eq("ref_code", code).maybeSingle(),
     supabase.from("leaderboard_public").select("verified_referral_count").order("verified_referral_count", { ascending: false }).limit(3),
     supabase.from("college_leaderboard").select("college, verified_count, college_rank").order("college_rank").limit(50),
@@ -41,6 +45,10 @@ export default async function ThanksPage({
     : undefined;
   const toOvertake = myCollege && rankedAbove ? Number(rankedAbove.verified_count) - Number(myCollege.verified_count) + 1 : 0;
 
+  const branchIdeas = (ideas as Record<string, { title: string; description: string; stack: string }[]>)[me.branch] ?? [];
+  const idea = branchIdeas.find((i) => i.title === me.project_idea) ?? branchIdeas[0];
+  const firstName = me.name.split(" ")[0];
+
   const when = new Date(sessionStart(me.session)).toLocaleString("en-IN", {
     dateStyle: "full",
     timeStyle: "short",
@@ -52,6 +60,7 @@ export default async function ThanksPage({
   return (
     <div className="container-page py-8">
       <div className="mx-auto max-w-md space-y-5">
+        <RememberMe code={code} />
         <div className="text-center">
           <div className="mx-auto mb-3 flex h-16 w-16 items-center justify-center rounded-full bg-[var(--color-success)] text-3xl text-white">✓</div>
           <h1 className="text-3xl font-extrabold">{again ? "You're already in!" : "You're in!"}</h1>
@@ -65,6 +74,17 @@ export default async function ThanksPage({
             </p>
           )}
         </div>
+
+        {idea && (
+          <div className="card">
+            <p className="text-xs font-semibold uppercase tracking-wide text-[var(--color-primary)]">{firstName}&apos;s project</p>
+            <h2 className="mt-1 text-lg font-bold">{firstName}, you&apos;ll build: {idea.title}</h2>
+            <p className="mt-1 text-sm text-[var(--color-muted)]">{idea.description}</p>
+            <p className="mt-2 text-xs font-semibold text-[var(--color-primary)]">{idea.stack} · deployed live in 60 minutes</p>
+          </div>
+        )}
+
+        <SeatsCounter initial={typeof seats === "number" ? seats : cfg.seatCap} cap={cfg.seatCap} />
 
         <div className="card space-y-3">
           <h2 className="text-lg font-bold">Invite friends, climb the leaderboard</h2>

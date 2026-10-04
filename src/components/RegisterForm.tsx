@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import ideas from "@/data/projectIdeas.json";
 import { COLLEGES } from "@/lib/colleges";
 import { WORKSHOP_CONFIG as cfg } from "@/config";
@@ -21,7 +22,6 @@ const PICKER: { label: string; branch: string }[] = [
 ];
 
 type Stored = { ref?: string; source?: string; ambassador?: string };
-type Result = { ok: boolean; already?: boolean; session?: number; code?: string; message: string };
 
 function readStore(): Stored {
   try {
@@ -45,11 +45,11 @@ export function Subhead() {
 }
 
 export default function RegisterForm({ refCode }: { refCode?: string }) {
+  const router = useRouter();
   const [branch, setBranch] = useState("");
   const [project, setProject] = useState("");
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
-  const [result, setResult] = useState<Result | null>(null);
   const [attr, setAttr] = useState<Stored>({});
   const [variant, setVariant] = useState<Variant>("control");
 
@@ -94,7 +94,7 @@ export default function RegisterForm({ refCode }: { refCode?: string }) {
           consent: f.get("consent") === "on",
           website: f.get("website"),
           projectIdea: project,
-          ref: attr.ref,
+          ref: f.get("ref") || attr.ref,
           source: attr.source,
           ambassador: attr.ambassador,
           variant,
@@ -103,42 +103,15 @@ export default function RegisterForm({ refCode }: { refCode?: string }) {
       const data = await res.json();
       if (!data.ok) return setError(data.message ?? "Something went wrong. Please try again.");
       console.log("ref_code:", data.ref_code);
-      setResult({
-        ok: true,
-        already: data.already_registered,
-        session: data.session,
-        code: data.ref_code,
-        message: data.message,
-      });
+      try {
+        localStorage.setItem("wgos_me", data.ref_code);
+      } catch {}
+      router.push(`/thanks/${data.ref_code}${data.already_registered ? "?again=1" : ""}`);
     } catch {
       setError("Network problem. Please try again.");
     } finally {
       setBusy(false);
     }
-  }
-
-  if (result) {
-    const overflow = result.session === 2;
-    const when = new Date(cfg.session2Date).toLocaleString("en-IN", {
-      dateStyle: "medium",
-      timeStyle: "short",
-      timeZone: "Asia/Kolkata",
-    });
-    return (
-      <div role="status" className="space-y-3 text-center">
-        <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-[var(--color-success)] text-2xl text-white">✓</div>
-        <h2 className="text-2xl font-extrabold">{result.already ? "You're already registered" : "You're in!"}</h2>
-        <p className="text-sm text-[var(--color-muted)]">{result.message}</p>
-        {overflow && (
-          <p className="rounded-xl bg-amber-50 p-3 text-sm text-amber-900">
-            Session 1 is full, so you&apos;re registered for the repeat session on {when} IST. Same workshop, same certificate.
-          </p>
-        )}
-        <p className="rounded-xl bg-[#F1F5F9] p-3 text-sm">
-          Your invite code: <strong>{result.code}</strong>
-        </p>
-      </div>
-    );
   }
 
   const input =
@@ -231,6 +204,9 @@ export default function RegisterForm({ refCode }: { refCode?: string }) {
           ))}
         </select>
       </div>
+
+      {/* Referrer code: also carried as a hidden field (URL param + localStorage + hidden field, never cookies) */}
+      <input type="hidden" name="ref" value={attr.ref ?? ""} />
 
       {/* Honeypot: invisible to people, tempting for bots */}
       <div aria-hidden="true" className="absolute -left-[9999px] h-0 w-0 overflow-hidden">
