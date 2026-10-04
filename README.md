@@ -17,6 +17,8 @@ A working growth system for one workshop: *"Build Your First AI Project in 60 Mi
 | **Admin** (`/admin`) | KPI strip, cumulative-vs-500 chart, funnel, channel table with cost, decision rules R0–R6 with green/amber/red status, a live scenario simulator, and a loader for simulated data. |
 | **Simulation** | `POST /api/simulate` seeds the plan's pessimistic / base / optimistic scenarios (235 / 553 / 1,118 registrations) across 7 days. Simulated rows are flagged and never mix into real numbers. |
 | **Ambassador kit** (`/ambassador?amb=CODE`) | Tracked link, three copy-ready messages in English, Telugu, Kannada and Hindi (AI-drafted, marked for native-speaker review), TPO email template. |
+| **Project checker** (`/evaluate`) | Paste a Hugging Face Space link and get a score out of 100 against a six-point rubric (live, uses a model, real interface, key kept secret, documented, own work), with a specific next step for each miss. Rule-based by default; a written AI review switches on when `ANTHROPIC_API_KEY` is set. |
+| **Starter kit** | On registering, each student gets a personalised, runnable `app.py` for the project they picked. |
 | **Analytics** | PostHog with a 3-way `headline_variant` flag driving the home-page subhead. |
 
 ## What is *not* built
@@ -24,7 +26,8 @@ A working growth system for one workshop: *"Build Your First AI Project in 60 Mi
 Be honest about the edges:
 
 - No live WhatsApp reminders (the plan's reminder flow is not implemented).
-- No AI project evaluator and no workshop-day live tracker.
+- No workshop-day live tracker. The project checker is rule-based; the written AI review needs an API key that this deployment does not have.
+- The starter code is valid Python and follows the workshop steps, but I have not run it against a live model.
 - The TPO email generator is a fill-in template, not an LLM call. The vernacular messages use pre-written drafts unless an `ANTHROPIC_API_KEY` is set.
 - PostHog has the events and the flag; I did not build the funnel insight or dashboard inside PostHog. The in-app funnel is computed from the database.
 - All conversion numbers in the plan are assumptions or simulated, not measured.
@@ -49,7 +52,7 @@ npm run dev                        # http://localhost:3000
 | `ADMIN_PASSWORD`, `REVIEWER_PASSWORD` | Password sign-in for `/admin` (admin can load data; reviewer is read-only) |
 | `RATE_LIMIT_SALT` | Salt for hashed IPs in the rate limiter |
 | `NEXT_PUBLIC_POSTHOG_KEY`, `NEXT_PUBLIC_POSTHOG_HOST` | Analytics |
-| `ANTHROPIC_API_KEY` (optional) | Live translation in the ambassador kit |
+| `ANTHROPIC_API_KEY` (optional) | Written AI review in the project checker, and live translation in the ambassador kit |
 
 Workshop title, dates, seat cap, reward tiers and the day plan live in [`src/config.ts`](src/config.ts), so the same system can run another workshop.
 

@@ -86,7 +86,7 @@ export default function SiteHeader() {
           aria-expanded={open}
           aria-controls="mobile-menu"
           aria-label={open ? "Close menu" : "Open menu"}
-          className="flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-xl md:hidden"
+          className="flex h-11 w-11 items-center justify-center rounded-xl border border-white/20 bg-white/10 text-xl text-white md:hidden"
         >
           {open ? "✕" : "☰"}
         </button>
