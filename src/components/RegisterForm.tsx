@@ -127,7 +127,7 @@ export default function RegisterForm({ refCode }: { refCode?: string }) {
   }
 
   const input = "field";
-  const label = "block text-sm font-semibold mb-1 text-gray-200";
+  const label = "block text-sm font-semibold mb-1 text-slate-800";
 
   return (
     <form onSubmit={onSubmit} className="space-y-5" id="register">
@@ -219,11 +219,11 @@ export default function RegisterForm({ refCode }: { refCode?: string }) {
       </div>
 
       <label className="flex items-start gap-3 text-sm text-[var(--color-soft)]">
-        <input type="checkbox" name="consent" required className="mt-1 h-5 w-5 accent-violet-500" />
+        <input type="checkbox" name="consent" required className="mt-1 h-5 w-5 accent-[#991B1B]" />
         <span>I agree to be contacted on WhatsApp/email about this workshop.</span>
       </label>
 
-      <p className="text-sm text-gray-400">
+      <p className="text-sm text-slate-500">
         Note: this is a prototype built for the NxtWave Growth Challenge, not an official NxtWave event.
       </p>
 

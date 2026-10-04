@@ -1,9 +1,9 @@
 const TONES = {
-  violet: ["rgba(91,33,182,0.45)", "rgba(162,28,175,0.30)"],
-  amber: ["rgba(180,83,9,0.40)", "rgba(190,18,60,0.22)"],
-  green: ["rgba(21,128,61,0.40)", "rgba(13,148,136,0.25)"],
-  pink: ["rgba(190,24,93,0.38)", "rgba(109,40,217,0.30)"],
-  blue: ["rgba(29,78,216,0.38)", "rgba(79,70,229,0.28)"],
+  violet: ["rgba(153,27,27,0.09)", "rgba(255,178,24,0.10)"],
+  amber: ["rgba(255,178,24,0.16)", "rgba(153,27,27,0.07)"],
+  green: ["rgba(22,163,74,0.10)", "rgba(255,178,24,0.08)"],
+  pink: ["rgba(220,38,38,0.09)", "rgba(153,27,27,0.07)"],
+  blue: ["rgba(30,41,59,0.08)", "rgba(153,27,27,0.06)"],
 } as const;
 
 /** Per-page colour wash behind the content, so each route reads as its own destination. */

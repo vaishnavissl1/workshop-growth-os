@@ -51,7 +51,7 @@ export default function ResetForm() {
   if (state === "checking") {
     return (
       <AuthShell eyebrow="One moment" title="Checking your link">
-        <p className="text-center text-gray-400">Verifying…</p>
+        <p className="text-center text-slate-500">Verifying…</p>
       </AuthShell>
     );
   }
@@ -60,7 +60,7 @@ export default function ResetForm() {
     return (
       <AuthShell eyebrow="Link problem" title="This link has expired">
         <div className="space-y-4 text-center">
-          <p className="text-gray-300">Reset links work once and expire quickly. Ask for a fresh one.</p>
+          <p className="text-slate-600">Reset links work once and expire quickly. Ask for a fresh one.</p>
           {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
           <a href="/forgot-password" className="btn-primary btn-lg">Send a new link</a>
         </div>
@@ -73,7 +73,7 @@ export default function ResetForm() {
       <AuthShell eyebrow="All set" title="Password updated">
         <div className="space-y-4 text-center">
           <p className="text-5xl" aria-hidden="true">✅</p>
-          <p className="text-gray-300">You&apos;re signed in with your new password.</p>
+          <p className="text-slate-600">You&apos;re signed in with your new password.</p>
           {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
           <a href="/account" className="btn-primary btn-lg">Go to my account</a>
         </div>

@@ -58,12 +58,12 @@ export default function FaqPage() {
             <h2 id={`g-${g.title}`} className="mb-5 text-2xl font-semibold">{g.title}</h2>
             <div className="space-y-3">
               {g.items.map(([q, a]) => (
-                <details key={q} className="group rounded-2xl border border-white/10 bg-white/[0.06] transition open:bg-white/[0.09]">
+                <details key={q} className="group rounded-2xl border border-slate-200 bg-slate-50 transition open:bg-slate-50">
                   <summary className="flex cursor-pointer list-none items-center justify-between gap-4 p-6 text-lg font-medium">
                     {q}
-                    <span aria-hidden="true" className="text-xl text-gray-300 transition-transform group-open:rotate-180">⌄</span>
+                    <span aria-hidden="true" className="text-xl text-slate-600 transition-transform group-open:rotate-180">⌄</span>
                   </summary>
-                  <p className="px-6 pb-6 text-[1.0125rem] leading-relaxed text-gray-300">{a}</p>
+                  <p className="px-6 pb-6 text-[1.0125rem] leading-relaxed text-slate-600">{a}</p>
                 </details>
               ))}
             </div>
@@ -75,7 +75,7 @@ export default function FaqPage() {
           <p className="lead mt-3">It takes about a minute to reserve your seat.</p>
           <p className="mt-6">
             {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
-            <a href="/register" className="btn-cta btn-lg !text-[#111827]">Reserve my free seat</a>
+            <a href="/register" className="btn-cta btn-lg">Reserve my free seat</a>
           </p>
         </section>
       </div>

@@ -25,21 +25,21 @@ export default function CareerSections() {
         <ul className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {ROLES.map((r) => (
             <li key={r.title} className="card card-lift flex flex-col !p-8">
-              <span aria-hidden="true" className="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-violet-500/15 text-3xl">{r.icon}</span>
+              <span aria-hidden="true" className="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-[#FBF2F3] text-3xl">{r.icon}</span>
               <h3 className="text-xl font-semibold">{r.title}</h3>
-              <p className="mt-2 text-gray-400">{r.does}</p>
-              <p className="mt-4 text-[0.95rem] text-gray-200">
+              <p className="mt-2 text-slate-500">{r.does}</p>
+              <p className="mt-4 text-[0.95rem] text-slate-800">
                 <strong className="text-[var(--color-primary-light)]">Your project shows: </strong>
                 {r.proof}
               </p>
-              <p className="mt-3 text-[0.95rem] text-gray-400">
-                <strong className="text-gray-300">Next step: </strong>
+              <p className="mt-3 text-[0.95rem] text-slate-500">
+                <strong className="text-slate-600">Next step: </strong>
                 {r.next}
               </p>
             </li>
           ))}
         </ul>
-        <p className="mx-auto mt-6 max-w-2xl text-center text-sm text-gray-400">
+        <p className="mx-auto mt-6 max-w-2xl text-center text-sm text-slate-500">
           A workshop certificate and one project don&apos;t guarantee a job. They give you something real to show while you keep building.
         </p>
       </section>
@@ -53,7 +53,7 @@ export default function CareerSections() {
             {BRANCH_FIT.map((b) => (
               <li key={b.branch} className="inset p-5">
                 <p className="font-semibold text-[var(--color-primary-light)]">{b.branch}</p>
-                <p className="mt-1 text-[0.95rem] text-gray-300">{b.fit}</p>
+                <p className="mt-1 text-[0.95rem] text-slate-600">{b.fit}</p>
               </li>
             ))}
           </ul>
@@ -69,18 +69,18 @@ export default function CareerSections() {
         <div className="grid gap-6 md:grid-cols-2">
           <div className="card !p-8">
             <h3 className="mb-3 text-xl font-semibold">A resume line you can copy</h3>
-            <p className="inset p-4 text-[0.95rem] leading-relaxed text-gray-200">
+            <p className="inset p-4 text-[0.95rem] leading-relaxed text-slate-800">
               Built and deployed a live LLM-powered app (Python, Gradio, Hugging Face Spaces) that [what yours does]. Public link: [your URL].
             </p>
-            <p className="mt-4 text-sm text-gray-400">Add the certificate under Licenses &amp; certifications: {cfg.title}.</p>
+            <p className="mt-4 text-sm text-slate-500">Add the certificate under Licenses &amp; certifications: {cfg.title}.</p>
           </div>
           <div className="card !p-8">
             <h3 className="mb-3 text-xl font-semibold">Questions it prepares you for</h3>
             <ul className="space-y-3">
               {INTERVIEW_QS.map(([q, a]) => (
                 <li key={q}>
-                  <p className="font-medium text-gray-100">{q}</p>
-                  <p className="text-sm text-gray-400">{a}</p>
+                  <p className="font-medium text-slate-800">{q}</p>
+                  <p className="text-sm text-slate-500">{a}</p>
                 </li>
               ))}
             </ul>
@@ -104,8 +104,8 @@ export default function CareerSections() {
               <h3 className="mt-1 text-xl font-semibold">Builds: {p.build}</h3>
               <ol className="mt-5 space-y-3">
                 {p.steps.map((s, i) => (
-                  <li key={s} className="flex gap-3 text-[0.95rem] text-gray-300">
-                    <span className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-violet-500/20 text-xs font-bold text-violet-200">{i + 1}</span>
+                  <li key={s} className="flex gap-3 text-[0.95rem] text-slate-600">
+                    <span className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-[#FBF2F3] text-xs font-bold text-[#991B1B]">{i + 1}</span>
                     {s}
                   </li>
                 ))}
@@ -127,17 +127,17 @@ export default function CareerSections() {
               {alumni.map((a) => (
                 <li key={a.name} className="card !p-8">
                   <p className="text-xl font-semibold">{a.name}</p>
-                  <p className="text-sm text-gray-400">{a.college} · Batch {a.batch}</p>
+                  <p className="text-sm text-slate-500">{a.college} · Batch {a.batch}</p>
                   <p className="mt-4 text-lg font-semibold text-[var(--color-primary-light)]">{a.role}</p>
-                  <p className="text-gray-300">{a.company}</p>
-                  {a.quote && <p className="mt-4 text-[0.95rem] italic text-gray-400">“{a.quote}”</p>}
+                  <p className="text-slate-600">{a.company}</p>
+                  {a.quote && <p className="mt-4 text-[0.95rem] italic text-slate-500">“{a.quote}”</p>}
                 </li>
               ))}
             </ul>
           </>
         ) : (
-          <div className="relative overflow-hidden rounded-3xl border border-violet-500/20 bg-gradient-to-b from-violet-900/25 to-violet-900/5 p-8 text-center sm:p-14">
-            <div className="absolute inset-0 bg-[url('/noise.svg')] opacity-20" aria-hidden="true" />
+          <div className="relative overflow-hidden rounded-3xl border border-[#F0CDD0] bg-gradient-to-b from-[#FBF2F3] to-white p-8 text-center sm:p-14">
+            <div className="absolute inset-0 bg-[url('/noise.svg')] opacity-[0.02]" aria-hidden="true" />
             <div className="relative">
               <p className="eyebrow mb-3">Where it can lead</p>
               <h2 className="section-title">Job roles this skill opens up</h2>
@@ -154,7 +154,7 @@ export default function CareerSections() {
               </ul>
               <p className="mt-10">
                 {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
-                <a href="/register" className="btn-cta btn-lg !text-[#111827]">Start with your first project</a>
+                <a href="/register" className="btn-cta btn-lg">Start with your first project</a>
               </p>
             </div>
           </div>

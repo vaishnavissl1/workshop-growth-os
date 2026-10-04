@@ -43,7 +43,7 @@ export default async function RegisterView({
             <p className="lead mt-5">Free, live and hands-on. Takes about a minute to register.</p>
 
             <div className="card mt-8 !p-7">
-              <p className="flex items-center gap-2 text-sm text-gray-300">
+              <p className="flex items-center gap-2 text-sm text-slate-600">
                 <span className="relative flex h-3 w-3 items-center justify-center" aria-hidden="true">
                   <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75" />
                   <span className="relative inline-flex h-2 w-2 rounded-full bg-green-500" />
@@ -52,19 +52,19 @@ export default async function RegisterView({
               </p>
               <p className="mt-1 text-5xl font-bold text-[var(--color-success-text)]">
                 {left}
-                <span className="text-xl font-medium text-gray-400"> / {cfg.seatCap}</span>
+                <span className="text-xl font-medium text-slate-500"> / {cfg.seatCap}</span>
               </p>
-              <p className="mt-4 text-[0.95rem] text-gray-300">
+              <p className="mt-4 text-[0.95rem] text-slate-600">
                 {sessionLabel(cfg.sessionDate)} IST
-                <span className="block text-gray-400">Repeat session {sessionLabel(cfg.session2Date)} IST</span>
+                <span className="block text-slate-500">Repeat session {sessionLabel(cfg.session2Date)} IST</span>
               </p>
-              <p className="mt-2 text-sm text-gray-400">Registration closes {closesLabel()}.</p>
+              <p className="mt-2 text-sm text-slate-500">Registration closes {closesLabel()}.</p>
             </div>
 
             <ul className="mt-6 space-y-3">
               {PERKS.map(([icon, text]) => (
-                <li key={text} className="flex items-center gap-4 text-[1.0125rem] text-gray-200">
-                  <span aria-hidden="true" className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl bg-violet-500/15 text-2xl">{icon}</span>
+                <li key={text} className="flex items-center gap-4 text-[1.0125rem] text-slate-800">
+                  <span aria-hidden="true" className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl bg-[#FBF2F3] text-2xl">{icon}</span>
                   {text}
                 </li>
               ))}

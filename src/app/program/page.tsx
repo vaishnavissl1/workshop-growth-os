@@ -76,16 +76,16 @@ export default function ProgramPage() {
         lead="A closer look at how the workshop runs, what you'll do at each step, and what you leave with."
       >
         {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
-        <a href="/register" className="btn-cta btn-lg !text-[#111827]">Reserve my free seat</a>
+        <a href="/register" className="btn-cta btn-lg">Reserve my free seat</a>
       </PageHero>
 
       <section className="container-wide">
         <ul className="grid gap-6 md:grid-cols-3">
           {OVERVIEW.map(([icon, title, text]) => (
             <li key={title} className="card !p-8">
-              <span aria-hidden="true" className="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-violet-500/15 text-3xl">{icon}</span>
+              <span aria-hidden="true" className="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-[#FBF2F3] text-3xl">{icon}</span>
               <h2 className="text-xl font-semibold">{title}</h2>
-              <p className="mt-2 leading-relaxed text-gray-400">{text}</p>
+              <p className="mt-2 leading-relaxed text-slate-500">{text}</p>
             </li>
           ))}
         </ul>
@@ -102,7 +102,7 @@ export default function ProgramPage() {
               <div className="flex flex-wrap items-center gap-4">
                 <span
                   className="flex h-12 w-12 items-center justify-center rounded-full text-lg font-bold text-white"
-                  style={{ backgroundImage: "linear-gradient(to bottom right, #4F46E5, #4338CA)" }}
+                  style={{ backgroundImage: "linear-gradient(to bottom right, #B91C1C, #991B1B)" }}
                 >
                   {i + 1}
                 </span>
@@ -111,11 +111,11 @@ export default function ProgramPage() {
                   <h3 className="text-2xl font-semibold">{b.title}</h3>
                 </div>
               </div>
-              <p className="mt-4 text-lg text-gray-200">{b.task}</p>
-              <ul className="mt-4 space-y-2 text-[1.0125rem] text-gray-400">
+              <p className="mt-4 text-lg text-slate-800">{b.task}</p>
+              <ul className="mt-4 space-y-2 text-[1.0125rem] text-slate-500">
                 {b.steps.map((s) => (
                   <li key={s} className="flex gap-3">
-                    <span aria-hidden="true" className="mt-1 text-violet-400">✓</span>
+                    <span aria-hidden="true" className="mt-1 text-[#991B1B]">✓</span>
                     {s}
                   </li>
                 ))}
@@ -135,7 +135,7 @@ export default function ProgramPage() {
               <li key={t} className="chip !flex items-center">{t}</li>
             ))}
           </ul>
-          <p className="mt-6 text-gray-400">You need a laptop, a stable internet connection and a free Google account.</p>
+          <p className="mt-6 text-slate-500">You need a laptop, a stable internet connection and a free Google account.</p>
         </div>
       </section>
 
@@ -155,7 +155,7 @@ export default function ProgramPage() {
                   {list.map((i) => (
                     <li key={i.title}>
                       <p className="font-semibold">{i.title}</p>
-                      <p className="text-[0.95rem] text-gray-400">{i.description}</p>
+                      <p className="text-[0.95rem] text-slate-500">{i.description}</p>
                     </li>
                   ))}
                 </ul>
@@ -170,19 +170,19 @@ export default function ProgramPage() {
           <h2 className="section-title text-center">Two dates, same workshop</h2>
           <div className="mt-8 grid gap-5 sm:grid-cols-2">
             <div className="inset p-6">
-              <p className="text-sm text-gray-400">Session 1</p>
+              <p className="text-sm text-slate-500">Session 1</p>
               <p className="mt-1 text-2xl font-semibold">{sessionLabel(cfg.sessionDate)} IST</p>
-              <p className="mt-1 text-sm text-gray-400">{cfg.seatCap} seats</p>
+              <p className="mt-1 text-sm text-slate-500">{cfg.seatCap} seats</p>
             </div>
             <div className="inset p-6">
-              <p className="text-sm text-gray-400">Repeat session</p>
+              <p className="text-sm text-slate-500">Repeat session</p>
               <p className="mt-1 text-2xl font-semibold">{sessionLabel(cfg.session2Date)} IST</p>
-              <p className="mt-1 text-sm text-gray-400">Opens automatically if Session 1 fills</p>
+              <p className="mt-1 text-sm text-slate-500">Opens automatically if Session 1 fills</p>
             </div>
           </div>
           <p className="mt-8 text-center">
             {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
-            <a href="/register" className="btn-cta btn-lg !text-[#111827]">Reserve my free seat</a>
+            <a href="/register" className="btn-cta btn-lg">Reserve my free seat</a>
           </p>
         </div>
       </section>

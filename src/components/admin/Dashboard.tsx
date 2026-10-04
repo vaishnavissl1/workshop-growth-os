@@ -22,12 +22,12 @@ import type { AdminData, Status } from "@/lib/stats";
 import { AMBASSADOR_REACH, META_SPEND_NET } from "@/lib/stats";
 
 const CHIP: Record<Status, string> = {
-  green: "bg-green-500/15 text-green-300",
-  amber: "bg-amber-400/15 text-amber-200",
-  red: "bg-red-500/15 text-red-300",
+  green: "bg-green-100 text-green-800",
+  amber: "bg-amber-100 text-amber-900",
+  red: "bg-red-100 text-red-800",
 };
 const LABEL: Record<Status, string> = { green: "On track", amber: "Watch", red: "Act" };
-const TIP = { background: "#111827", border: "1px solid rgba(255,255,255,0.15)", borderRadius: 12 };
+const TIP = { background: "#FFFFFF", border: "1px solid #E2E8F0", borderRadius: 12, boxShadow: "0 8px 24px rgba(15,23,42,0.10)" };
 const MODES = [
   ["sim", "Simulated"],
   ["real", "Real"],
@@ -75,7 +75,7 @@ function Slider({
         step={step}
         value={value}
         onChange={(e) => onChange(Number(e.target.value))}
-        className="mt-1 h-8 w-full accent-violet-500"
+        className="mt-1 h-8 w-full accent-[#991B1B]"
       />
     </label>
   );
@@ -135,7 +135,7 @@ export default function Dashboard({ data, role }: { data: AdminData; role: "admi
           </p>
         </div>
         <div className="flex items-center gap-2">
-          <div role="group" aria-label="Data mode" className="flex overflow-hidden rounded-full border border-white/10 bg-white/5 text-sm font-semibold">
+          <div role="group" aria-label="Data mode" className="flex overflow-hidden rounded-full border border-slate-200 bg-slate-50 text-sm font-semibold">
             {MODES.map(([m, label]) => (
               <Link
                 key={m}
@@ -171,14 +171,14 @@ export default function Dashboard({ data, role }: { data: AdminData; role: "admi
           <div className="h-64">
             <ResponsiveContainer width="100%" height="100%">
               <LineChart data={data.daily} margin={{ left: -10, right: 8, top: 8 }}>
-                <CartesianGrid stroke="rgba(255,255,255,0.1)" vertical={false} />
-                <XAxis dataKey="day" tick={{ fontSize: 12, fill: "#9CA3AF" }} />
-                <YAxis tick={{ fontSize: 12, fill: "#9CA3AF" }} />
-                <Tooltip contentStyle={TIP} labelStyle={{ color: "#F9FAFB" }} itemStyle={{ color: "#D1D5DB" }} cursor={{ fill: "rgba(255,255,255,0.05)" }} />
-                <Legend wrapperStyle={{ fontSize: 12, color: "#D1D5DB" }} />
-                <ReferenceLine y={cfg.registrationTarget} stroke="#F87171" strokeDasharray="4 4" label={{ value: "500", fontSize: 11, fill: "#F87171" }} />
-                <Line isAnimationActive={false} type="monotone" dataKey="target" name="Daily target" stroke="#9CA3AF" strokeDasharray="5 4" dot={false} />
-                <Line isAnimationActive={false} type="monotone" dataKey="actual" name="Actual" stroke="#A78BFA" strokeWidth={3} dot={{ r: 3 }} />
+                <CartesianGrid stroke="#E2E8F0" vertical={false} />
+                <XAxis dataKey="day" tick={{ fontSize: 12, fill: "#64748B" }} />
+                <YAxis tick={{ fontSize: 12, fill: "#64748B" }} />
+                <Tooltip contentStyle={TIP} labelStyle={{ color: "#1E293B" }} itemStyle={{ color: "#475569" }} cursor={{ fill: "rgba(15,23,42,0.04)" }} />
+                <Legend wrapperStyle={{ fontSize: 12, color: "#475569" }} />
+                <ReferenceLine y={cfg.registrationTarget} stroke="#DC2626" strokeDasharray="4 4" label={{ value: "500", fontSize: 11, fill: "#DC2626" }} />
+                <Line isAnimationActive={false} type="monotone" dataKey="target" name="Daily target" stroke="#94A3B8" strokeDasharray="5 4" dot={false} />
+                <Line isAnimationActive={false} type="monotone" dataKey="actual" name="Actual" stroke="#991B1B" strokeWidth={3} dot={{ r: 3 }} />
               </LineChart>
             </ResponsiveContainer>
           </div>
@@ -188,11 +188,11 @@ export default function Dashboard({ data, role }: { data: AdminData; role: "admi
           <div className="h-64">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={data.funnel} layout="vertical" margin={{ left: 20, right: 24 }}>
-                <CartesianGrid stroke="rgba(255,255,255,0.1)" horizontal={false} />
-                <XAxis type="number" tick={{ fontSize: 12, fill: "#9CA3AF" }} />
-                <YAxis type="category" dataKey="step" width={110} tick={{ fontSize: 12, fill: "#9CA3AF" }} />
-                <Tooltip contentStyle={TIP} labelStyle={{ color: "#F9FAFB" }} itemStyle={{ color: "#D1D5DB" }} cursor={{ fill: "rgba(255,255,255,0.05)" }} />
-                <Bar isAnimationActive={false} dataKey="value" name="Students" fill="#8B5CF6" radius={[0, 6, 6, 0]} label={{ position: "right", fontSize: 12, fill: "#D1D5DB" }} />
+                <CartesianGrid stroke="#E2E8F0" horizontal={false} />
+                <XAxis type="number" tick={{ fontSize: 12, fill: "#64748B" }} />
+                <YAxis type="category" dataKey="step" width={110} tick={{ fontSize: 12, fill: "#64748B" }} />
+                <Tooltip contentStyle={TIP} labelStyle={{ color: "#1E293B" }} itemStyle={{ color: "#475569" }} cursor={{ fill: "rgba(15,23,42,0.04)" }} />
+                <Bar isAnimationActive={false} dataKey="value" name="Students" fill="#991B1B" radius={[0, 6, 6, 0]} label={{ position: "right", fontSize: 12, fill: "#475569" }} />
               </BarChart>
             </ResponsiveContainer>
           </div>

@@ -16,7 +16,7 @@ export default function Image() {
           flexDirection: "column",
           justifyContent: "center",
           padding: 72,
-          background: "#4F46E5",
+          background: "#991B1B",
           color: "white",
         }}
       >
@@ -30,8 +30,8 @@ export default function Image() {
             marginTop: 44,
             fontSize: 30,
             fontWeight: 700,
-            background: "#F59E0B",
-            color: "#111827",
+            background: "#FFB218",
+            color: "#1E293B",
             padding: "12px 28px",
             borderRadius: 14,
             alignSelf: "flex-start",

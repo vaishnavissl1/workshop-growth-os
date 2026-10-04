@@ -25,7 +25,7 @@ export default function AuthShell({
           {lead && <p className="lead mt-3">{lead}</p>}
         </div>
         <div className="card !p-8 sm:!p-10">{children}</div>
-        {footer && <div className="mt-6 text-center text-[0.95rem] text-gray-400">{footer}</div>}
+        {footer && <div className="mt-6 text-center text-[0.95rem] text-slate-500">{footer}</div>}
       </div>
     </div>
   );
@@ -43,8 +43,8 @@ export function Field({
   return (
     <div>
       <div className="mb-1.5 flex items-baseline justify-between gap-3">
-        <span className="text-sm font-semibold text-gray-200">{label}</span>
-        {hint && <span className="text-xs text-gray-400">{hint}</span>}
+        <span className="text-sm font-semibold text-slate-800">{label}</span>
+        {hint && <span className="text-xs text-slate-500">{hint}</span>}
       </div>
       {children}
     </div>
@@ -82,7 +82,7 @@ export function PasswordInput({
         type="button"
         onClick={() => setShow((s) => !s)}
         aria-pressed={show}
-        className="absolute right-3 top-1/2 -translate-y-1/2 rounded-lg px-3 py-1.5 text-sm font-semibold text-gray-300 hover:bg-white/10"
+        className="absolute right-3 top-1/2 -translate-y-1/2 rounded-lg px-3 py-1.5 text-sm font-semibold text-slate-600 hover:bg-slate-100"
       >
         {show ? "Hide" : "Show"}
       </button>

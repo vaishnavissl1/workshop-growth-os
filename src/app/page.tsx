@@ -48,20 +48,20 @@ export default async function HomePage() {
           </p>
           <div className="mt-9 flex flex-col gap-3 sm:flex-row">
             {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
-            <a href="/register" className="btn-cta btn-lg !text-[#111827]">Reserve my free seat</a>
+            <a href="/register" className="btn-cta btn-lg">Reserve my free seat</a>
             {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
             <a href="/program" className="btn-secondary btn-lg">See the program →</a>
           </div>
-          <p className="mt-5 text-sm text-gray-400">No coding background needed. A laptop, internet and a Google account is all it takes.</p>
+          <p className="mt-5 text-sm text-slate-500">No coding background needed. A laptop, internet and a Google account is all it takes.</p>
         </div>
 
         {/* Live seat card */}
         <aside className="card animate-float !p-8" aria-label="Next session">
           <p className="eyebrow mb-3">Next live session</p>
           <p className="text-3xl font-semibold leading-tight">{sessionLabel(cfg.sessionDate)} IST</p>
-          <p className="mt-1 text-gray-400">Repeat session: {sessionLabel(cfg.session2Date)} IST</p>
-          <div className="mt-6 rounded-2xl border border-white/10 bg-black/30 p-5">
-            <p className="flex items-center gap-2 text-sm text-gray-300">
+          <p className="mt-1 text-slate-500">Repeat session: {sessionLabel(cfg.session2Date)} IST</p>
+          <div className="mt-6 rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <p className="flex items-center gap-2 text-sm text-slate-600">
               <span className="relative flex h-3 w-3 items-center justify-center" aria-hidden="true">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75" />
                 <span className="relative inline-flex h-2 w-2 rounded-full bg-green-500" />
@@ -70,23 +70,23 @@ export default async function HomePage() {
             </p>
             <p className="mt-1 text-5xl font-bold text-[var(--color-success-text)]">
               {left}
-              <span className="text-xl font-medium text-gray-400"> / {cfg.seatCap}</span>
+              <span className="text-xl font-medium text-slate-500"> / {cfg.seatCap}</span>
             </p>
-            <div className="mt-4 h-2 overflow-hidden rounded-full bg-white/10">
-              <div className="h-full rounded-full bg-gradient-to-r from-indigo-600 to-violet-400" style={{ width: `${Math.min(100, ((cfg.seatCap - left) / cfg.seatCap) * 100)}%` }} />
+            <div className="mt-4 h-2 overflow-hidden rounded-full bg-slate-100">
+              <div className="h-full rounded-full bg-gradient-to-r from-[#991B1B] to-[#DC2626]" style={{ width: `${Math.min(100, ((cfg.seatCap - left) / cfg.seatCap) * 100)}%` }} />
             </div>
           </div>
-          <p className="mt-4 text-sm text-gray-400">Registration closes {closesLabel()}.</p>
+          <p className="mt-4 text-sm text-slate-500">Registration closes {closesLabel()}.</p>
         </aside>
       </section>
 
       {/* Stats band */}
-      <section aria-label="At a glance" className="border-y border-white/10 bg-white/[0.03]">
+      <section aria-label="At a glance" className="border-y border-slate-200 bg-slate-50">
         <dl className="container-wide grid grid-cols-2 gap-8 py-10 md:grid-cols-4">
           {STATS.map(([n, label]) => (
             <div key={label} className="text-center">
               <dt className="text-4xl font-bold gradient-text sm:text-5xl">{n}</dt>
-              <dd className="mt-1 text-[0.95rem] text-gray-400">{label}</dd>
+              <dd className="mt-1 text-[0.95rem] text-slate-500">{label}</dd>
             </div>
           ))}
         </dl>
@@ -101,11 +101,11 @@ export default async function HomePage() {
         <ul className="grid gap-6 md:grid-cols-3">
           {WALK_AWAY.map((w) => (
             <li key={w.title} className="card card-lift !p-9">
-              <span aria-hidden="true" className="mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-violet-500/15 text-4xl">
+              <span aria-hidden="true" className="mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-[#FBF2F3] text-4xl">
                 {w.icon}
               </span>
               <h3 className="text-xl font-semibold">{w.title}</h3>
-              <p className="mt-3 text-[1.0125rem] leading-relaxed text-gray-400">{w.note}</p>
+              <p className="mt-3 text-[1.0125rem] leading-relaxed text-slate-500">{w.note}</p>
             </li>
           ))}
         </ul>
@@ -120,10 +120,10 @@ export default async function HomePage() {
         <ol className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
           {STEPS.map(([time, title, text], i) => (
             <li key={title} className="card card-lift relative overflow-hidden !p-8">
-              <span aria-hidden="true" className="absolute -right-2 -top-4 text-8xl font-bold text-white/[0.04]">{i + 1}</span>
+              <span aria-hidden="true" className="absolute -right-2 -top-4 text-8xl font-bold text-slate-900/[0.05]">{i + 1}</span>
               <p className="text-sm font-semibold text-[var(--color-primary-light)]">{time} min</p>
               <h3 className="mt-2 text-2xl font-semibold">{title}</h3>
-              <p className="mt-3 leading-relaxed text-gray-400">{text}</p>
+              <p className="mt-3 leading-relaxed text-slate-500">{text}</p>
             </li>
           ))}
         </ol>
@@ -151,14 +151,14 @@ export default async function HomePage() {
 
       {/* Closing CTA */}
       <section className="container-wide pt-24">
-        <div className="relative overflow-hidden rounded-3xl border border-violet-500/20 bg-gradient-to-b from-violet-900/25 to-violet-900/5 p-10 text-center sm:p-16">
-          <div className="absolute inset-0 bg-[url('/noise.svg')] opacity-20" aria-hidden="true" />
+        <div className="relative overflow-hidden rounded-3xl border border-[#F0CDD0] bg-gradient-to-b from-[#FBF2F3] to-white p-10 text-center sm:p-16">
+          <div className="absolute inset-0 bg-[url('/noise.svg')] opacity-[0.02]" aria-hidden="true" />
           <div className="relative">
             <h2 className="section-title">Your seat is free. The hour is yours.</h2>
             <p className="lead mx-auto mt-4 max-w-xl">Takes a minute to register. Bring a laptop, we&apos;ll bring the rest.</p>
             <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
               {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
-              <a href="/register" className="btn-cta btn-lg !text-[#111827]">Reserve my free seat</a>
+              <a href="/register" className="btn-cta btn-lg">Reserve my free seat</a>
               {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
               <a href="/faq" className="btn-secondary btn-lg">Read the FAQ</a>
             </div>

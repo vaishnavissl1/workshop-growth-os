@@ -39,15 +39,15 @@ export default function CertificatePage() {
 
       {/* Certificate artwork */}
       <section className="container-mid">
-        <div className="relative overflow-hidden rounded-[2rem] border border-white/15 bg-gradient-to-br from-violet-900/40 via-indigo-950/60 to-black p-3 shadow-2xl shadow-violet-950/50">
-          <div className="absolute inset-0 bg-[url('/noise.svg')] opacity-20" aria-hidden="true" />
-          <div className="relative rounded-[1.6rem] border-2 border-dashed border-violet-300/40 px-6 py-14 text-center sm:px-16 sm:py-20">
-            <p className="text-sm font-semibold uppercase tracking-[0.3em] text-violet-300">Certificate of completion</p>
-            <p className="mt-8 text-gray-300">This certifies that</p>
+        <div className="relative overflow-hidden rounded-[2rem] border border-slate-200 bg-gradient-to-br from-[#FBF2F3] via-white to-[#FEF7F1] p-3 shadow-2xl shadow-slate-300/60">
+          <div className="absolute inset-0 bg-[url('/noise.svg')] opacity-[0.02]" aria-hidden="true" />
+          <div className="relative rounded-[1.6rem] border-2 border-dashed border-[#F0CDD0] px-6 py-14 text-center sm:px-16 sm:py-20">
+            <p className="text-sm font-semibold uppercase tracking-[0.3em] text-[#991B1B]">Certificate of completion</p>
+            <p className="mt-8 text-slate-600">This certifies that</p>
             <p className="mt-2 text-4xl font-bold sm:text-6xl">Your Name</p>
-            <p className="mt-8 text-gray-300">built and deployed a live AI application in</p>
+            <p className="mt-8 text-slate-600">built and deployed a live AI application in</p>
             <p className="mt-2 text-2xl font-semibold sm:text-4xl">{cfg.title}</p>
-            <p className="mt-8 text-sm text-gray-400">Sample layout. Your certificate carries your own name and project title.</p>
+            <p className="mt-8 text-sm text-slate-500">Sample layout. Your certificate carries your own name and project title.</p>
           </div>
         </div>
       </section>
@@ -61,7 +61,7 @@ export default function CertificatePage() {
           {INCLUDES.map(([t, d]) => (
             <li key={t} className="card card-lift !p-8">
               <h3 className="text-xl font-semibold">{t}</h3>
-              <p className="mt-2 text-gray-400">{d}</p>
+              <p className="mt-2 text-slate-500">{d}</p>
             </li>
           ))}
         </ul>
@@ -79,7 +79,7 @@ export default function CertificatePage() {
             <li key={t} className="card !p-7">
               <p className="text-sm font-semibold text-[var(--color-primary-light)]">Step {i + 1}</p>
               <h3 className="mt-1 text-xl font-semibold">{t}</h3>
-              <p className="mt-2 text-gray-400">{d}</p>
+              <p className="mt-2 text-slate-500">{d}</p>
             </li>
           ))}
         </ol>
@@ -91,15 +91,15 @@ export default function CertificatePage() {
           <h2 className="section-title">Put it where recruiters look</h2>
           <ol className="mt-6 space-y-4">
             {LINKEDIN.map((s, i) => (
-              <li key={s} className="flex gap-4 text-[1.0125rem] text-gray-300">
-                <span className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-violet-500/20 text-sm font-bold text-violet-200">{i + 1}</span>
+              <li key={s} className="flex gap-4 text-[1.0125rem] text-slate-600">
+                <span className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-[#FBF2F3] text-sm font-bold text-[#991B1B]">{i + 1}</span>
                 {s}
               </li>
             ))}
           </ol>
           <p className="mt-8 text-center">
             {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
-            <a href="/register" className="btn-cta btn-lg !text-[#111827]">Reserve my free seat</a>
+            <a href="/register" className="btn-cta btn-lg">Reserve my free seat</a>
           </p>
         </div>
       </section>

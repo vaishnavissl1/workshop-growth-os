@@ -12,7 +12,7 @@ function Rank({ n }: { n: number }) {
   return (
     <span
       className={`inline-flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full text-sm font-bold ${
-        BADGE[n - 1] ?? "bg-white/10 text-[var(--color-soft)]"
+        BADGE[n - 1] ?? "bg-slate-100 text-[var(--color-soft)]"
       }`}
     >
       {n}
@@ -126,7 +126,7 @@ export default async function LeaderboardPage({ searchParams }: { searchParams: 
               </thead>
               <tbody>
                 {colleges.data.map((c, i) => (
-                  <tr key={i} className="border-t border-white/10">
+                  <tr key={i} className="border-t border-slate-200">
                     <td className="py-3 pr-3"><Rank n={Number(c.college_rank)} /></td>
                     <td className="py-3 pr-3">{c.college}</td>
                     <td className="py-3 text-right text-lg font-bold">{c.verified_count}</td>
@@ -142,7 +142,7 @@ export default async function LeaderboardPage({ searchParams }: { searchParams: 
 
         </div>
 
-        <p className="text-center"><Link href="/register" className="btn-cta btn-lg !text-[#111827]">Reserve my free seat</Link></p>
+        <p className="text-center"><Link href="/register" className="btn-cta btn-lg">Reserve my free seat</Link></p>
       </div>
     </div>
     </>

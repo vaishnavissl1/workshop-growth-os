@@ -78,7 +78,7 @@ export default function SignupForm() {
         <button className="btn-primary btn-lg w-full" disabled={busy}>
           {busy ? "Creating account…" : "Create account"}
         </button>
-        <p className="text-center text-sm text-gray-400">
+        <p className="text-center text-sm text-slate-500">
           Signing up doesn&apos;t reserve a seat. You can do that once you&apos;re in.
         </p>
       </form>

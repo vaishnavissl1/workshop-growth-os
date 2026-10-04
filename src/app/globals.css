@@ -2,37 +2,42 @@
 
 /* ──────────────────────────────────────────────────────────────
    Workshop Growth OS — visual system
-   Reference: Pixel.io (PrebuiltUI): dark gray-950 canvas, Outfit,
-   violet/indigo accents, glass panels, soft blurred glow, pill nav.
+   Reference: NIAT (NxtWave Institute of Advanced Technologies, niatindia.com).
+   Values below were read from the live site:
+     crimson #991B1B (buttons, accents) · navy #1E293B (headings) · slate #475569 (body)
+     off-white #FAFAFA page · rose tints #FBF2F3 / #FEE2E2 · cream #FEF7F1 / #FFF8EB · yellow #FFB218
+     fonts: Satoshi (headings), Inter (body)
    ────────────────────────────────────────────────────────────── */
 
 :root {
   /* Surfaces */
-  --color-bg:        #030712;               /* gray-950 */
-  --color-surface:   rgba(255, 255, 255, 0.05);
-  --color-border:    rgba(255, 255, 255, 0.10);
+  --color-bg:        #FAFAFA;
+  --color-surface:   #FFFFFF;
+  --color-border:    #E2E8F0;
+  --color-tint:      #FBF2F3;               /* rose tint */
+  --color-cream:     #FEF7F1;
 
-  /* Text (all ≥ 7:1 on --color-bg) */
-  --color-ink:       #F9FAFB;
-  --color-muted:     #9CA3AF;               /* gray-400 */
-  --color-soft:      #D1D5DB;               /* gray-300 */
+  /* Text (all ≥ 4.5:1 on --color-bg) */
+  --color-ink:       #1E293B;               /* NIAT heading navy */
+  --color-soft:      #475569;               /* NIAT body slate */
+  --color-muted:     #64748B;
 
-  /* Brand */
-  --color-primary:       #8B5CF6;           /* violet-500: fills, rings */
-  --color-primary-dark:  #7C3AED;
-  --color-primary-light: #A78BFA;           /* violet-400: accent text */
-  --color-secondary:     #EC4899;           /* pink glow */
+  /* Brand: NIAT crimson */
+  --color-primary:       #991B1B;
+  --color-primary-dark:  #7F1D1D;
+  --color-primary-light: #991B1B;           /* accent TEXT on light surfaces (8:1) */
+  --color-secondary:     #DC2626;
+  --color-yellow:        #FFB218;           /* highlight */
 
-  /* One warm colour reserved for the main call to action */
-  --color-cta:       #F59E0B;
-  --color-cta-text:  #111827;               /* 8.3:1 on amber */
-  --color-wa-green:  #25D366;               /* ink text on it: 9:1 */
-  --color-success:       #22C55E;
-  --color-success-text:  #4ADE80;           /* green-400, 9:1 on bg */
-  --color-danger:    #F87171;
+  --color-cta:       #991B1B;
+  --color-cta-text:  #FFFFFF;
+  --color-wa-green:  #25D366;
+  --color-success:       #16A34A;
+  --color-success-text:  #15803D;
+  --color-danger:    #DC2626;
 
-  --font-heading: var(--font-outfit);
-  --font-body:    var(--font-outfit);
+  --font-heading: 'Satoshi', var(--font-inter), system-ui, sans-serif;
+  --font-body:    var(--font-inter), system-ui, sans-serif;
   --font-indic: 'Noto Sans Telugu', 'Noto Sans Kannada', 'Noto Sans Devanagari';
 
   --radius-sm: 8px;
@@ -46,11 +51,11 @@
 html {
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
-  color-scheme: dark;
+  color-scheme: light;
 }
 
 body {
-  font-family: var(--font-body), 'Outfit', sans-serif;
+  font-family: var(--font-body);
   font-size: 16px; /* ≥16px stops iOS zooming into inputs */
   line-height: 1.6;
   color: var(--color-ink);
@@ -59,8 +64,8 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-heading), 'Outfit', sans-serif;
-  font-weight: 600;
+  font-family: var(--font-heading);
+  font-weight: 700;
   line-height: 1.2;
   color: var(--color-ink);
 }
@@ -68,30 +73,28 @@ h1, h2, h3, h4, h5, h6 {
 button { cursor: pointer; }
 button:disabled { cursor: not-allowed; opacity: 0.6; }
 
-a { color: var(--color-primary-light); text-decoration: none; transition: color 0.15s ease; }
-a:hover { color: #C4B5FD; }
+a { color: var(--color-primary); text-decoration: none; transition: color 0.15s ease; }
+a:hover { color: var(--color-primary-dark); }
 
 :focus-visible {
-  outline: 2px solid var(--color-primary-light);
+  outline: 2px solid var(--color-primary);
   outline-offset: 2px;
   border-radius: var(--radius-sm);
 }
 
-::selection { background: rgba(139, 92, 246, 0.45); }
+::selection { background: rgba(153, 27, 27, 0.2); }
 
-/* ── Glow backdrop (fixed, behind everything) ──────────────────── */
+/* ── Soft backdrop: faint rose + cream wash, fixed behind everything ── */
 .soft-backdrop { position: fixed; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; }
 .soft-backdrop::before,
 .soft-backdrop::after { content: ""; position: absolute; border-radius: 9999px; }
 .soft-backdrop::before {
-  left: 50%; top: 5rem; width: 980px; height: 460px; transform: translateX(-50%);
-  background: linear-gradient(to top right, rgba(91, 33, 182, 0.40), transparent);
-  filter: blur(64px);
+  left: 50%; top: -6rem; width: 980px; height: 460px; transform: translateX(-50%);
+  background: radial-gradient(closest-side, rgba(153, 27, 27, 0.07), transparent);
 }
 .soft-backdrop::after {
-  right: 3rem; bottom: 2.5rem; width: 420px; height: 220px;
-  background: linear-gradient(to bottom left, rgba(162, 28, 175, 0.40), transparent);
-  filter: blur(40px);
+  right: -4rem; bottom: 0; width: 520px; height: 300px;
+  background: radial-gradient(closest-side, rgba(255, 178, 24, 0.10), transparent);
 }
 
 /* ── Panels ───────────────────────────────────────────────────── */
@@ -101,13 +104,11 @@ a:hover { color: #C4B5FD; }
   border: 1px solid var(--color-border);
   border-radius: 1.5rem;
   padding: 2rem;
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.35), 0 8px 10px -6px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04), 0 10px 28px rgba(15, 23, 42, 0.06);
 }
 
 .inset {
-  background: rgba(0, 0, 0, 0.30);
+  background: #F8FAFC;
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
 }
@@ -123,40 +124,34 @@ a:hover { color: #C4B5FD; }
   gap: 0.5rem;
   min-height: 48px;                 /* WCAG tap target */
   padding: 0.8rem 1.9rem;
-  border-radius: 9999px;
+  border-radius: 0.75rem;           /* NIAT uses rounded rectangles, not pills */
   font-weight: 600;
   font-size: 1rem;
-  border: none;
+  border: 1px solid transparent;
   transition: transform 0.15s ease, opacity 0.15s ease, background-color 0.2s ease, box-shadow 0.2s ease;
 }
-.btn-cta:active, .btn-wa:active, .btn-primary:active, .btn-secondary:active { transform: scale(0.97); }
+.btn-cta:active, .btn-wa:active, .btn-primary:active, .btn-secondary:active { transform: scale(0.98); }
 
-/* The one amber button: "Reserve my free seat" */
-.btn-cta {
-  background: var(--color-cta);
-  color: var(--color-cta-text);
-  box-shadow: 0 8px 24px rgba(245, 158, 11, 0.30);
+/* Main call to action: solid NIAT crimson, white text (like "Apply Now") */
+.btn-cta,
+.btn-primary {
+  background: var(--color-primary);
+  color: #fff;
+  box-shadow: 0 6px 18px rgba(153, 27, 27, 0.22);
 }
-.btn-cta:hover { background: #FBBF24; }
+.btn-cta:hover,
+.btn-primary:hover { background: var(--color-primary-dark); color: #fff; }
 
-.btn-wa { background: var(--color-wa-green); color: var(--color-ink-on-wa, #0F172A); }
+.btn-wa { background: var(--color-wa-green); color: #0F172A; }
 .btn-wa:hover { opacity: 0.92; }
 
-/* Indigo gradient (Pixel.io PrimaryButton) */
-.btn-primary {
-  background-image: linear-gradient(to bottom right, #4F46E5, #4338CA);
-  color: #fff;
-}
-.btn-primary:hover { opacity: 0.9; }
-
-/* Ghost glass (Pixel.io GhostButton) */
+/* Secondary: white with crimson outline (like "Download Brochure") */
 .btn-secondary {
-  background: rgba(255, 255, 255, 0.06);
-  color: var(--color-ink);
-  border: 1px solid var(--color-border);
-  backdrop-filter: blur(8px);
+  background: #fff;
+  color: var(--color-primary);
+  border-color: var(--color-primary);
 }
-.btn-secondary:hover { background: rgba(255, 255, 255, 0.12); color: #fff; }
+.btn-secondary:hover { background: var(--color-tint); color: var(--color-primary-dark); }
 
 /* ── Form fields ──────────────────────────────────────────────── */
 .field {
@@ -164,31 +159,31 @@ a:hover { color: #C4B5FD; }
   padding: 1rem 1.15rem;
   font-size: 1.0625rem;
   color: var(--color-ink);
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid var(--color-border);
+  background: #fff;
+  border: 1px solid #CBD5E1;
   border-radius: var(--radius-md);
-  transition: border-color 0.15s ease, background-color 0.15s ease;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
 }
-.field::placeholder { color: #8B95A5; }
-.field:focus { border-color: var(--color-primary-light); background: rgba(255, 255, 255, 0.08); outline: none; }
-.field option { background: #111827; color: var(--color-ink); }
+.field::placeholder { color: #64748B; }
+.field:focus { border-color: var(--color-primary); box-shadow: 0 0 0 3px rgba(153, 27, 27, 0.12); outline: none; }
+.field option { background: #fff; color: var(--color-ink); }
 
 /* ── Selectable chips (branch + project picker) ───────────────── */
 .chip {
   min-height: 52px;
   border-radius: 9999px;
-  border: 1px solid var(--color-border);
-  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid #CBD5E1;
+  background: #fff;
   color: var(--color-ink);
   padding: 0 1.25rem;
   font-size: 1rem;
   font-weight: 600;
   transition: all 0.2s ease;
 }
-.chip:hover { background: rgba(255, 255, 255, 0.10); }
+.chip:hover { background: var(--color-tint); border-color: #E5B8BB; }
 .chip[aria-pressed="true"] {
-  background-image: linear-gradient(to bottom right, #4F46E5, #4338CA);
-  border-color: transparent;
+  background: var(--color-primary);
+  border-color: var(--color-primary);
   color: #fff;
 }
 
@@ -199,36 +194,36 @@ a:hover { color: #C4B5FD; }
   text-align: left;
   padding: 1rem 1.15rem;
   border-radius: var(--radius-md);
-  border: 1px solid var(--color-border);
-  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid #CBD5E1;
+  background: #fff;
   transition: all 0.2s ease;
 }
-.option-card:hover { border-color: rgba(255, 255, 255, 0.2); }
-.option-card[aria-pressed="true"] { border-color: var(--color-primary-light); background: rgba(139, 92, 246, 0.15); }
+.option-card:hover { border-color: #E5B8BB; }
+.option-card[aria-pressed="true"] { border-color: var(--color-primary); background: var(--color-tint); }
 
 /* ── Badges / notices ─────────────────────────────────────────── */
 .badge {
   display: inline-flex;
   align-items: center;
   gap: 0.25rem;
-  padding: 0.25rem 0.75rem;
+  padding: 0.3rem 0.8rem;
   border-radius: 9999px;
   font-size: 0.75rem;
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: 0.05em;
   text-transform: uppercase;
 }
-.badge-primary { background: rgba(139, 92, 246, 0.18); color: #C4B5FD; }
-.badge-success { background: rgba(34, 197, 94, 0.15); color: #86EFAC; }
-.badge-amber   { background: rgba(245, 158, 11, 0.15); color: #FCD34D; }
+.badge-primary { background: var(--color-tint); color: var(--color-primary); }
+.badge-success { background: #DCFCE7; color: #166534; }
+.badge-amber   { background: #FFF1CC; color: #7A4B00; }
 
-.notice-amber { background: rgba(245, 158, 11, 0.10); border: 1px solid rgba(245, 158, 11, 0.25); color: #FDE68A; border-radius: var(--radius-md); }
-.notice-red   { background: rgba(239, 68, 68, 0.10);  border: 1px solid rgba(239, 68, 68, 0.25);  color: #FCA5A5; border-radius: var(--radius-md); }
-.notice-green { background: rgba(34, 197, 94, 0.10);  border: 1px solid rgba(34, 197, 94, 0.25);  color: #86EFAC; border-radius: var(--radius-md); }
-.notice-violet{ background: rgba(139, 92, 246, 0.12); border: 1px solid rgba(139, 92, 246, 0.30); color: #DDD6FE; border-radius: var(--radius-md); }
+.notice-amber  { background: #FFF8EB; border: 1px solid #FDE0A3; color: #7A4B00; border-radius: var(--radius-md); }
+.notice-red    { background: #FEF2F2; border: 1px solid #FECACA; color: #991B1B; border-radius: var(--radius-md); }
+.notice-green  { background: #F0FDF4; border: 1px solid #BBF7D0; color: #166534; border-radius: var(--radius-md); }
+.notice-violet { background: var(--color-tint); border: 1px solid #F0CDD0; color: #7F1D1D; border-radius: var(--radius-md); }
 
 .gradient-text {
-  background-image: linear-gradient(to right, #A5B4FC, #818CF8);
+  background-image: linear-gradient(to right, #991B1B, #DC2626);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -236,13 +231,13 @@ a:hover { color: #C4B5FD; }
 
 .eyebrow {
   font-size: 0.875rem;
-  font-weight: 500;
-  letter-spacing: 0.05em;
+  font-weight: 700;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--color-primary-light);
+  color: var(--color-primary);
 }
 
-/* ── Animations (from the reference) ──────────────────────────── */
+/* ── Animations ───────────────────────────────────────────────── */
 @keyframes fadeInUp {
   from { opacity: 0; transform: translateY(16px); }
   to   { opacity: 1; transform: translateY(0); }
@@ -264,16 +259,10 @@ a:hover { color: #C4B5FD; }
   .animate-fade-in-up, .animate-float, .animate-marquee { animation: none; }
 }
 
-/* ── Layout ───────────────────────────────────────────────────── */
-.container-page {
-  width: 100%;
-  max-width: 640px;
-  margin-inline: auto;
-  padding-inline: 1rem;
-}
+/* ── Layout (horizontal padding only, so Tailwind pt-* / pb-* utilities still work) ── */
+.container-page { width: 100%; max-width: 640px; margin-inline: auto; padding-inline: 1rem; }
 @media (min-width: 640px) { .container-page { padding-inline: 1.5rem; } }
 
-/* ── Bigger layout + type scale ───────────────────────────────── */
 .btn-lg { min-height: 56px; padding: 1rem 2.25rem; font-size: 1.0625rem; }
 .btn-sm { min-height: 40px; padding: 0.45rem 1.1rem; font-size: 0.9375rem; }
 
@@ -282,8 +271,8 @@ a:hover { color: #C4B5FD; }
 @media (min-width: 640px) { .container-wide, .container-mid { padding-inline: 2rem; } }
 
 .display { font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 700; line-height: 1.05; letter-spacing: -0.02em; }
-.section-title { font-size: clamp(1.75rem, 3.5vw, 2.75rem); font-weight: 600; line-height: 1.15; }
+.section-title { font-size: clamp(1.75rem, 3.5vw, 2.75rem); font-weight: 700; line-height: 1.15; }
 .lead { font-size: clamp(1.0625rem, 1.6vw, 1.25rem); color: var(--color-soft); }
 
-.card-lift { transition: transform 0.25s ease, border-color 0.25s ease; }
-.card-lift:hover { transform: translateY(-4px); border-color: rgba(255, 255, 255, 0.2); }
+.card-lift { transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease; }
+.card-lift:hover { transform: translateY(-4px); border-color: #E5B8BB; box-shadow: 0 14px 34px rgba(153, 27, 27, 0.10); }

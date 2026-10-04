@@ -32,10 +32,10 @@ export default function ForgotForm() {
       <AuthShell eyebrow="Check your inbox" title="Reset link sent">
         <div className="space-y-4 text-center">
           <p className="text-5xl" aria-hidden="true">📬</p>
-          <p className="text-lg text-gray-200">
+          <p className="text-lg text-slate-800">
             If <strong>{sent}</strong> has an account, a reset link is on its way.
           </p>
-          <p className="text-gray-400">The link opens a page where you choose a new password. It can take a minute to arrive.</p>
+          <p className="text-slate-500">The link opens a page where you choose a new password. It can take a minute to arrive.</p>
           {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
           <a href="/login" className="btn-secondary btn-lg">Back to log in</a>
         </div>

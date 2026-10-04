@@ -45,7 +45,7 @@ export default function SiteHeader() {
 
   return (
     <header className="sticky top-0 z-50 px-3 pt-3 sm:px-5 sm:pt-4">
-      <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 rounded-2xl border border-white/10 bg-black/55 px-4 py-3 backdrop-blur-xl">
+      <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 rounded-2xl border border-white/10 bg-[#1E293B] px-4 py-3 shadow-lg shadow-slate-900/10">
         {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
         <a href="/" className="flex min-w-0 items-center gap-3 !text-white" aria-label="NxtWave home">
           {/* NxtWave's white logo (already includes the name). Swap public/nxtwave-logo.svg to change it. */}
@@ -74,7 +74,7 @@ export default function SiteHeader() {
             </>
           )}
           {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
-          <a href="/register" className="btn-cta btn-sm ml-1 !text-[#111827]">
+          <a href="/register" className="btn-cta btn-sm ml-1">
             Register free
           </a>
         </nav>
@@ -95,7 +95,7 @@ export default function SiteHeader() {
         <nav
           id="mobile-menu"
           aria-label="Mobile"
-          className="mx-auto mt-2 flex max-w-7xl flex-col gap-1 rounded-2xl border border-white/10 bg-black/85 p-3 backdrop-blur-xl md:hidden"
+          className="mx-auto mt-2 flex max-w-7xl flex-col gap-1 rounded-2xl border border-white/10 bg-[#1E293B] p-3 shadow-lg md:hidden"
         >
           {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
           <a href="/" className={`${linkCls("/")} !py-3 text-lg ${pathname === "/" ? "bg-white/10" : ""}`}>Home</a>
@@ -119,7 +119,7 @@ export default function SiteHeader() {
             </>
           )}
           {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
-          <a href="/register" className="btn-cta btn-lg mt-1 !text-[#111827]">
+          <a href="/register" className="btn-cta btn-lg mt-1">
             Register free
           </a>
         </nav>

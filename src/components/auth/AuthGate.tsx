@@ -40,7 +40,7 @@ export default function AuthGate({ children, refCode }: { children: React.ReactN
   if (!ok) {
     return (
       <div className="container-wide flex min-h-[50vh] items-center justify-center" role="status">
-        <p className="text-gray-400">Checking your account…</p>
+        <p className="text-slate-500">Checking your account…</p>
       </div>
     );
   }

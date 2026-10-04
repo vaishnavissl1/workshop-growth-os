@@ -105,8 +105,8 @@ export default async function ThanksPage({
               <span>{count} verified referral{count === 1 ? "" : "s"}</span>
               <span>Rank #{mine?.referrer_rank ?? "-"}</span>
             </div>
-            <div className="h-3 overflow-hidden rounded-full bg-white/10">
-              <div className="h-full rounded-full bg-gradient-to-r from-indigo-600 to-violet-400" style={{ width: `${pct}%` }} />
+            <div className="h-3 overflow-hidden rounded-full bg-slate-100">
+              <div className="h-full rounded-full bg-gradient-to-r from-[#991B1B] to-[#DC2626]" style={{ width: `${pct}%` }} />
             </div>
             <p className="mt-1 text-sm text-[var(--color-muted)]">
               {toTop3 > 0 ? `${toTop3} more verified referral${toTop3 === 1 ? "" : "s"} to reach the top 3` : "You're in the top 3 🎉"}

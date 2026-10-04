@@ -32,7 +32,7 @@ function Section({ title, lead, children }: { title: string; lead?: string; chil
   return (
     <section className="card !p-8 sm:!p-10">
       <h2 className="text-2xl font-semibold">{title}</h2>
-      {lead && <p className="mt-1 text-gray-400">{lead}</p>}
+      {lead && <p className="mt-1 text-slate-500">{lead}</p>}
       <div className="mt-6">{children}</div>
     </section>
   );
@@ -131,7 +131,7 @@ export default function AccountSettings() {
 
   if (loading || !profile) {
     return (
-      <div className="container-wide py-24 text-center text-gray-400" role="status">
+      <div className="container-wide py-24 text-center text-slate-500" role="status">
         Loading your account…
       </div>
     );
@@ -149,7 +149,7 @@ export default function AccountSettings() {
           <div>
             <p className="eyebrow mb-2">Account settings</p>
             <h1 className="section-title !text-[clamp(2rem,4.5vw,3rem)]">Hi, {displayName.split(" ")[0]}</h1>
-            <p className="mt-1 text-gray-400">{profile.account.email}</p>
+            <p className="mt-1 text-slate-500">{profile.account.email}</p>
           </div>
           <button onClick={signOut} className="btn-secondary">Log out</button>
         </header>
@@ -158,9 +158,9 @@ export default function AccountSettings() {
         {reg ? (
           <Section title="Your workshop seat" lead="You're registered. Share your link to climb the leaderboard.">
             <div className="grid gap-4 sm:grid-cols-3">
-              <div className="inset p-4"><p className="text-xs text-gray-400">Session</p><p className="text-lg font-semibold">{reg.session === 2 ? "Repeat session" : "Session 1"}</p></div>
-              <div className="inset p-4"><p className="text-xs text-gray-400">Invite code</p><p className="text-lg font-semibold">{reg.ref_code}</p></div>
-              <div className="inset p-4"><p className="text-xs text-gray-400">Reward status</p><p className="text-lg font-semibold">{reg.is_verified ? "Verified ✓" : "Not verified"}</p></div>
+              <div className="inset p-4"><p className="text-xs text-slate-500">Session</p><p className="text-lg font-semibold">{reg.session === 2 ? "Repeat session" : "Session 1"}</p></div>
+              <div className="inset p-4"><p className="text-xs text-slate-500">Invite code</p><p className="text-lg font-semibold">{reg.ref_code}</p></div>
+              <div className="inset p-4"><p className="text-xs text-slate-500">Reward status</p><p className="text-lg font-semibold">{reg.is_verified ? "Verified ✓" : "Not verified"}</p></div>
             </div>
             {!reg.is_verified && (
               <p className="notice-amber mt-4 p-4 text-[0.95rem]">
@@ -179,7 +179,7 @@ export default function AccountSettings() {
         ) : (
           <Section title="Reserve your seat" lead="You have an account but no workshop seat yet.">
             {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
-            <a href="/register" className="btn-cta btn-lg !text-[#111827]">Reserve my free seat</a>
+            <a href="/register" className="btn-cta btn-lg">Reserve my free seat</a>
           </Section>
         )}
 
@@ -243,9 +243,9 @@ export default function AccountSettings() {
         </Section>
 
         {/* Danger zone */}
-        <section className="rounded-3xl border border-red-500/30 bg-red-500/[0.06] p-8 sm:p-10">
-          <h2 className="text-2xl font-semibold text-red-200">Delete account</h2>
-          <p className="mt-2 text-gray-300">
+        <section className="rounded-3xl border border-red-200 bg-red-50 p-8 sm:p-10">
+          <h2 className="text-2xl font-semibold text-red-800">Delete account</h2>
+          <p className="mt-2 text-slate-600">
             This removes your login and erases your name, phone and email from your registration. Your invite code and college count stay, without any personal details, so friends you referred keep their place.
           </p>
           <div className="mt-6 flex flex-col gap-3 sm:flex-row">
@@ -259,7 +259,7 @@ export default function AccountSettings() {
             <button
               onClick={deleteAccount}
               disabled={confirmDelete !== "DELETE"}
-              className="btn-secondary !border-red-400/50 !text-red-200 hover:!bg-red-500/20"
+              className="btn-secondary !border-red-300 !text-red-800 hover:!bg-red-50"
             >
               Delete my account
             </button>
