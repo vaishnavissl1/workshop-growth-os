@@ -69,15 +69,6 @@ export default function FaqPage() {
             </div>
           </section>
         ))}
-
-        <section className="card !p-10 text-center">
-          <h2 className="section-title">Ready when you are</h2>
-          <p className="lead mt-3">It takes about a minute to reserve your seat.</p>
-          <p className="mt-6">
-            {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
-            <a href="/register" className="btn-cta btn-lg">Reserve my free seat</a>
-          </p>
-        </section>
       </div>
     </>
     </AuthGate>

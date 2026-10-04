@@ -74,10 +74,7 @@ export default function ProgramPage() {
         eyebrow="The program"
         title={<>What happens in <span className="gradient-text">the hour</span></>}
         lead="A closer look at how the workshop runs, what you'll do at each step, and what you leave with."
-      >
-        {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
-        <a href="/register" className="btn-cta btn-lg">Reserve my free seat</a>
-      </PageHero>
+      />
 
       <section className="container-wide">
         <ul className="grid gap-6 md:grid-cols-3">
@@ -180,10 +177,6 @@ export default function ProgramPage() {
               <p className="mt-1 text-sm text-slate-500">Opens automatically if Session 1 fills</p>
             </div>
           </div>
-          <p className="mt-8 text-center">
-            {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
-            <a href="/register" className="btn-cta btn-lg">Reserve my free seat</a>
-          </p>
         </div>
       </section>
     </>

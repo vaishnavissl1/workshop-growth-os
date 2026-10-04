@@ -214,8 +214,6 @@ export default async function LeaderboardPage({ searchParams }: { searchParams: 
               <p className="mt-3 text-xs text-[var(--color-muted)]">Sorted by verified registrations (2027 batch, engineering).</p>
             </section>
           </div>
-
-          <p className="text-center"><Link href="/register" className="btn-cta btn-lg">Reserve my free seat</Link></p>
         </div>
       </div>
     </>

@@ -50,10 +50,6 @@ export default function AnnouncementBar() {
             </span>
           ))}
         </div>
-        {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
-        <a href="/register" className="rounded-md bg-[#FFB218] px-3.5 py-1.5 text-sm font-bold !text-[#1E293B] hover:bg-[#ffc34d]">
-          Reserve my seat
-        </a>
       </div>
     </div>
   );

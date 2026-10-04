@@ -76,10 +76,6 @@ export default function CertificatePage() {
               </li>
             ))}
           </ol>
-          <p className="mt-8 text-center">
-            {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
-            <a href="/register" className="btn-cta btn-lg">Reserve my free seat</a>
-          </p>
         </div>
       </section>
     </>
