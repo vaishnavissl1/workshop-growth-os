@@ -12,7 +12,8 @@
   --color-primary-light: #818CF8;
   --color-cta:       #F59E0B;  /* amber    — CTA button ONLY */
   --color-cta-text:  #111827;  /* dark text on amber (contrast ≥ 4.5:1) */
-  --color-success:   #16A34A;  /* green    — registered, verified badge */
+  --color-success:   #16A34A;
+  --color-success-text: #15803D; /* 4.8:1 on page bg; use for text */  /* green    — registered, verified badge */
   --color-wa-green:  #25D366;  /* WhatsApp — share button */
   --color-ink:       #0F172A;  /* body text contrast ≥ 7:1 */
   --color-muted:     #64748B;  /* secondary text */
@@ -24,6 +25,9 @@
   /* Typography */
   --font-heading: var(--font-heading, 'Plus Jakarta Sans', sans-serif);
   --font-body:    var(--font-body, 'Inter', sans-serif);
+
+  /* Indic scripts: each Noto face only covers its own script, so listing all three is safe */
+  --font-indic: 'Noto Sans Telugu', 'Noto Sans Kannada', 'Noto Sans Devanagari';
 
   /* Spacing scale */
   --radius-sm: 6px;
@@ -109,7 +113,7 @@ a:hover {
   justify-content: center;
   gap: 0.5rem;
   background-color: var(--color-wa-green);
-  color: #ffffff;
+  color: var(--color-ink); /* white on #25D366 is only 1.98:1 */
   font-family: var(--font-heading);
   font-weight: 700;
   font-size: 1rem;

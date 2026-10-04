@@ -53,6 +53,15 @@ export default function RootLayout({ children }: RootLayoutProps) {
       lang="en"
       className={`${plusJakartaSans.variable} ${inter.variable} h-full antialiased`}
     >
+      <head>
+        {/* Indic-script faces for the ambassador kit (next/font can't load these under Turbopack) */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;600&family=Noto+Sans+Kannada:wght@400;600&family=Noto+Sans+Telugu:wght@400;600&display=swap"
+        />
+      </head>
       <body className="min-h-full flex flex-col bg-[#F8FAFC] font-body text-[#0F172A]">
         {/* Prototype banner is rendered on ALL pages as required by PLAN.md §4 T1-6 */}
         <PrototypeBanner />

@@ -18,7 +18,7 @@ export default function SeatsCounter({ initial, cap }: { initial: number; cap: n
   }, []);
   return (
     <p className="text-center text-sm font-semibold">
-      <span className="text-[var(--color-success)]">{left}</span> of {cap} seats left in Session 1
+      <span className="text-[var(--color-success-text)]">{left}</span> of {cap} seats left in Session 1
     </p>
   );
 }

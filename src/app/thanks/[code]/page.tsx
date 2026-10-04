@@ -88,7 +88,7 @@ export default async function ThanksPage({
 
         <div className="card space-y-3">
           <h2 className="text-lg font-bold">Invite friends, climb the leaderboard</h2>
-          <a className="btn-wa w-full !text-white" href={waShareUrl(code)} target="_blank" rel="noopener noreferrer">
+          <a className="btn-wa w-full" href={waShareUrl(code)} target="_blank" rel="noopener noreferrer">
             Share on WhatsApp
           </a>
           <div className="flex items-center gap-2 rounded-xl bg-[#F1F5F9] p-3 text-sm break-all">{link}</div>

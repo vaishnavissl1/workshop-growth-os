@@ -2,6 +2,18 @@ import { WORKSHOP_CONFIG as cfg } from "@/config";
 import { db } from "@/lib/supabase";
 import RegisterForm, { Subhead } from "@/components/RegisterForm";
 
+async function topColleges() {
+  const supabase = db();
+  if (!supabase) return [];
+  const { data } = await supabase
+    .from("college_leaderboard")
+    .select("college")
+    .gt("verified_count", 0)
+    .order("college_rank")
+    .limit(3);
+  return (data ?? []).map((c) => c.college as string);
+}
+
 async function seatsLeft() {
   const supabase = db();
   if (!supabase) return cfg.seatCap;
@@ -23,7 +35,7 @@ export default async function Landing({
   refCode?: string;
   inviter?: { firstName: string; college: string; project?: string | null };
 }) {
-  const left = await seatsLeft();
+  const [left, colleges] = await Promise.all([seatsLeft(), topColleges()]);
   const closes = new Date(cfg.registrationCloses).toLocaleDateString("en-IN", {
     day: "numeric",
     month: "short",
@@ -63,7 +75,7 @@ export default async function Landing({
       </div>
 
       <p className="mb-6 text-center text-sm font-semibold">
-        <span className="text-[var(--color-success)]">{left}</span> of {cfg.seatCap} seats left in Session 1 · Registration closes {closes}
+        <span className="text-[var(--color-success-text)]">{left}</span> of {cfg.seatCap} seats left in Session 1 · Registration closes {closes}
       </p>
 
       <div className="card mx-auto mb-10 max-w-md">
@@ -86,6 +98,21 @@ export default async function Landing({
           ))}
         </ol>
       </div>
+
+      <div className="card mx-auto mb-8 max-w-md text-center">
+        <p className="text-xs font-semibold uppercase tracking-wide text-[var(--color-primary)]">Your certificate</p>
+        <div className="mx-auto mt-3 rounded-xl border-2 border-dashed border-[var(--color-primary-light)] bg-[#EEF2FF] p-5">
+          <p className="text-xs text-[var(--color-muted)]">Certificate of completion</p>
+          <p className="mt-1 text-lg font-extrabold">Build Your First AI Project</p>
+          <p className="text-sm text-[var(--color-muted)]">Your name · live project link · LinkedIn-ready</p>
+        </div>
+      </div>
+
+      {colleges.length > 0 && (
+        <p className="mx-auto mb-8 max-w-md text-center text-sm text-[var(--color-muted)]">
+          Students from <strong className="text-[var(--color-ink)]">{colleges.join(", ")}</strong> are leading the College Cup.
+        </p>
+      )}
 
       <div className="card mx-auto mb-8 max-w-md">
         <h2 className="mb-3 text-lg font-bold">FAQ</h2>
