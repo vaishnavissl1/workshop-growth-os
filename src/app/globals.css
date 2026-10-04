@@ -1,0 +1,220 @@
+@import "tailwindcss";
+
+/* ──────────────────────────────────────────────────────────────
+   Workshop Growth OS — Design Tokens
+   PLAN.md §12 palette + typography
+   ────────────────────────────────────────────────────────────── */
+
+:root {
+  /* Palette */
+  --color-primary:   #4F46E5;  /* indigo   — headings, links, progress */
+  --color-primary-dark: #3730A3;
+  --color-primary-light: #818CF8;
+  --color-cta:       #F59E0B;  /* amber    — CTA button ONLY */
+  --color-cta-text:  #111827;  /* dark text on amber (contrast ≥ 4.5:1) */
+  --color-success:   #16A34A;  /* green    — registered, verified badge */
+  --color-wa-green:  #25D366;  /* WhatsApp — share button */
+  --color-ink:       #0F172A;  /* body text contrast ≥ 7:1 */
+  --color-muted:     #64748B;  /* secondary text */
+  --color-bg:        #F8FAFC;  /* page background */
+  --color-surface:   #FFFFFF;  /* card background */
+  --color-border:    #E2E8F0;
+  --color-danger:    #DC2626;
+
+  /* Typography */
+  --font-heading: var(--font-heading, 'Plus Jakarta Sans', sans-serif);
+  --font-body:    var(--font-body, 'Inter', sans-serif);
+
+  /* Spacing scale */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+}
+
+/* ── Base ─────────────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: 16px; /* ≥16px to prevent iOS input zoom */
+  line-height: 1.6;
+  color: var(--color-ink);
+  background-color: var(--color-bg);
+}
+
+/* ── Headings ─────────────────────────────────────────────────── */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--color-ink);
+}
+
+/* ── Links ────────────────────────────────────────────────────── */
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+a:hover {
+  color: var(--color-primary-dark);
+}
+
+/* ── Focus ring (accessibility) ───────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+/* ── Utility classes (design system) ─────────────────────────── */
+.btn-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background-color: var(--color-cta);
+  color: var(--color-cta-text);
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 0.875rem 2rem;
+  border-radius: var(--radius-md);
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.15s ease, transform 0.1s ease, box-shadow 0.15s ease;
+  box-shadow: 0 4px 14px rgba(245, 158, 11, 0.35);
+  min-height: 44px; /* WCAG tap target */
+}
+.btn-cta:hover {
+  background-color: #D97706;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(245, 158, 11, 0.45);
+}
+.btn-cta:active {
+  transform: translateY(0);
+}
+
+.btn-wa {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background-color: var(--color-wa-green);
+  color: #ffffff;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 0.875rem 2rem;
+  border-radius: var(--radius-md);
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.15s ease, transform 0.1s ease;
+  min-height: 44px;
+}
+.btn-wa:hover {
+  background-color: #1DA851;
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background-color: var(--color-surface);
+  color: var(--color-primary);
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 0.875rem 2rem;
+  border-radius: var(--radius-md);
+  border: 1.5px solid var(--color-primary);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  min-height: 44px;
+}
+.btn-secondary:hover {
+  background-color: #EEF2FF;
+}
+
+.card {
+  background-color: var(--color-surface);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.06);
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  font-family: var(--font-heading);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.badge-primary {
+  background-color: #EEF2FF;
+  color: var(--color-primary);
+}
+.badge-success {
+  background-color: #DCFCE7;
+  color: #15803D;
+}
+.badge-amber {
+  background-color: #FEF3C7;
+  color: #92400E;
+}
+
+/* ── Animations ──────────────────────────────────────────────── */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse-ring {
+  0%   { box-shadow: 0 0 0 0 rgba(79, 70, 229, 0.4); }
+  70%  { box-shadow: 0 0 0 10px rgba(79, 70, 229, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(79, 70, 229, 0); }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.5s ease forwards;
+}
+
+.animate-pulse-ring {
+  animation: pulse-ring 2s ease infinite;
+}
+
+/* ── Mobile-first layout helpers ─────────────────────────────── */
+.container-page {
+  width: 100%;
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+@media (min-width: 640px) {
+  .container-page {
+    padding: 0 1.5rem;
+  }
+}
