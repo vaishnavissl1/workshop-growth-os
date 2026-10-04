@@ -21,7 +21,7 @@ export default function ForgotForm() {
     });
     setBusy(false);
     if (err && /rate|seconds|too many/i.test(err.message)) {
-      return setError("Please wait a minute before asking for another link.");
+      return setError("Too many reset emails have been sent recently, so the email service is pausing for a while. Please try again in about an hour.");
     }
     // Same message whether or not the email has an account, so this page can't be used to look people up.
     setSent(email);

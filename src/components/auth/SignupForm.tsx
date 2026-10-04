@@ -7,7 +7,6 @@ import AuthShell, { Field, Notice, PasswordInput } from "@/components/auth/AuthS
 export default function SignupForm() {
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
-  const [sentTo, setSentTo] = useState("");
   const [next, setNext] = useState("/register");
 
   // Where they were heading when they were sent here (only same-site paths are accepted).
@@ -28,51 +27,25 @@ export default function SignupForm() {
     if (!supabase) return setError("Accounts are not available right now.");
 
     setBusy(true);
-    const { data, error: err } = await supabase.auth.signUp({
-      email,
-      password,
-      options: {
-        data: { name: String(f.get("name")).trim() },
-        emailRedirectTo: `${window.location.origin}${next}`,
-      },
+    // The server creates a confirmed account (no email round-trip), then we sign in with the same credentials.
+    const res = await fetch("/api/signup", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name: String(f.get("name")).trim(), email, password }),
     });
+    const created = await res.json().catch(() => ({}));
+    if (!res.ok || !created.ok) {
+      setBusy(false);
+      return setError(created.message ?? "Could not create your account. Please try again.");
+    }
+    const { error: signInErr } = await supabase.auth.signInWithPassword({ email, password });
     setBusy(false);
-
-    if (err) {
-      return setError(
-        /already|registered/i.test(err.message)
-          ? "An account with this email already exists. Try logging in."
-          : err.message.includes("rate")
-            ? "Too many attempts. Please wait a few minutes and try again."
-            : err.message,
-      );
-    }
-    // Supabase hides whether an email already exists: a fake user comes back with no identities.
-    if (data.user && data.user.identities?.length === 0) {
-      return setError("An account with this email already exists. Try logging in.");
-    }
-    if (data.session) {
-      // Email confirmation is off: they're signed in, so go straight to reserving a seat.
-      window.location.assign(next);
+    if (signInErr) {
+      // Account exists but sign-in hiccuped: send them to log in rather than leaving them stuck.
+      window.location.assign(`/login?next=${encodeURIComponent(next)}`);
       return;
     }
-    setSentTo(email);
-  }
-
-  if (sentTo) {
-    return (
-      <AuthShell eyebrow="One more step" title="Check your email">
-        <div className="space-y-4 text-center">
-          <p className="text-5xl" aria-hidden="true">📬</p>
-          <p className="text-lg text-gray-200">
-            We sent a confirmation link to <strong>{sentTo}</strong>.
-          </p>
-          <p className="text-gray-400">Open it to activate your account, then log in. It can take a minute to arrive; check spam too.</p>
-          {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
-          <a href="/login" className="btn-primary btn-lg">Go to log in</a>
-        </div>
-      </AuthShell>
-    );
+    window.location.assign(next);
   }
 
   return (
