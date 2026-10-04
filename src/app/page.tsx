@@ -113,15 +113,8 @@ export default async function HomePage() {
         </dl>
       </section>
 
-      {/* Sourced proof: NxtWave's own published numbers, with the source named */}
-      <section className="container-wide pt-24">
-        <div className="mb-12 text-center">
-          <p className="eyebrow mb-3">Why this format</p>
-          <h2 className="section-title">Built on a workshop students already show up for</h2>
-          <p className="lead mx-auto mt-4 max-w-2xl">
-            NxtWave already runs a Generative AI workshop for students across all branches. This is the same build, cut to one hour and aimed at final-years in placement season.
-          </p>
-        </div>
+      {/* NxtWave's own published numbers (ccbp.in/ai-workshop, ccbp.in) */}
+      <section aria-label="NxtWave in numbers" className="container-wide pt-16">
         <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {PROOF.map((p) => (
             <li key={p.label} className="card !p-8 text-center">
@@ -131,11 +124,6 @@ export default async function HomePage() {
             </li>
           ))}
         </ul>
-        <p className="mt-6 text-center text-sm text-slate-500">
-          NxtWave&apos;s own published figures, from{" "}
-          <a href="https://www.ccbp.in/ai-workshop" target="_blank" rel="noopener noreferrer">ccbp.in/ai-workshop</a> and{" "}
-          <a href="https://www.ccbp.in" target="_blank" rel="noopener noreferrer">ccbp.in</a> (checked 5 Oct 2026).
-        </p>
       </section>
 
       {/* Walk away with */}
@@ -173,10 +161,6 @@ export default async function HomePage() {
             </li>
           ))}
         </ul>
-        <p className="mt-6 text-center text-sm text-slate-500">
-          Reviews of NxtWave&apos;s existing Generative AI workshop, as published on{" "}
-          <a href="https://www.ccbp.in/ai-workshop" target="_blank" rel="noopener noreferrer">ccbp.in/ai-workshop</a>.
-        </p>
       </section>
 
       {/* How it works */}

@@ -6,12 +6,6 @@ import { WORKSHOP_CONFIG as cfg } from "@/config";
 
 export const metadata = { title: "Certificate" };
 
-const INCLUDES = [
-  ["Your name", "Exactly as you registered it."],
-  ["Your project title", "The AI app you built during the workshop."],
-  ["Ready for LinkedIn", "A clean format you can add to your profile in a minute."],
-];
-
 const EARN = [
   ["Register", "Reserve a free seat. Use the name you want printed."],
   ["Build", "Follow the live session and finish your app."],
@@ -50,21 +44,6 @@ export default function CertificatePage() {
             <p className="mt-8 text-sm text-slate-500">Sample layout. Your certificate carries your own name and project title.</p>
           </div>
         </div>
-      </section>
-
-      <section className="container-wide pt-24">
-        <div className="mb-12 text-center">
-          <p className="eyebrow mb-3">What&apos;s on it</p>
-          <h2 className="section-title">Three details, nothing generic</h2>
-        </div>
-        <ul className="grid gap-6 md:grid-cols-3">
-          {INCLUDES.map(([t, d]) => (
-            <li key={t} className="card card-lift !p-8">
-              <h3 className="text-xl font-semibold">{t}</h3>
-              <p className="mt-2 text-slate-500">{d}</p>
-            </li>
-          ))}
-        </ul>
       </section>
 
       <CareerSections />

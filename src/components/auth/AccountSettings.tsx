@@ -176,12 +176,7 @@ export default function AccountSettings() {
               )}
             </div>
           </Section>
-        ) : (
-          <Section title="Reserve your seat" lead="You have an account but no workshop seat yet.">
-            {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
-            <a href="/register" className="btn-cta btn-lg">Reserve my free seat</a>
-          </Section>
-        )}
+        ) : null}
 
         {/* Profile */}
         <Section title="Profile" lead={reg ? "These details appear on your certificate and in workshop messages." : "Your name appears on your account."}>
