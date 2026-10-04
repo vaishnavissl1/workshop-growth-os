@@ -17,6 +17,12 @@ const FAQ = [
   ["Can't make it live?", "Register anyway. You'll get the recording and the step-by-step guide."],
 ];
 
+const WALK_AWAY = [
+  { icon: "🔗", title: "A live public link to your AI app", note: "Add it to your resume tonight" },
+  { icon: "📜", title: "Certificate with your name + project title", note: "LinkedIn-ready" },
+  { icon: "🏆", title: "Proof you built something", note: "Before everyone else in your batch" },
+];
+
 const STRIP = ["Free", "60 minutes", "Live AI project link", "Certificate", "2027 batch", "Any engineering branch", "No AI experience needed"];
 
 export default async function Landing({
@@ -61,17 +67,23 @@ export default async function Landing({
           <Subhead />
         </p>
 
-        {/* Outcome visual: what students leave with */}
-        <div className="animate-float mx-auto mb-8 w-64 rounded-[28px] border border-white/10 bg-gradient-to-b from-black/60 to-transparent p-3 shadow-2xl">
-          <div className="mb-2 rounded-lg bg-white/5 px-2 py-1 text-center text-[11px] text-[var(--color-muted)]">
-            huggingface.co/spaces/<strong className="text-white">yourname</strong>/my-ai-app
-          </div>
-          <div className="space-y-2 rounded-xl bg-violet-500/10 p-3 text-xs">
-            <p className="font-bold text-[var(--color-primary-light)]">Your AI app is live ✓</p>
-            <p className="rounded-lg bg-white/10 p-2 text-gray-200">Ask me anything about your branch…</p>
-            <p className="rounded-lg bg-indigo-600 p-2 text-white">Here&apos;s a clear, step-by-step answer.</p>
-          </div>
-        </div>
+        {/* What students leave with (replaces the app mockup) */}
+        <section aria-label="What you'll walk away with" className="mb-8">
+          <p className="eyebrow mb-3 text-center">What you&apos;ll walk away with</p>
+          <ul className="grid gap-3 sm:grid-cols-3">
+            {WALK_AWAY.map((w) => (
+              <li key={w.title} className="card flex items-start gap-3 !p-4 sm:flex-col sm:items-center sm:text-center">
+                <span aria-hidden="true" className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl bg-violet-500/15 text-2xl">
+                  {w.icon}
+                </span>
+                <span>
+                  <span className="block text-sm font-semibold">{w.title}</span>
+                  <span className="block text-sm text-[var(--color-muted)]">{w.note}</span>
+                </span>
+              </li>
+            ))}
+          </ul>
+        </section>
 
         <p className="mb-6 flex items-center justify-center gap-2 text-center text-sm font-semibold">
           <span className="relative flex h-3 w-3 items-center justify-center" aria-hidden="true">
