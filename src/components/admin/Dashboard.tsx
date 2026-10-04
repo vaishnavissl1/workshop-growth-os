@@ -16,6 +16,7 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
+import PageGlow from "@/components/PageGlow";
 import { WORKSHOP_CONFIG as cfg } from "@/config";
 import type { AdminData, Status } from "@/lib/stats";
 import { AMBASSADOR_REACH, META_SPEND_NET } from "@/lib/stats";
@@ -123,6 +124,7 @@ export default function Dashboard({ data, role }: { data: AdminData; role: "admi
   const { kpi } = data;
   return (
     <div className="mx-auto w-full max-w-5xl space-y-6 px-4 py-6">
+      <PageGlow tone="blue" />
       <header className="flex flex-wrap items-center justify-between gap-3">
         <div>
           <h1 className="text-3xl font-bold">Workshop Growth OS</h1>
@@ -302,7 +304,6 @@ export default function Dashboard({ data, role }: { data: AdminData; role: "admi
         </p>
       </section>
 
-      <p className="text-center text-sm"><Link href="/ambassador">Ambassador kit →</Link></p>
     </div>
   );
 }

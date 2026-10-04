@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { redirect } from "next/navigation";
 import AmbassadorKit from "@/components/AmbassadorKit";
 import { db } from "@/lib/supabase";
 import { trackedLink } from "@/lib/kit";
@@ -16,26 +16,8 @@ export default async function AmbassadorPage({ searchParams }: { searchParams: P
       ? await supabase.from("ambassadors").select("code, name, college, is_simulated").eq("code", code).maybeSingle()
       : { data: null };
 
-  if (!me) {
-    return (
-      <div className="container-page animate-fade-in-up py-16">
-        <form className="card mx-auto max-w-sm space-y-4" method="get">
-          <h1 className="text-2xl font-bold">Ambassador kit</h1>
-          <p className="text-sm text-[var(--color-muted)]">Enter your ambassador code to open your tracked link and messages.</p>
-          {code && <p role="alert" className="notice-red p-3 text-sm font-medium">We couldn&apos;t find that code.</p>}
-          <input
-            name="amb"
-            defaultValue={code}
-            required
-            placeholder="e.g. AMB-001"
-            className="field"
-          />
-          <button className="btn-primary w-full">Open my kit</button>
-          <p className="text-center text-sm"><Link href="/">← Back</Link></p>
-        </form>
-      </div>
-    );
-  }
+  // Only reachable with a valid ?amb=CODE. Anything else goes back to the landing page.
+  if (!me) redirect("/");
 
   // Stats for this ambassador's tracked link. Counts only: no student details are read.
   const [{ count: total }, { count: verified }] = await Promise.all([

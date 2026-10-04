@@ -1,5 +1,6 @@
 import { createHash } from "node:crypto";
 import { NextResponse } from "next/server";
+import { thanksToken } from "@/lib/auth";
 import { db } from "@/lib/supabase";
 
 const LIMIT = 5;
@@ -72,5 +73,6 @@ export async function POST(req: Request) {
       { status: 500 },
     );
   }
-  return NextResponse.json(data, { status: data?.ok ? 200 : 422 });
+  const body2 = data?.ok && data.ref_code ? { ...data, t: thanksToken(data.ref_code) } : data;
+  return NextResponse.json(body2, { status: data?.ok ? 200 : 422 });
 }

@@ -1,5 +1,7 @@
 import Link from "next/link";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
+import PageGlow from "@/components/PageGlow";
+import { validThanksToken } from "@/lib/auth";
 import CopyButton from "@/components/CopyButton";
 import RememberMe from "@/components/RememberMe";
 import SeatsCounter from "@/components/SeatsCounter";
@@ -16,10 +18,12 @@ export default async function ThanksPage({
   searchParams,
 }: {
   params: Promise<{ code: string }>;
-  searchParams: Promise<{ again?: string }>;
+  searchParams: Promise<{ again?: string; t?: string }>;
 }) {
   const code = (await params).code.toUpperCase();
-  const { again } = await searchParams;
+  const { again, t } = await searchParams;
+  // Only reachable straight after registering: the signed token is issued by /api/register.
+  if (!validThanksToken(code, t)) redirect("/");
   const supabase = db();
   if (!supabase) notFound();
 
@@ -59,6 +63,8 @@ export default async function ThanksPage({
   const pct = Math.min(100, Math.round((count / Math.max(1, third + 1)) * 100));
 
   return (
+    <>
+      <PageGlow tone="green" />
     <div className="container-page animate-fade-in-up pt-14 pb-10">
       <div className="mx-auto max-w-md space-y-5">
         <RememberMe code={code} />
@@ -126,11 +132,9 @@ export default async function ThanksPage({
 
         <div className="flex flex-col gap-3 text-center">
           <Link href="/leaderboard" className="btn-primary w-full">See the leaderboard →</Link>
-          <p className="text-sm text-[var(--color-muted)]">
-            Campus ambassador? <Link href="/ambassador">Open your kit</Link>
-          </p>
         </div>
       </div>
     </div>
+    </>
   );
 }

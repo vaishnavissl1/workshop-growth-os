@@ -1,4 +1,5 @@
 import Link from "next/link";
+import PageGlow from "@/components/PageGlow";
 import AutoRefresh from "@/components/AutoRefresh";
 import { db } from "@/lib/supabase";
 
@@ -74,9 +75,11 @@ export default async function LeaderboardPage({ searchParams }: { searchParams: 
   }
 
   return (
-    <div className="container-page animate-fade-in-up pt-14 pb-10">
+    <>
+      <PageGlow tone="amber" />
+    <div className="mx-auto w-full max-w-5xl animate-fade-in-up px-4 pt-14 pb-10">
       <AutoRefresh seconds={60} />
-      <div className="mx-auto max-w-md space-y-6">
+      <div className="mx-auto max-w-4xl space-y-6">
         <div className="text-center">
           <p className="eyebrow mb-1">Live</p>
           <h1 className="text-4xl font-bold">Leaderboard</h1>
@@ -89,6 +92,7 @@ export default async function LeaderboardPage({ searchParams }: { searchParams: 
           </p>
         )}
 
+        <div className="grid items-start gap-6 md:grid-cols-2">
         <section className="card">
           <h2 className="mb-3 text-lg font-bold">Top 10 referrers</h2>
           {people.data?.length ? (
@@ -136,8 +140,11 @@ export default async function LeaderboardPage({ searchParams }: { searchParams: 
           <p className="mt-3 text-xs text-[var(--color-muted)]">Sorted by verified registrations (2027 batch, engineering).</p>
         </section>
 
+        </div>
+
         <p className="text-center"><Link href="/" className="btn-secondary">← Back to registration</Link></p>
       </div>
     </div>
+    </>
   );
 }

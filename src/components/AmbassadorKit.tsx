@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import PageGlow from "@/components/PageGlow";
 import CopyButton from "@/components/CopyButton";
 import { LANGS, MESSAGE_TITLES, fillMessage, tpoEmail, type Lang } from "@/lib/kit";
 
@@ -54,6 +55,8 @@ export default function AmbassadorKit({ code, name, college, simulated, link, st
   const emailText = `Subject: ${email.subject}\n\n${email.body}`;
 
   return (
+    <>
+      <PageGlow tone="pink" />
     <div className="container-page animate-fade-in-up pt-14 pb-10">
       <div className="mx-auto max-w-md space-y-5">
         <div>
@@ -130,5 +133,6 @@ export default function AmbassadorKit({ code, name, college, simulated, link, st
         </section>
       </div>
     </div>
+    </>
   );
 }

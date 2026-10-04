@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { WORKSHOP_CONFIG as cfg } from "@/config";
 
@@ -13,7 +12,9 @@ export default function Navbar() {
   return (
     <nav aria-label="Main" className="sticky top-3 z-40 px-4 pt-3">
       <div className="mx-auto flex max-w-3xl items-center justify-between gap-3 rounded-2xl border border-white/10 bg-black/50 p-3 backdrop-blur-md">
-        <Link href="/" className="flex min-w-0 items-center gap-2 !text-white">
+        {/* Plain anchors on purpose: each nav click is a full page load to a new URL, never a scroll or in-page swap. */}
+        {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
+        <a href="/" className="flex min-w-0 items-center gap-2 !text-white">
           <span
             aria-hidden="true"
             className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg text-sm font-bold"
@@ -22,8 +23,8 @@ export default function Navbar() {
             AI
           </span>
           <span className="truncate text-sm font-semibold sm:text-base">{cfg.title}</span>
-        </Link>
-        <Link
+        </a>
+        <a
           href="/leaderboard"
           aria-current={onBoard ? "page" : undefined}
           className={`flex-shrink-0 rounded-full px-4 py-2 text-sm font-medium transition ${
@@ -31,7 +32,7 @@ export default function Navbar() {
           }`}
         >
           Leaderboard
-        </Link>
+        </a>
       </div>
     </nav>
   );

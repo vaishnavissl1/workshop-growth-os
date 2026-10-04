@@ -106,7 +106,7 @@ export default function RegisterForm({ refCode }: { refCode?: string }) {
       try {
         localStorage.setItem("wgos_me", data.ref_code);
       } catch {}
-      router.push(`/thanks/${data.ref_code}${data.already_registered ? "?again=1" : ""}`);
+      router.push(`/thanks/${data.ref_code}?t=${data.t}${data.already_registered ? "&again=1" : ""}`);
     } catch {
       setError("Network problem. Please try again.");
     } finally {

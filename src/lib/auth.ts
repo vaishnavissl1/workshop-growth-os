@@ -41,3 +41,12 @@ export function roleFromToken(token?: string): Role | null {
 export async function currentRole(): Promise<Role | null> {
   return roleFromToken((await cookies()).get(COOKIE)?.value);
 }
+
+/** Signed proof that someone just registered (or re-submitted) with this code. Carried in the URL: no cookies, so it survives WhatsApp's in-app browser. */
+export function thanksToken(code: string) {
+  return createHmac("sha256", secret()).update(`thanks:${code}`).digest("hex").slice(0, 24);
+}
+
+export function validThanksToken(code: string, token?: string) {
+  return !!token && same(token, thanksToken(code));
+}

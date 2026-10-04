@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import PageGlow from "@/components/PageGlow";
 import { useRouter } from "next/navigation";
 
 export default function AdminLogin() {
@@ -24,6 +25,8 @@ export default function AdminLogin() {
   }
 
   return (
+    <>
+      <PageGlow tone="blue" />
     <div className="container-page animate-fade-in-up py-16">
       <form onSubmit={submit} className="card mx-auto max-w-sm space-y-4">
         <h1 className="text-2xl font-bold">Growth OS admin</h1>
@@ -41,5 +44,6 @@ export default function AdminLogin() {
         <button className="btn-primary w-full" disabled={busy}>{busy ? "Checking…" : "Sign in"}</button>
       </form>
     </div>
+    </>
   );
 }

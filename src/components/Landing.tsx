@@ -1,19 +1,7 @@
-import Link from "next/link";
 import { WORKSHOP_CONFIG as cfg } from "@/config";
+import PageGlow from "@/components/PageGlow";
 import { db } from "@/lib/supabase";
 import RegisterForm, { Subhead } from "@/components/RegisterForm";
-
-async function topColleges() {
-  const supabase = db();
-  if (!supabase) return [];
-  const { data } = await supabase
-    .from("college_leaderboard")
-    .select("college")
-    .gt("verified_count", 0)
-    .order("college_rank")
-    .limit(3);
-  return (data ?? []).map((c) => c.college as string);
-}
 
 async function seatsLeft() {
   const supabase = db();
@@ -38,7 +26,7 @@ export default async function Landing({
   refCode?: string;
   inviter?: { firstName: string; college: string; project?: string | null };
 }) {
-  const [left, colleges] = await Promise.all([seatsLeft(), topColleges()]);
+  const left = await seatsLeft();
   const closes = new Date(cfg.registrationCloses).toLocaleDateString("en-IN", {
     day: "numeric",
     month: "short",
@@ -47,6 +35,7 @@ export default async function Landing({
 
   return (
     <div className="pb-16">
+      <PageGlow tone="violet" />
       <div className="container-page animate-fade-in-up pt-14">
         {inviter && (
           <div className="notice-violet mx-auto mb-6 max-w-md p-3 text-center text-sm font-medium">
@@ -147,12 +136,6 @@ export default async function Landing({
           </div>
         </section>
 
-        {colleges.length > 0 && (
-          <p className="mb-8 text-center text-sm text-[var(--color-muted)]">
-            Students from <strong className="text-white">{colleges.join(", ")}</strong> are leading the College Cup.
-          </p>
-        )}
-
         <section className="mb-8">
           <p className="eyebrow mb-1 text-center">FAQ</p>
           <h2 className="mb-4 text-center text-xl">Quick answers</h2>
@@ -169,11 +152,6 @@ export default async function Landing({
           </div>
         </section>
 
-        <p className="text-center">
-          <Link href="/leaderboard" className="btn-secondary">
-            See the leaderboard →
-          </Link>
-        </p>
       </div>
     </div>
   );
