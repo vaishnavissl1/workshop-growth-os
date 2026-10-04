@@ -295,6 +295,18 @@ export default function Dashboard({ data, role }: { data: AdminData; role: "admi
         )}
       </section>
 
+      <section className="card space-y-3">
+        <h2 className="text-base font-bold">Workshop day</h2>
+        <p className="text-sm text-[var(--color-muted)]">
+          During the hour, students tick off five checkpoints and this board shows where the room is stuck.
+        </p>
+        <div className="flex flex-wrap gap-3">
+          <Link href="/live/demo/host" className="btn-secondary btn-sm">Host board (simulated session)</Link>
+          <Link href="/live/session-1/host" className="btn-secondary btn-sm">Host board (Session 1)</Link>
+          <Link href="/live/session-1" className="btn-secondary btn-sm">Attendee checklist</Link>
+        </div>
+      </section>
+
       <section className="card text-sm">
         <h2 className="mb-1 text-base font-bold">Data access, by design</h2>
         <p className="text-[var(--color-muted)]">

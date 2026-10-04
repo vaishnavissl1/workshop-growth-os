@@ -5,6 +5,7 @@ import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
 import SiteTracker from "@/components/SiteTracker";
 import MobileCta from "@/components/MobileCta";
+import AnnouncementBar from "@/components/AnnouncementBar";
 import { WORKSHOP_CONFIG } from "@/config";
 
 const inter = Inter({
@@ -65,6 +66,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
       <body className="min-h-full flex flex-col">
         <div className="soft-backdrop" aria-hidden="true" />
         <SiteTracker />
+        <AnnouncementBar />
         <SiteHeader />
         <main className="flex flex-1 flex-col">{children}</main>
         {/* The prototype notice now lives in the footer (PLAN.md §4 T1-6: label it, don't pretend it's an official event) */}
