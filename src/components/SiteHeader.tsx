@@ -74,10 +74,6 @@ export default function SiteHeader() {
               <a href="/signup" className="btn-secondary btn-sm">Sign up</a>
             </>
           )}
-          {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
-          <a href="/register" className="btn-cta btn-sm ml-1">
-            Register free
-          </a>
         </nav>
 
         <button
@@ -119,10 +115,6 @@ export default function SiteHeader() {
               <a href="/signup" className="btn-secondary btn-lg">Sign up</a>
             </>
           )}
-          {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
-          <a href="/register" className="btn-cta btn-lg mt-1">
-            Register free
-          </a>
         </nav>
       )}
       <span className="sr-only">{cfg.title}</span>
