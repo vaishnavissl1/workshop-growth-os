@@ -1,4 +1,5 @@
 import AuthGate from "@/components/auth/AuthGate";
+import CareerSections from "@/components/CareerSections";
 import PageGlow from "@/components/PageGlow";
 import PageHero from "@/components/PageHero";
 import { WORKSHOP_CONFIG as cfg } from "@/config";
@@ -65,6 +66,8 @@ export default function CertificatePage() {
           ))}
         </ul>
       </section>
+
+      <CareerSections />
 
       <section className="container-mid pt-24">
         <div className="mb-12 text-center">
