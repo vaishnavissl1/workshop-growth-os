@@ -60,7 +60,7 @@ export default function AmbassadorKit({ code, name, college, simulated, link, st
     <div className="container-wide animate-fade-in-up pt-14 pb-10">
       <div className="mx-auto max-w-3xl space-y-6">
         <div>
-          <h1 className="text-3xl font-bold">Hi {name.split(" ")[0]} 👋</h1>
+          <h1 className="text-3xl font-bold">Hi {name.trim().split(/\s+/)[0]} 👋</h1>
           <p className="text-sm text-[var(--color-muted)]">
             {college} · code <strong>{code}</strong>
             {simulated && " · simulated ambassador"}

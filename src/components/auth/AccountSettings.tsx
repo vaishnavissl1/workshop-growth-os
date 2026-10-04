@@ -148,7 +148,7 @@ export default function AccountSettings() {
         <header className="flex flex-wrap items-center justify-between gap-4">
           <div>
             <p className="eyebrow mb-2">Account settings</p>
-            <h1 className="section-title !text-[clamp(2rem,4.5vw,3rem)]">Hi, {displayName.split(" ")[0]}</h1>
+            <h1 className="section-title !text-[clamp(2rem,4.5vw,3rem)]">Hi, {displayName.trim().split(/\s+/)[0]}</h1>
             <p className="mt-1 text-slate-500">{profile.account.email}</p>
           </div>
           <button onClick={signOut} className="btn-secondary">Log out</button>

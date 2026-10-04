@@ -11,7 +11,7 @@ export async function getInviter(code: string) {
     .maybeSingle();
   if (!data) return null;
   return {
-    firstName: String(data.name).split(" ")[0],
+    firstName: String(data.name).trim().split(/\s+/)[0],
     college: data.college as string,
     project: data.project_idea as string | null,
   };

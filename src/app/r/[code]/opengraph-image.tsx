@@ -27,7 +27,7 @@ export default async function Image({ params }: { params: Promise<{ code: string
         </div>
         <div style={{ fontSize: 76, fontWeight: 800, marginTop: 20, lineHeight: 1.1 }}>{cfg.title}</div>
         {inviter?.project && (
-          <div style={{ fontSize: 34, marginTop: 24 }}>They&apos;re building: {inviter.project}</div>
+          <div style={{ fontSize: 34, marginTop: 24 }}>{`They're building: ${inviter.project}`}</div>
         )}
         <div
           style={{

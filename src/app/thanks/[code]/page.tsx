@@ -52,7 +52,7 @@ export default async function ThanksPage({
 
   const branchIdeas = (ideas as Record<string, { title: string; description: string; stack: string }[]>)[me.branch] ?? [];
   const idea = branchIdeas.find((i) => i.title === me.project_idea) ?? branchIdeas[0];
-  const firstName = me.name.split(" ")[0];
+  const firstName = me.name.trim().split(/\s+/)[0];
 
   const when = new Date(sessionStart(me.session)).toLocaleString("en-IN", {
     dateStyle: "full",
@@ -72,7 +72,7 @@ export default async function ThanksPage({
           <div className="mx-auto mb-3 flex h-16 w-16 items-center justify-center rounded-full bg-green-500 text-3xl text-white shadow-lg shadow-green-500/30">✓</div>
           <h1 className="display !text-[clamp(2.5rem,6vw,4rem)]">{again ? "You're already in!" : "You're in!"}</h1>
           <p className="mt-2 text-[var(--color-muted)]">
-            {me.name.split(" ")[0]}, your seat is reserved for {when} IST
+            {me.name.trim().split(/\s+/)[0]}, your seat is reserved for {when} IST
             {me.session === 2 ? " (repeat session, since Session 1 is full)" : ""}.
           </p>
           {!me.is_verified && (
