@@ -48,10 +48,9 @@ export default function SiteHeader() {
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 rounded-2xl border border-white/10 bg-black/55 px-4 py-3 backdrop-blur-xl">
         {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
         <a href="/" className="flex min-w-0 items-center gap-3 !text-white" aria-label="NxtWave home">
-          {/* Replace /nxtwave-logo.svg with the official logo file (same name) and it updates everywhere. */}
+          {/* NxtWave's white logo (already includes the name). Swap public/nxtwave-logo.svg to change it. */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/nxtwave-logo.svg" alt="" width={40} height={40} className="h-10 w-10 flex-shrink-0 rounded-xl" />
-          <span className="text-xl font-bold tracking-tight">NxtWave</span>
+          <img src="/nxtwave-logo.svg" alt="NxtWave" width={117} height={66} className="h-11 w-auto flex-shrink-0 sm:h-12" />
         </a>
 
         <nav aria-label="Main" className="hidden items-center gap-1 md:flex">
