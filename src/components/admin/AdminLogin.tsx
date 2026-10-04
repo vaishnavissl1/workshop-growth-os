@@ -31,6 +31,10 @@ export default function AdminLogin() {
       <form onSubmit={submit} className="card mx-auto max-w-sm space-y-4">
         <h1 className="text-2xl font-bold">Growth OS admin</h1>
         <p className="text-sm text-[var(--color-muted)]">Reviewer and admin passwords both work. Reviewers get a read-only view.</p>
+        <p className="text-sm text-[var(--color-muted)]">
+          Have a reviewer account instead? {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
+          <a href="/login" className="font-semibold">Log in with email</a>
+        </p>
         <label className="block text-sm font-semibold" htmlFor="password">Password</label>
         <input
           id="password"

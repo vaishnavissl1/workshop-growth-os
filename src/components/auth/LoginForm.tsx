@@ -22,7 +22,7 @@ export default function LoginForm() {
     const supabase = authClient();
     if (!supabase) return setError("Accounts are not available right now.");
     setBusy(true);
-    const { error: err } = await supabase.auth.signInWithPassword({
+    const { data, error: err } = await supabase.auth.signInWithPassword({
       email: String(f.get("email")).trim().toLowerCase(),
       password: String(f.get("password")),
     });
@@ -35,6 +35,19 @@ export default function LoginForm() {
       );
       return;
     }
+    // Reviewer / admin accounts go to the dashboard. The server checks the role and sets the admin cookie.
+    const role = data.user?.app_metadata?.role;
+    if (role === "reviewer" || role === "admin") {
+      const res = await fetch("/api/admin/session", {
+        method: "POST",
+        headers: { Authorization: `Bearer ${data.session?.access_token}` },
+      });
+      if (res.ok) {
+        window.location.assign("/admin");
+        return;
+      }
+    }
+
     // Full page load: the header re-reads the new session and the account page opens fresh.
     const next = new URLSearchParams(window.location.search).get("next");
     window.location.assign(next && next.startsWith("/") && !next.startsWith("//") ? next : "/account");
@@ -44,7 +57,7 @@ export default function LoginForm() {
     <AuthShell
       eyebrow="Welcome back"
       title="Log in"
-      lead="Manage your workshop profile and invite link."
+      lead="Students manage their profile and invite link here. Reviewers go straight to the dashboard."
       footer={
         <>
           New here?{" "}
