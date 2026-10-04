@@ -39,9 +39,6 @@ export default function CareerSections() {
             </li>
           ))}
         </ul>
-        <p className="mx-auto mt-6 max-w-2xl text-center text-sm text-slate-500">
-          A workshop certificate and one project don&apos;t guarantee a job. They give you something real to show while you keep building.
-        </p>
       </section>
 
       {/* Branch fit */}
@@ -91,11 +88,8 @@ export default function CareerSections() {
       {/* Illustrative paths */}
       <section className="container-wide pt-24">
         <div className="mb-10 text-center">
-          <p className="eyebrow mb-3">Example paths</p>
-          <h2 className="section-title">What could happen next</h2>
-          <p className="notice-amber mx-auto mt-5 inline-block px-4 py-2 text-sm">
-            Illustrative examples to show the idea. These are not real students.
-          </p>
+          <p className="eyebrow mb-3">Example paths (hypothetical)</p>
+          <h2 className="section-title">If you build it, what could happen next</h2>
         </div>
         <ul className="grid gap-6 md:grid-cols-3">
           {PATHS.map((p) => (
