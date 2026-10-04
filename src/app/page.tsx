@@ -33,6 +33,27 @@ const PROOF = [
   { stat: "60 min", label: "instead of 2 hours", note: "same build: set up, build, deploy, share" },
 ];
 
+/**
+ * Real people, with credentials as NxtWave publishes them (ccbp.in/about, ccbp.in/ai-workshop; the 2023 mega
+ * workshop is from NxtWave's press release of 9 Aug 2023). Checked 5 Oct 2026. Do not add or embellish.
+ */
+const MENTORS = [
+  {
+    initials: "RA",
+    name: "Rahul Attuluri",
+    role: "Co-founder & CEO, NxtWave",
+    tags: ["Ex-Amazon", "IIIT Hyderabad", "Ex-CTO, CyberEye"],
+    note: "Mentored NxtWave's Generative AI Mega Workshop in 2023, joined by students from over 3,000 colleges across India.",
+  },
+  {
+    initials: "AD",
+    name: "Abhinav Devaguptapu",
+    role: "Curriculum Development Manager, NxtWave",
+    tags: ["AI & Cyber Security", "7+ years training"],
+    note: "Instructor of NxtWave's Generative AI workshop. Has trained professionals from DRDO, the Indian Army and universities.",
+  },
+];
+
 const WALK_AWAY = [
   { icon: "🔗", title: "A live public link to your AI app", note: "Add it to your resume tonight. Interviewers can open it and try it." },
   { icon: "📜", title: "Certificate with your name + project title", note: "LinkedIn-ready, issued when you finish the build." },
@@ -169,6 +190,39 @@ export default async function HomePage() {
               <blockquote className="mt-2 flex-1 text-[1.0125rem] leading-relaxed text-slate-700">{r.quote}</blockquote>
               <p className="mt-6 font-semibold">{r.name}</p>
               <p className="text-sm text-slate-500">{r.place}</p>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      {/* Mentors: real people and credentials as published by NxtWave. Nothing here says they host this session. */}
+      <section className="container-wide pt-24">
+        <div className="mb-12 text-center">
+          <p className="eyebrow mb-3">Mentors</p>
+          <h2 className="section-title">The people behind NxtWave&apos;s AI workshop</h2>
+        </div>
+        <ul className="mx-auto grid max-w-5xl gap-6 md:grid-cols-2">
+          {MENTORS.map((m) => (
+            <li key={m.name} className="card card-lift !p-8">
+              <div className="flex items-center gap-5">
+                <span
+                  aria-hidden="true"
+                  className="flex h-16 w-16 flex-shrink-0 items-center justify-center rounded-full text-xl font-bold text-white"
+                  style={{ backgroundImage: "linear-gradient(to bottom right, #B91C1C, #991B1B)" }}
+                >
+                  {m.initials}
+                </span>
+                <div>
+                  <h3 className="text-2xl font-semibold">{m.name}</h3>
+                  <p className="text-[0.95rem] font-semibold text-[var(--color-primary-light)]">{m.role}</p>
+                </div>
+              </div>
+              <ul className="mt-5 flex flex-wrap gap-2">
+                {m.tags.map((t) => (
+                  <li key={t} className="rounded-lg border border-slate-200 bg-slate-50 px-2.5 py-1 text-sm font-medium text-slate-700">{t}</li>
+                ))}
+              </ul>
+              <p className="mt-5 text-[1.0125rem] leading-relaxed text-slate-600">{m.note}</p>
             </li>
           ))}
         </ul>
