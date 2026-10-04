@@ -223,6 +223,10 @@ export default function RegisterForm({ refCode }: { refCode?: string }) {
         <span>I agree to be contacted on WhatsApp/email about this workshop.</span>
       </label>
 
+      <p className="text-sm text-gray-400">
+        Note: this is a prototype built for the NxtWave Growth Challenge, not an official NxtWave event.
+      </p>
+
       {error && <p role="alert" className="notice-red p-3 text-sm font-medium">{error}</p>}
 
       <button id="cta-reserve-seat" type="submit" disabled={busy} className="btn-cta w-full text-lg">

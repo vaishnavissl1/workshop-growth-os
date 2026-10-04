@@ -60,9 +60,6 @@ export default function SiteFooter() {
         </ul>
       </div>
 
-      <p className="border-t border-white/10 px-4 py-5 text-center text-sm text-gray-400">
-        {cfg.prototypeBanner}
-      </p>
     </footer>
   );
 }

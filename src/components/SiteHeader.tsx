@@ -47,18 +47,11 @@ export default function SiteHeader() {
     <header className="sticky top-0 z-50 px-3 pt-3 sm:px-5 sm:pt-4">
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 rounded-2xl border border-white/10 bg-black/55 px-4 py-3 backdrop-blur-xl">
         {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
-        <a href="/" className="flex min-w-0 items-center gap-3 !text-white" aria-label="Home">
-          <span
-            aria-hidden="true"
-            className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl text-base font-bold shadow-lg shadow-indigo-900/40"
-            style={{ backgroundImage: "linear-gradient(to bottom right, #4F46E5, #4338CA)" }}
-          >
-            AI
-          </span>
-          <span className="hidden min-w-0 leading-tight min-[480px]:block">
-            <span className="block truncate text-base font-semibold">Build Your First AI Project</span>
-            <span className="block truncate text-xs text-gray-400">in 60 Minutes · Free workshop</span>
-          </span>
+        <a href="/" className="flex min-w-0 items-center gap-3 !text-white" aria-label="NxtWave home">
+          {/* Replace /nxtwave-logo.svg with the official logo file (same name) and it updates everywhere. */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/nxtwave-logo.svg" alt="" width={40} height={40} className="h-10 w-10 flex-shrink-0 rounded-xl" />
+          <span className="text-xl font-bold tracking-tight">NxtWave</span>
         </a>
 
         <nav aria-label="Main" className="hidden items-center gap-1 md:flex">
