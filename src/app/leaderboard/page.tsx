@@ -11,7 +11,7 @@ const BADGE = ["bg-amber-300 text-amber-950", "bg-slate-200 text-slate-900", "bg
 function Rank({ n }: { n: number }) {
   return (
     <span
-      className={`inline-flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full text-xs font-bold ${
+      className={`inline-flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full text-sm font-bold ${
         BADGE[n - 1] ?? "bg-white/10 text-[var(--color-soft)]"
       }`}
     >
@@ -77,12 +77,12 @@ export default async function LeaderboardPage({ searchParams }: { searchParams: 
   return (
     <>
       <PageGlow tone="amber" />
-    <div className="mx-auto w-full max-w-5xl animate-fade-in-up px-4 pt-14 pb-10">
+    <div className="container-wide animate-fade-in-up pt-16 pb-10">
       <AutoRefresh seconds={60} />
-      <div className="mx-auto max-w-4xl space-y-6">
+      <div className="mx-auto max-w-5xl space-y-8">
         <div className="text-center">
           <p className="eyebrow mb-1">Live</p>
-          <h1 className="text-4xl font-bold">Leaderboard</h1>
+          <h1 className="display !text-[clamp(2.5rem,6vw,4rem)]">Leaderboard</h1>
         </div>
 
         {nudge && (
@@ -94,11 +94,11 @@ export default async function LeaderboardPage({ searchParams }: { searchParams: 
 
         <div className="grid items-start gap-6 md:grid-cols-2">
         <section className="card">
-          <h2 className="mb-3 text-lg font-bold">Top 10 referrers</h2>
+          <h2 className="mb-4 text-xl font-semibold">Top 10 referrers</h2>
           {people.data?.length ? (
             <ol className="space-y-3">
               {people.data.map((p, i) => (
-                <li key={i} className="flex items-center gap-3 text-sm">
+                <li key={i} className="flex items-center gap-4 text-base">
                   <Rank n={Number(p.referrer_rank)} />
                   <span className="min-w-0 flex-1">
                     <span className="font-semibold">{p.first_name}</span>
@@ -114,9 +114,9 @@ export default async function LeaderboardPage({ searchParams }: { searchParams: 
         </section>
 
         <section className="card">
-          <h2 className="mb-3 text-lg font-bold">College Cup</h2>
+          <h2 className="mb-4 text-xl font-semibold">College Cup</h2>
           {colleges.data?.length ? (
-            <table className="w-full text-sm">
+            <table className="w-full text-base">
               <thead>
                 <tr className="text-left text-xs text-[var(--color-muted)]">
                   <th className="pb-2 font-semibold">#</th>
@@ -127,9 +127,9 @@ export default async function LeaderboardPage({ searchParams }: { searchParams: 
               <tbody>
                 {colleges.data.map((c, i) => (
                   <tr key={i} className="border-t border-white/10">
-                    <td className="py-2 pr-2"><Rank n={Number(c.college_rank)} /></td>
-                    <td className="py-2 pr-2">{c.college}</td>
-                    <td className="py-2 text-right font-bold">{c.verified_count}</td>
+                    <td className="py-3 pr-3"><Rank n={Number(c.college_rank)} /></td>
+                    <td className="py-3 pr-3">{c.college}</td>
+                    <td className="py-3 text-right text-lg font-bold">{c.verified_count}</td>
                   </tr>
                 ))}
               </tbody>
@@ -142,7 +142,7 @@ export default async function LeaderboardPage({ searchParams }: { searchParams: 
 
         </div>
 
-        <p className="text-center"><Link href="/" className="btn-secondary">← Back to registration</Link></p>
+        <p className="text-center"><Link href="/register" className="btn-cta btn-lg !text-[#111827]">Reserve my free seat</Link></p>
       </div>
     </div>
     </>

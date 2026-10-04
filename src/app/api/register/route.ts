@@ -2,6 +2,7 @@ import { createHash } from "node:crypto";
 import { NextResponse } from "next/server";
 import { thanksToken } from "@/lib/auth";
 import { db } from "@/lib/supabase";
+import { userFromRequest } from "@/lib/user";
 
 const LIMIT = 5;
 const WINDOW_MIN = 10;
@@ -73,6 +74,13 @@ export async function POST(req: Request) {
       { status: 500 },
     );
   }
+  // If the student is signed in, link the registration we just created to their account. Only ever a brand-new
+  // row (never an existing one), so signing up with someone else's email can't claim their registration.
+  if (data?.ok && !data.already_registered && data.ref_code) {
+    const user = await userFromRequest(req);
+    if (user) await supabase.from("registrations").update({ user_id: user.id }).eq("ref_code", data.ref_code).is("user_id", null);
+  }
+
   const body2 = data?.ok && data.ref_code ? { ...data, t: thanksToken(data.ref_code) } : data;
   return NextResponse.json(body2, { status: data?.ok ? 200 : 422 });
 }

@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { Outfit } from "next/font/google";
 import "./globals.css";
-import PrototypeBanner from "@/components/PrototypeBanner";
-import Navbar from "@/components/Navbar";
+import SiteHeader from "@/components/SiteHeader";
+import SiteFooter from "@/components/SiteFooter";
+import SiteTracker from "@/components/SiteTracker";
 import { WORKSHOP_CONFIG } from "@/config";
 
 const outfit = Outfit({
@@ -58,10 +59,11 @@ export default function RootLayout({ children }: RootLayoutProps) {
       </head>
       <body className="min-h-full flex flex-col font-body">
         <div className="soft-backdrop" aria-hidden="true" />
-        {/* Prototype banner is rendered on ALL pages as required by PLAN.md §4 T1-6 */}
-        <PrototypeBanner />
-        <Navbar />
-        <main className="flex-1 flex flex-col">{children}</main>
+        <SiteTracker />
+        <SiteHeader />
+        <main className="flex flex-1 flex-col">{children}</main>
+        {/* The prototype notice now lives in the footer (PLAN.md §4 T1-6: label it, don't pretend it's an official event) */}
+        <SiteFooter />
       </body>
     </html>
   );

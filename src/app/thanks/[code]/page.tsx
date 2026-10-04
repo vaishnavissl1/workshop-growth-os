@@ -65,12 +65,12 @@ export default async function ThanksPage({
   return (
     <>
       <PageGlow tone="green" />
-    <div className="container-page animate-fade-in-up pt-14 pb-10">
-      <div className="mx-auto max-w-md space-y-5">
+    <div className="container-wide animate-fade-in-up pt-14 pb-10">
+      <div className="mx-auto max-w-2xl space-y-6">
         <RememberMe code={code} />
         <div className="text-center">
           <div className="mx-auto mb-3 flex h-16 w-16 items-center justify-center rounded-full bg-green-500 text-3xl text-white shadow-lg shadow-green-500/30">✓</div>
-          <h1 className="text-4xl font-bold">{again ? "You're already in!" : "You're in!"}</h1>
+          <h1 className="display !text-[clamp(2.5rem,6vw,4rem)]">{again ? "You're already in!" : "You're in!"}</h1>
           <p className="mt-2 text-[var(--color-muted)]">
             {me.name.split(" ")[0]}, your seat is reserved for {when} IST
             {me.session === 2 ? " (repeat session, since Session 1 is full)" : ""}.

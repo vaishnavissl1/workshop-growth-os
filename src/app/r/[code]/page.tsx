@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Landing from "@/components/Landing";
+import RegisterView from "@/components/RegisterView";
 import { getInviter } from "@/lib/inviter";
 import { WORKSHOP_CONFIG as cfg } from "@/config";
 
@@ -15,9 +15,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return { title, openGraph: { title, description: cfg.ogDescription } };
 }
 
-/** Referral landing: renders the landing page directly so the personalised link preview survives. */
+/** Referral invite: renders the register view directly so the personalised link preview survives. */
 export default async function ReferralPage({ params }: Props) {
   const code = (await params).code.toUpperCase();
   const inviter = await getInviter(code);
-  return <Landing refCode={inviter ? code : undefined} inviter={inviter ?? undefined} />;
+  return <RegisterView refCode={inviter ? code : undefined} inviter={inviter ?? undefined} />;
 }

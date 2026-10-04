@@ -6,6 +6,7 @@ import ideas from "@/data/projectIdeas.json";
 import { COLLEGES } from "@/lib/colleges";
 import { WORKSHOP_CONFIG as cfg } from "@/config";
 import { resolveVariant, track, type Variant } from "@/lib/analytics";
+import { authClient, authHeader } from "@/lib/supabaseBrowser";
 
 type Idea = { title: string; description: string; stack: string };
 const IDEAS = ideas as Record<string, Idea[]>;
@@ -52,6 +53,7 @@ export default function RegisterForm({ refCode }: { refCode?: string }) {
   const [error, setError] = useState("");
   const [attr, setAttr] = useState<Stored>({});
   const [variant, setVariant] = useState<Variant>("control");
+  const [prefill, setPrefill] = useState<{ name: string; email: string } | null>(null);
 
   // Attribution: URL param first, then localStorage (WhatsApp in-app browsers can drop cookies).
   useEffect(() => {
@@ -69,9 +71,19 @@ export default function RegisterForm({ refCode }: { refCode?: string }) {
     setAttr(next);
     resolveVariant((v) => {
       setVariant(v);
-      track("landing_view", { headline_variant: v, source: next.source ?? "direct", ambassador_code: next.ambassador });
+      track("register_view", { headline_variant: v, source: next.source ?? "direct", ambassador_code: next.ambassador });
     });
   }, [refCode]);
+
+  // Signed-in students get their name and email filled in (and the new registration is linked to their account).
+  useEffect(() => {
+    authClient()
+      ?.auth.getSession()
+      .then(({ data }) => {
+        const u = data.session?.user;
+        if (u) setPrefill({ name: (u.user_metadata?.name as string) ?? "", email: u.email ?? "" });
+      });
+  }, []);
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -83,7 +95,7 @@ export default function RegisterForm({ refCode }: { refCode?: string }) {
     try {
       const res = await fetch("/api/register", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json", ...(await authHeader()) },
         body: JSON.stringify({
           name: f.get("name"),
           phone: f.get("phone"),
@@ -161,7 +173,7 @@ export default function RegisterForm({ refCode }: { refCode?: string }) {
 
       <div>
         <label className={label} htmlFor="name">2. Your name</label>
-        <input id="name" name="name" required minLength={2} maxLength={80} autoComplete="name" className={input} onFocus={() => track("form_start")} />
+        <input id="name" name="name" key={`n-${prefill?.name}`} defaultValue={prefill?.name} required minLength={2} maxLength={80} autoComplete="name" className={input} onFocus={() => track("form_start")} />
       </div>
       <div>
         <label className={label} htmlFor="phone">WhatsApp number</label>
@@ -169,7 +181,7 @@ export default function RegisterForm({ refCode }: { refCode?: string }) {
       </div>
       <div>
         <label className={label} htmlFor="email">Email</label>
-        <input id="email" name="email" type="email" required autoComplete="email" className={input} />
+        <input id="email" name="email" key={`e-${prefill?.email}`} defaultValue={prefill?.email} type="email" required autoComplete="email" className={input} />
       </div>
       <div>
         <label className={label} htmlFor="college">College</label>
