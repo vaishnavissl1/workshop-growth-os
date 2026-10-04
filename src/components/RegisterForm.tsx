@@ -114,9 +114,8 @@ export default function RegisterForm({ refCode }: { refCode?: string }) {
     }
   }
 
-  const input =
-    "w-full rounded-xl border border-[var(--color-border)] bg-white px-4 py-3 text-base text-[var(--color-ink)] focus:border-[var(--color-primary)]";
-  const label = "block text-sm font-semibold mb-1";
+  const input = "field";
+  const label = "block text-sm font-semibold mb-1 text-gray-200";
 
   return (
     <form onSubmit={onSubmit} className="space-y-5" id="register">
@@ -133,11 +132,7 @@ export default function RegisterForm({ refCode }: { refCode?: string }) {
                 track("branch_picked", { branch: b.branch });
               }}
               aria-pressed={branch === b.branch}
-              className={`min-h-[44px] min-w-[64px] rounded-full border px-4 text-sm font-semibold ${
-                branch === b.branch
-                  ? "border-[var(--color-primary)] bg-[var(--color-primary)] text-white"
-                  : "border-[var(--color-border)] bg-white text-[var(--color-ink)]"
-              }`}
+              className="chip min-w-[64px]"
             >
               {b.label}
             </button>
@@ -154,13 +149,11 @@ export default function RegisterForm({ refCode }: { refCode?: string }) {
               key={i.title}
               onClick={() => setProject(i.title)}
               aria-pressed={project === i.title}
-              className={`block min-h-[44px] w-full rounded-xl border p-3 text-left ${
-                project === i.title ? "border-[var(--color-primary)] bg-[#EEF2FF]" : "border-[var(--color-border)] bg-white"
-              }`}
+              className="option-card"
             >
               <span className="block text-sm font-bold">{i.title}</span>
               <span className="block text-sm text-[var(--color-muted)]">{i.description}</span>
-              <span className="mt-1 block text-xs font-semibold text-[var(--color-primary)]">{i.stack}</span>
+              <span className="mt-1 block text-xs font-semibold text-[var(--color-primary-light)]">{i.stack}</span>
             </button>
           ))}
         </div>
@@ -213,12 +206,12 @@ export default function RegisterForm({ refCode }: { refCode?: string }) {
         <label>Website<input name="website" tabIndex={-1} autoComplete="off" /></label>
       </div>
 
-      <label className="flex items-start gap-3 text-sm">
-        <input type="checkbox" name="consent" required className="mt-1 h-5 w-5" />
+      <label className="flex items-start gap-3 text-sm text-[var(--color-soft)]">
+        <input type="checkbox" name="consent" required className="mt-1 h-5 w-5 accent-violet-500" />
         <span>I agree to be contacted on WhatsApp/email about this workshop.</span>
       </label>
 
-      {error && <p role="alert" className="rounded-xl bg-red-50 p-3 text-sm font-medium text-red-700">{error}</p>}
+      {error && <p role="alert" className="notice-red p-3 text-sm font-medium">{error}</p>}
 
       <button id="cta-reserve-seat" type="submit" disabled={busy} className="btn-cta w-full text-lg">
         {busy ? "Reserving…" : "Reserve my free seat"}

@@ -24,9 +24,9 @@ export default function AdminLogin() {
   }
 
   return (
-    <div className="container-page py-16">
+    <div className="container-page animate-fade-in-up py-16">
       <form onSubmit={submit} className="card mx-auto max-w-sm space-y-4">
-        <h1 className="text-2xl font-extrabold">Growth OS admin</h1>
+        <h1 className="text-2xl font-bold">Growth OS admin</h1>
         <p className="text-sm text-[var(--color-muted)]">Reviewer and admin passwords both work. Reviewers get a read-only view.</p>
         <label className="block text-sm font-semibold" htmlFor="password">Password</label>
         <input
@@ -35,10 +35,10 @@ export default function AdminLogin() {
           type="password"
           required
           autoComplete="current-password"
-          className="w-full rounded-xl border border-[var(--color-border)] bg-white px-4 py-3 text-base"
+          className="field"
         />
-        {error && <p role="alert" className="text-sm font-medium text-red-700">{error}</p>}
-        <button className="btn-secondary w-full" disabled={busy}>{busy ? "Checking…" : "Sign in"}</button>
+        {error && <p role="alert" className="notice-red p-3 text-sm font-medium">{error}</p>}
+        <button className="btn-primary w-full" disabled={busy}>{busy ? "Checking…" : "Sign in"}</button>
       </form>
     </div>
   );

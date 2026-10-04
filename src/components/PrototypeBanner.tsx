@@ -12,7 +12,7 @@ export default function PrototypeBanner() {
       id="prototype-banner"
       role="banner"
       aria-label="Prototype notice"
-      className="w-full bg-amber-50 border-b border-amber-300 text-amber-900 text-center px-4 py-2 text-xs sm:text-sm font-medium tracking-wide z-50"
+      className="w-full border-b border-amber-400/20 bg-amber-400/10 px-4 py-2 text-center text-xs font-medium tracking-wide text-amber-200 sm:text-sm"
     >
       ⚠️&nbsp;{WORKSHOP_CONFIG.prototypeBanner}
     </div>

@@ -18,19 +18,19 @@ export default async function AmbassadorPage({ searchParams }: { searchParams: P
 
   if (!me) {
     return (
-      <div className="container-page py-16">
+      <div className="container-page animate-fade-in-up py-16">
         <form className="card mx-auto max-w-sm space-y-4" method="get">
-          <h1 className="text-2xl font-extrabold">Ambassador kit</h1>
+          <h1 className="text-2xl font-bold">Ambassador kit</h1>
           <p className="text-sm text-[var(--color-muted)]">Enter your ambassador code to open your tracked link and messages.</p>
-          {code && <p role="alert" className="text-sm font-medium text-red-700">We couldn&apos;t find that code.</p>}
+          {code && <p role="alert" className="notice-red p-3 text-sm font-medium">We couldn&apos;t find that code.</p>}
           <input
             name="amb"
             defaultValue={code}
             required
             placeholder="e.g. AMB-001"
-            className="w-full rounded-xl border border-[var(--color-border)] bg-white px-4 py-3 text-base"
+            className="field"
           />
-          <button className="btn-secondary w-full">Open my kit</button>
+          <button className="btn-primary w-full">Open my kit</button>
           <p className="text-center text-sm"><Link href="/">← Back</Link></p>
         </form>
       </div>

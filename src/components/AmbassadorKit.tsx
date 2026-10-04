@@ -13,7 +13,7 @@ type Props = {
   stats: { total: number; verified: number; position: number | null; of: number };
 };
 
-const inputCls = "w-full rounded-xl border border-[var(--color-border)] bg-white px-4 py-3 text-base";
+const inputCls = "field";
 const INDIC = { fontFamily: "var(--font-indic), var(--font-body), sans-serif" } as const;
 
 export default function AmbassadorKit({ code, name, college, simulated, link, stats }: Props) {
@@ -54,10 +54,10 @@ export default function AmbassadorKit({ code, name, college, simulated, link, st
   const emailText = `Subject: ${email.subject}\n\n${email.body}`;
 
   return (
-    <div className="container-page py-8">
+    <div className="container-page animate-fade-in-up pt-14 pb-10">
       <div className="mx-auto max-w-md space-y-5">
         <div>
-          <h1 className="text-2xl font-extrabold">Hi {name.split(" ")[0]} 👋</h1>
+          <h1 className="text-3xl font-bold">Hi {name.split(" ")[0]} 👋</h1>
           <p className="text-sm text-[var(--color-muted)]">
             {college} · code <strong>{code}</strong>
             {simulated && " · simulated ambassador"}
@@ -67,16 +67,16 @@ export default function AmbassadorKit({ code, name, college, simulated, link, st
         <section className="card">
           <h2 className="mb-3 text-lg font-bold">Your stats</h2>
           <div className="grid grid-cols-3 gap-2 text-center">
-            <div><p className="text-2xl font-extrabold">{stats.total}</p><p className="text-xs text-[var(--color-muted)]">registered</p></div>
-            <div><p className="text-2xl font-extrabold">{stats.verified}</p><p className="text-xs text-[var(--color-muted)]">verified</p></div>
-            <div><p className="text-2xl font-extrabold">{stats.position ? `#${stats.position}` : "–"}</p><p className="text-xs text-[var(--color-muted)]">of {stats.of}</p></div>
+            <div><p className="text-2xl font-bold">{stats.total}</p><p className="text-xs text-[var(--color-muted)]">registered</p></div>
+            <div><p className="text-2xl font-bold">{stats.verified}</p><p className="text-xs text-[var(--color-muted)]">verified</p></div>
+            <div><p className="text-2xl font-bold">{stats.position ? `#${stats.position}` : "–"}</p><p className="text-xs text-[var(--color-muted)]">of {stats.of}</p></div>
           </div>
           <p className="mt-3 text-xs text-[var(--color-muted)]">Rewards go to verified registrations only (2027 batch, engineering).</p>
         </section>
 
         <section className="card space-y-3">
           <h2 className="text-lg font-bold">Your tracked link</h2>
-          <p className="break-all rounded-xl bg-[#F1F5F9] p-3 text-sm">{link}</p>
+          <p className="inset break-all p-3 text-sm">{link}</p>
           <CopyButton text={link} label="Copy link" />
         </section>
 
@@ -89,16 +89,14 @@ export default function AmbassadorKit({ code, name, college, simulated, link, st
                 type="button"
                 onClick={() => pick(l.id)}
                 aria-pressed={lang === l.id}
-                className={`min-h-[44px] rounded-full border px-4 text-sm font-semibold ${
-                  lang === l.id ? "border-[var(--color-primary)] bg-[var(--color-primary)] text-white" : "border-[var(--color-border)] bg-white"
-                }`}
+                className="chip"
               >
                 {l.label}
               </button>
             ))}
           </div>
           {lang !== "en" && (
-            <p className="rounded-xl bg-amber-50 p-3 text-sm font-semibold text-amber-900">
+            <p className="notice-amber p-3 text-sm font-semibold">
               AI-drafted · native-speaker review needed before you send this.
             </p>
           )}
@@ -114,7 +112,7 @@ export default function AmbassadorKit({ code, name, college, simulated, link, st
             return (
               <div key={title} className="space-y-2">
                 <p className="text-sm font-bold">{i + 1}. {title}</p>
-                <pre style={lang === "en" ? undefined : INDIC} className="whitespace-pre-wrap rounded-xl bg-[#F1F5F9] p-3 text-sm leading-relaxed">
+                <pre style={lang === "en" ? undefined : INDIC} className="inset whitespace-pre-wrap p-3 text-sm leading-relaxed text-[var(--color-soft)]">
                   {loading && lang !== "en" ? "Loading…" : text}
                 </pre>
                 <CopyButton text={text} label="Copy" />
@@ -127,7 +125,7 @@ export default function AmbassadorKit({ code, name, college, simulated, link, st
           <h2 className="text-lg font-bold">TPO email generator</h2>
           <input className={inputCls} placeholder="College name" value={tpoCollege} onChange={(e) => setTpoCollege(e.target.value)} />
           <input className={inputCls} placeholder="TPO name" value={tpoName} onChange={(e) => setTpoName(e.target.value)} />
-          <pre className="whitespace-pre-wrap rounded-xl bg-[#F1F5F9] p-3 text-sm leading-relaxed">{emailText}</pre>
+          <pre className="inset whitespace-pre-wrap p-3 text-sm leading-relaxed text-[var(--color-soft)]">{emailText}</pre>
           <CopyButton text={emailText} label="Copy email" />
         </section>
       </div>

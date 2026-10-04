@@ -21,11 +21,12 @@ import type { AdminData, Status } from "@/lib/stats";
 import { AMBASSADOR_REACH, META_SPEND_NET } from "@/lib/stats";
 
 const CHIP: Record<Status, string> = {
-  green: "bg-[#DCFCE7] text-[#14532D]",
-  amber: "bg-[#FEF3C7] text-[#78350F]",
-  red: "bg-[#FEE2E2] text-[#7F1D1D]",
+  green: "bg-green-500/15 text-green-300",
+  amber: "bg-amber-400/15 text-amber-200",
+  red: "bg-red-500/15 text-red-300",
 };
 const LABEL: Record<Status, string> = { green: "On track", amber: "Watch", red: "Act" };
+const TIP = { background: "#111827", border: "1px solid rgba(255,255,255,0.15)", borderRadius: 12 };
 const MODES = [
   ["sim", "Simulated"],
   ["real", "Real"],
@@ -73,7 +74,7 @@ function Slider({
         step={step}
         value={value}
         onChange={(e) => onChange(Number(e.target.value))}
-        className="mt-1 h-8 w-full accent-[#4F46E5]"
+        className="mt-1 h-8 w-full accent-violet-500"
       />
     </label>
   );
@@ -124,7 +125,7 @@ export default function Dashboard({ data, role }: { data: AdminData; role: "admi
     <div className="mx-auto w-full max-w-5xl space-y-6 px-4 py-6">
       <header className="flex flex-wrap items-center justify-between gap-3">
         <div>
-          <h1 className="text-2xl font-extrabold">Workshop Growth OS</h1>
+          <h1 className="text-3xl font-bold">Workshop Growth OS</h1>
           <p className="text-sm text-[var(--color-muted)]">
             {role === "admin" ? "Admin" : "Reviewer (read-only)"} · showing{" "}
             <strong>{data.mode === "sim" ? "simulated" : data.mode === "real" ? "real" : "all"}</strong> data ·{" "}
@@ -132,7 +133,7 @@ export default function Dashboard({ data, role }: { data: AdminData; role: "admi
           </p>
         </div>
         <div className="flex items-center gap-2">
-          <div role="group" aria-label="Data mode" className="flex overflow-hidden rounded-full border border-[var(--color-border)] bg-white text-sm font-semibold">
+          <div role="group" aria-label="Data mode" className="flex overflow-hidden rounded-full border border-white/10 bg-white/5 text-sm font-semibold">
             {MODES.map(([m, label]) => (
               <Link
                 key={m}
@@ -148,7 +149,7 @@ export default function Dashboard({ data, role }: { data: AdminData; role: "admi
       </header>
 
       {data.mode !== "real" && (
-        <p className="rounded-xl bg-amber-50 p-3 text-sm text-amber-900">
+        <p className="notice-amber p-3 text-sm">
           Simulated data: every number here is generated from the plan&apos;s assumptions, not measured from real students.
         </p>
       )}
@@ -168,14 +169,14 @@ export default function Dashboard({ data, role }: { data: AdminData; role: "admi
           <div className="h-64">
             <ResponsiveContainer width="100%" height="100%">
               <LineChart data={data.daily} margin={{ left: -10, right: 8, top: 8 }}>
-                <CartesianGrid stroke="#E2E8F0" vertical={false} />
-                <XAxis dataKey="day" tick={{ fontSize: 12 }} />
-                <YAxis tick={{ fontSize: 12 }} />
-                <Tooltip />
-                <Legend wrapperStyle={{ fontSize: 12 }} />
-                <ReferenceLine y={cfg.registrationTarget} stroke="#DC2626" strokeDasharray="4 4" label={{ value: "500", fontSize: 11, fill: "#DC2626" }} />
-                <Line isAnimationActive={false} type="monotone" dataKey="target" name="Daily target" stroke="#64748B" strokeDasharray="5 4" dot={false} />
-                <Line isAnimationActive={false} type="monotone" dataKey="actual" name="Actual" stroke="#4F46E5" strokeWidth={3} dot={{ r: 3 }} />
+                <CartesianGrid stroke="rgba(255,255,255,0.1)" vertical={false} />
+                <XAxis dataKey="day" tick={{ fontSize: 12, fill: "#9CA3AF" }} />
+                <YAxis tick={{ fontSize: 12, fill: "#9CA3AF" }} />
+                <Tooltip contentStyle={TIP} labelStyle={{ color: "#F9FAFB" }} itemStyle={{ color: "#D1D5DB" }} cursor={{ fill: "rgba(255,255,255,0.05)" }} />
+                <Legend wrapperStyle={{ fontSize: 12, color: "#D1D5DB" }} />
+                <ReferenceLine y={cfg.registrationTarget} stroke="#F87171" strokeDasharray="4 4" label={{ value: "500", fontSize: 11, fill: "#F87171" }} />
+                <Line isAnimationActive={false} type="monotone" dataKey="target" name="Daily target" stroke="#9CA3AF" strokeDasharray="5 4" dot={false} />
+                <Line isAnimationActive={false} type="monotone" dataKey="actual" name="Actual" stroke="#A78BFA" strokeWidth={3} dot={{ r: 3 }} />
               </LineChart>
             </ResponsiveContainer>
           </div>
@@ -185,11 +186,11 @@ export default function Dashboard({ data, role }: { data: AdminData; role: "admi
           <div className="h-64">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={data.funnel} layout="vertical" margin={{ left: 20, right: 24 }}>
-                <CartesianGrid stroke="#E2E8F0" horizontal={false} />
-                <XAxis type="number" tick={{ fontSize: 12 }} />
-                <YAxis type="category" dataKey="step" width={110} tick={{ fontSize: 12 }} />
-                <Tooltip />
-                <Bar isAnimationActive={false} dataKey="value" name="Students" fill="#4F46E5" radius={[0, 6, 6, 0]} label={{ position: "right", fontSize: 12 }} />
+                <CartesianGrid stroke="rgba(255,255,255,0.1)" horizontal={false} />
+                <XAxis type="number" tick={{ fontSize: 12, fill: "#9CA3AF" }} />
+                <YAxis type="category" dataKey="step" width={110} tick={{ fontSize: 12, fill: "#9CA3AF" }} />
+                <Tooltip contentStyle={TIP} labelStyle={{ color: "#F9FAFB" }} itemStyle={{ color: "#D1D5DB" }} cursor={{ fill: "rgba(255,255,255,0.05)" }} />
+                <Bar isAnimationActive={false} dataKey="value" name="Students" fill="#8B5CF6" radius={[0, 6, 6, 0]} label={{ position: "right", fontSize: 12, fill: "#D1D5DB" }} />
               </BarChart>
             </ResponsiveContainer>
           </div>

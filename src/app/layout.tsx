@@ -1,20 +1,14 @@
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans, Inter } from "next/font/google";
+import { Outfit } from "next/font/google";
 import "./globals.css";
 import PrototypeBanner from "@/components/PrototypeBanner";
+import Navbar from "@/components/Navbar";
 import { WORKSHOP_CONFIG } from "@/config";
 
-const plusJakartaSans = Plus_Jakarta_Sans({
-  variable: "--font-heading",
+const outfit = Outfit({
+  variable: "--font-outfit",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800"],
-  display: "swap",
-});
-
-const inter = Inter({
-  variable: "--font-body",
-  subsets: ["latin"],
-  weight: ["400", "500", "600"],
+  weight: ["300", "400", "500", "600", "700", "800"],
   display: "swap",
 });
 
@@ -51,7 +45,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html
       lang="en"
-      className={`${plusJakartaSans.variable} ${inter.variable} h-full antialiased`}
+      className={`${outfit.variable} h-full antialiased`}
     >
       <head>
         {/* Indic-script faces for the ambassador kit (next/font can't load these under Turbopack) */}
@@ -62,9 +56,11 @@ export default function RootLayout({ children }: RootLayoutProps) {
           href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;600&family=Noto+Sans+Kannada:wght@400;600&family=Noto+Sans+Telugu:wght@400;600&display=swap"
         />
       </head>
-      <body className="min-h-full flex flex-col bg-[#F8FAFC] font-body text-[#0F172A]">
+      <body className="min-h-full flex flex-col font-body">
+        <div className="soft-backdrop" aria-hidden="true" />
         {/* Prototype banner is rendered on ALL pages as required by PLAN.md §4 T1-6 */}
         <PrototypeBanner />
+        <Navbar />
         <main className="flex-1 flex flex-col">{children}</main>
       </body>
     </html>

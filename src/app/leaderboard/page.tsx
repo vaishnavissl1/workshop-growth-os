@@ -5,13 +5,13 @@ import { db } from "@/lib/supabase";
 export const dynamic = "force-dynamic";
 export const metadata = { title: "Leaderboard" };
 
-const BADGE = ["bg-[#FDE68A] text-[#78350F]", "bg-[#E2E8F0] text-[#1E293B]", "bg-[#FED7AA] text-[#7C2D12]"];
+const BADGE = ["bg-amber-300 text-amber-950", "bg-slate-200 text-slate-900", "bg-orange-300 text-orange-950"];
 
 function Rank({ n }: { n: number }) {
   return (
     <span
       className={`inline-flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full text-xs font-bold ${
-        BADGE[n - 1] ?? "bg-[#F1F5F9] text-[var(--color-muted)]"
+        BADGE[n - 1] ?? "bg-white/10 text-[var(--color-soft)]"
       }`}
     >
       {n}
@@ -74,13 +74,16 @@ export default async function LeaderboardPage({ searchParams }: { searchParams: 
   }
 
   return (
-    <div className="container-page py-8">
+    <div className="container-page animate-fade-in-up pt-14 pb-10">
       <AutoRefresh seconds={60} />
       <div className="mx-auto max-w-md space-y-6">
-        <h1 className="text-center text-3xl font-extrabold">Leaderboard</h1>
+        <div className="text-center">
+          <p className="eyebrow mb-1">Live</p>
+          <h1 className="text-4xl font-bold">Leaderboard</h1>
+        </div>
 
         {nudge && (
-          <p role="status" className="rounded-xl bg-[#EEF2FF] p-3 text-center text-sm font-semibold text-[var(--color-primary-dark)]">
+          <p role="status" className="notice-violet p-3 text-center text-sm font-semibold">
             {mine.data?.first_name ? `${mine.data.first_name}, ` : ""}
             {nudge}
           </p>
@@ -119,7 +122,7 @@ export default async function LeaderboardPage({ searchParams }: { searchParams: 
               </thead>
               <tbody>
                 {colleges.data.map((c, i) => (
-                  <tr key={i} className="border-t border-[var(--color-border)]">
+                  <tr key={i} className="border-t border-white/10">
                     <td className="py-2 pr-2"><Rank n={Number(c.college_rank)} /></td>
                     <td className="py-2 pr-2">{c.college}</td>
                     <td className="py-2 text-right font-bold">{c.verified_count}</td>
@@ -133,7 +136,7 @@ export default async function LeaderboardPage({ searchParams }: { searchParams: 
           <p className="mt-3 text-xs text-[var(--color-muted)]">Sorted by verified registrations (2027 batch, engineering).</p>
         </section>
 
-        <p className="text-center text-sm"><Link href="/">← Back to registration</Link></p>
+        <p className="text-center"><Link href="/" className="btn-secondary">← Back to registration</Link></p>
       </div>
     </div>
   );

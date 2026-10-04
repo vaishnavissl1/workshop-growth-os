@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import CopyButton from "@/components/CopyButton";
 import RememberMe from "@/components/RememberMe";
@@ -58,18 +59,18 @@ export default async function ThanksPage({
   const pct = Math.min(100, Math.round((count / Math.max(1, third + 1)) * 100));
 
   return (
-    <div className="container-page py-8">
+    <div className="container-page animate-fade-in-up pt-14 pb-10">
       <div className="mx-auto max-w-md space-y-5">
         <RememberMe code={code} />
         <div className="text-center">
-          <div className="mx-auto mb-3 flex h-16 w-16 items-center justify-center rounded-full bg-[var(--color-success)] text-3xl text-white">✓</div>
-          <h1 className="text-3xl font-extrabold">{again ? "You're already in!" : "You're in!"}</h1>
+          <div className="mx-auto mb-3 flex h-16 w-16 items-center justify-center rounded-full bg-green-500 text-3xl text-white shadow-lg shadow-green-500/30">✓</div>
+          <h1 className="text-4xl font-bold">{again ? "You're already in!" : "You're in!"}</h1>
           <p className="mt-2 text-[var(--color-muted)]">
             {me.name.split(" ")[0]}, your seat is reserved for {when} IST
             {me.session === 2 ? " (repeat session, since Session 1 is full)" : ""}.
           </p>
           {!me.is_verified && (
-            <p className="mt-3 rounded-xl bg-amber-50 p-3 text-sm text-amber-900">
+            <p className="notice-amber mt-3 p-3 text-sm">
               This workshop is designed for final-year engineering students, so referral rewards apply only to 2027-batch engineering registrations.
             </p>
           )}
@@ -77,10 +78,10 @@ export default async function ThanksPage({
 
         {idea && (
           <div className="card">
-            <p className="text-xs font-semibold uppercase tracking-wide text-[var(--color-primary)]">{firstName}&apos;s project</p>
+            <p className="eyebrow !text-xs">{firstName}&apos;s project</p>
             <h2 className="mt-1 text-lg font-bold">{firstName}, you&apos;ll build: {idea.title}</h2>
             <p className="mt-1 text-sm text-[var(--color-muted)]">{idea.description}</p>
-            <p className="mt-2 text-xs font-semibold text-[var(--color-primary)]">{idea.stack} · deployed live in 60 minutes</p>
+            <p className="mt-2 text-xs font-semibold text-[var(--color-primary-light)]">{idea.stack} · deployed live in 60 minutes</p>
           </div>
         )}
 
@@ -91,15 +92,15 @@ export default async function ThanksPage({
           <a className="btn-wa w-full" href={waShareUrl(code)} target="_blank" rel="noopener noreferrer">
             Share on WhatsApp
           </a>
-          <div className="flex items-center gap-2 rounded-xl bg-[#F1F5F9] p-3 text-sm break-all">{link}</div>
+          <div className="inset flex items-center gap-2 p-3 text-sm break-all">{link}</div>
           <CopyButton text={shareMessage(code)} label="Copy message for your class group" />
           <div>
             <div className="mb-1 flex justify-between text-sm font-semibold">
               <span>{count} verified referral{count === 1 ? "" : "s"}</span>
               <span>Rank #{mine?.referrer_rank ?? "-"}</span>
             </div>
-            <div className="h-3 overflow-hidden rounded-full bg-[#E2E8F0]">
-              <div className="h-full bg-[var(--color-primary)]" style={{ width: `${pct}%` }} />
+            <div className="h-3 overflow-hidden rounded-full bg-white/10">
+              <div className="h-full rounded-full bg-gradient-to-r from-indigo-600 to-violet-400" style={{ width: `${pct}%` }} />
             </div>
             <p className="mt-1 text-sm text-[var(--color-muted)]">
               {toTop3 > 0 ? `${toTop3} more verified referral${toTop3 === 1 ? "" : "s"} to reach the top 3` : "You're in the top 3 🎉"}
@@ -123,7 +124,12 @@ export default async function ThanksPage({
           <a className="btn-secondary" href={`/api/ics/${code}`}>Download .ics</a>
         </div>
 
-        <p className="text-center text-sm"><a href="/leaderboard">See the leaderboard →</a></p>
+        <div className="flex flex-col gap-3 text-center">
+          <Link href="/leaderboard" className="btn-primary w-full">See the leaderboard →</Link>
+          <p className="text-sm text-[var(--color-muted)]">
+            Campus ambassador? <Link href="/ambassador">Open your kit</Link>
+          </p>
+        </div>
       </div>
     </div>
   );
