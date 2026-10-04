@@ -4,7 +4,9 @@ import { thanksToken } from "@/lib/auth";
 import { db } from "@/lib/supabase";
 import { userFromRequest } from "@/lib/user";
 
-const LIMIT = 5;
+// A whole class on campus Wi-Fi shares one public IP, so the cap has to allow a classroom registering together
+// while still stopping a script. 40 per 10 minutes per network.
+const LIMIT = 40;
 const WINDOW_MIN = 10;
 
 function str(v: unknown, max = 200) {
