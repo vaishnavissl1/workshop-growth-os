@@ -1,5 +1,5 @@
 import { WORKSHOP_CONFIG as cfg } from "@/config";
-import { ALUMNI, BRANCH_FIT, PATHS, ROLES } from "@/data/careers";
+import { ALUMNI, BRANCH_FIT, ROLES } from "@/data/careers";
 
 const INTERVIEW_QS = [
   ["“Walk me through a project you built.”", "You can, from the first prompt to the live link."],
@@ -83,30 +83,6 @@ export default function CareerSections() {
             </ul>
           </div>
         </div>
-      </section>
-
-      {/* Illustrative paths */}
-      <section className="container-wide pt-24">
-        <div className="mb-10 text-center">
-          <p className="eyebrow mb-3">Example paths (hypothetical)</p>
-          <h2 className="section-title">If you build it, what could happen next</h2>
-        </div>
-        <ul className="grid gap-6 md:grid-cols-3">
-          {PATHS.map((p) => (
-            <li key={p.from} className="card !p-8">
-              <p className="text-sm font-semibold text-[var(--color-primary-light)]">{p.from}</p>
-              <h3 className="mt-1 text-xl font-semibold">Builds: {p.build}</h3>
-              <ol className="mt-5 space-y-3">
-                {p.steps.map((s, i) => (
-                  <li key={s} className="flex gap-3 text-[0.95rem] text-slate-600">
-                    <span className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-[#FBF2F3] text-xs font-bold text-[#991B1B]">{i + 1}</span>
-                    {s}
-                  </li>
-                ))}
-              </ol>
-            </li>
-          ))}
-        </ul>
       </section>
 
       {/* Last section. Real, verified alumni get your headline; until there are any, show the roles this leads toward. */}
