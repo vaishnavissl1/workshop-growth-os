@@ -1,4 +1,5 @@
 import { WORKSHOP_CONFIG as cfg } from "@/config";
+import Countdown from "@/components/Countdown";
 import PageGlow from "@/components/PageGlow";
 import RegisterForm from "@/components/RegisterForm";
 import { closesLabel, seatsLeft, sessionLabel } from "@/lib/seats";
@@ -58,7 +59,8 @@ export default async function RegisterView({
                 {sessionLabel(cfg.sessionDate)} IST
                 <span className="block text-slate-500">Repeat session {sessionLabel(cfg.session2Date)} IST</span>
               </p>
-              <p className="mt-2 text-sm text-slate-500">Registration closes {closesLabel()}.</p>
+              <div className="mt-4"><Countdown closesAt={cfg.registrationCloses} /></div>
+              <p className="mt-3 text-sm text-slate-500">Registration closes {closesLabel()}.</p>
             </div>
 
             <ul className="mt-6 space-y-3">

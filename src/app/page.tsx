@@ -1,4 +1,5 @@
 import { WORKSHOP_CONFIG as cfg } from "@/config";
+import Countdown from "@/components/Countdown";
 import PageGlow from "@/components/PageGlow";
 import { Subhead } from "@/components/RegisterForm";
 import { closesLabel, seatsLeft, sessionLabel } from "@/lib/seats";
@@ -76,6 +77,7 @@ export default async function HomePage() {
               <div className="h-full rounded-full bg-gradient-to-r from-[#991B1B] to-[#DC2626]" style={{ width: `${Math.min(100, ((cfg.seatCap - left) / cfg.seatCap) * 100)}%` }} />
             </div>
           </div>
+          <div className="mt-5"><Countdown closesAt={cfg.registrationCloses} /></div>
           <p className="mt-4 text-sm text-slate-500">Registration closes {closesLabel()}.</p>
         </aside>
       </section>
