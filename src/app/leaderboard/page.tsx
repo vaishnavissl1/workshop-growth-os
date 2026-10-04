@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { db } from "@/lib/supabase";
 
 export const dynamic = "force-dynamic";
@@ -56,7 +57,7 @@ export default async function LeaderboardPage() {
             <p className="text-sm text-[var(--color-muted)]">No colleges on the board yet.</p>
           )}
         </section>
-        <p className="text-center text-sm"><a href="/">← Back to registration</a></p>
+        <p className="text-center text-sm"><Link href="/">← Back to registration</Link></p>
       </div>
     </div>
   );

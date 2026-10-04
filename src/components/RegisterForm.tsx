@@ -1,17 +1,27 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
 import ideas from "@/data/projectIdeas.json";
 import { COLLEGES } from "@/lib/colleges";
 import { WORKSHOP_CONFIG as cfg } from "@/config";
+import { resolveVariant, track, type Variant } from "@/lib/analytics";
 
 type Idea = { title: string; description: string; stack: string };
 const IDEAS = ideas as Record<string, Idea[]>;
-const VARIANTS = ["control", "resume", "certificate"] as const;
 const STORE = "wgos";
 
-type Stored = { ref?: string; source?: string; ambassador?: string; variant?: string };
+/** The six picker chips; the form's branch select offers every option (incl. Chemical, Biotech, Non-engineering). */
+const PICKER: { label: string; branch: string }[] = [
+  { label: "CSE", branch: "CSE / IT" },
+  { label: "ECE", branch: "ECE" },
+  { label: "EEE", branch: "EEE" },
+  { label: "Mech", branch: "Mechanical" },
+  { label: "Civil", branch: "Civil" },
+  { label: "Other", branch: "Other Engineering" },
+];
+
+type Stored = { ref?: string; source?: string; ambassador?: string };
+type Result = { ok: boolean; already?: boolean; session?: number; code?: string; message: string };
 
 function readStore(): Stored {
   try {
@@ -21,52 +31,46 @@ function readStore(): Stored {
   }
 }
 
-export const SUBHEADS: Record<string, string> = {
+const SUBHEADS: Record<Variant, string> = {
   control: "A free, hands-on live workshop for final-year engineering students.",
-  resume: cfg.tagline,
+  resume: "Walk into your next placement interview with a live AI project link on your resume.",
   certificate: "Build, deploy and get certified, in one hour, for free.",
 };
 
-/** Subhead that depends on the A/B variant (assigned once per visitor, kept in localStorage). */
+/** Subhead driven by the PostHog `headline_variant` flag (control / resume / certificate). */
 export function Subhead() {
-  const [variant, setVariant] = useState("control");
-  useEffect(() => setVariant(ensureVariant()), []);
+  const [variant, setVariant] = useState<Variant>("control");
+  useEffect(() => resolveVariant(setVariant), []);
   return <>{SUBHEADS[variant]}</>;
 }
 
-function ensureVariant() {
-  const s = readStore();
-  if (s.variant && s.variant in SUBHEADS) return s.variant;
-  const v = VARIANTS[Math.floor(Math.random() * VARIANTS.length)];
-  try {
-    localStorage.setItem(STORE, JSON.stringify({ ...s, variant: v }));
-  } catch {}
-  return v;
-}
-
 export default function RegisterForm({ refCode }: { refCode?: string }) {
-  const router = useRouter();
   const [branch, setBranch] = useState("");
   const [project, setProject] = useState("");
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
+  const [result, setResult] = useState<Result | null>(null);
   const [attr, setAttr] = useState<Stored>({});
+  const [variant, setVariant] = useState<Variant>("control");
 
-  // Capture attribution from the URL, falling back to localStorage (WhatsApp in-app browsers drop cookies).
+  // Attribution: URL param first, then localStorage (WhatsApp in-app browsers can drop cookies).
   useEffect(() => {
     const q = new URLSearchParams(window.location.search);
     const prev = readStore();
     const next: Stored = {
-      ...prev,
       ref: refCode ?? q.get("ref") ?? prev.ref,
       source: q.get("src") ?? prev.source,
       ambassador: q.get("amb") ?? prev.ambassador,
-      variant: ensureVariant(),
     };
     try {
       localStorage.setItem(STORE, JSON.stringify(next));
     } catch {}
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- reading browser-only state (URL, localStorage)
     setAttr(next);
+    resolveVariant((v) => {
+      setVariant(v);
+      track("landing_view", { headline_variant: v, source: next.source ?? "direct", ambassador_code: next.ambassador });
+    });
   }, [refCode]);
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -75,6 +79,7 @@ export default function RegisterForm({ refCode }: { refCode?: string }) {
     if (!branch) return setError("Please pick your branch above.");
     const f = new FormData(e.currentTarget);
     setBusy(true);
+    track("form_submit", { headline_variant: variant, source: attr.source ?? "direct" });
     try {
       const res = await fetch("/api/register", {
         method: "POST",
@@ -90,19 +95,50 @@ export default function RegisterForm({ refCode }: { refCode?: string }) {
           website: f.get("website"),
           projectIdea: project,
           ref: attr.ref,
-          source: attr.ref ? "referral" : attr.source,
+          source: attr.source,
           ambassador: attr.ambassador,
-          variant: attr.variant,
+          variant,
         }),
       });
       const data = await res.json();
-      if (!data.ok) return setError(data.message ?? "Something went wrong.");
-      router.push(`/thanks/${data.ref_code}${data.already_registered ? "?again=1" : ""}`);
+      if (!data.ok) return setError(data.message ?? "Something went wrong. Please try again.");
+      console.log("ref_code:", data.ref_code);
+      setResult({
+        ok: true,
+        already: data.already_registered,
+        session: data.session,
+        code: data.ref_code,
+        message: data.message,
+      });
     } catch {
       setError("Network problem. Please try again.");
     } finally {
       setBusy(false);
     }
+  }
+
+  if (result) {
+    const overflow = result.session === 2;
+    const when = new Date(cfg.session2Date).toLocaleString("en-IN", {
+      dateStyle: "medium",
+      timeStyle: "short",
+      timeZone: "Asia/Kolkata",
+    });
+    return (
+      <div role="status" className="space-y-3 text-center">
+        <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-[var(--color-success)] text-2xl text-white">✓</div>
+        <h2 className="text-2xl font-extrabold">{result.already ? "You're already registered" : "You're in!"}</h2>
+        <p className="text-sm text-[var(--color-muted)]">{result.message}</p>
+        {overflow && (
+          <p className="rounded-xl bg-amber-50 p-3 text-sm text-amber-900">
+            Session 1 is full, so you&apos;re registered for the repeat session on {when} IST. Same workshop, same certificate.
+          </p>
+        )}
+        <p className="rounded-xl bg-[#F1F5F9] p-3 text-sm">
+          Your invite code: <strong>{result.code}</strong>
+        </p>
+      </div>
+    );
   }
 
   const input =
@@ -114,22 +150,23 @@ export default function RegisterForm({ refCode }: { refCode?: string }) {
       <div>
         <p className={label}>1. Tap your branch to see what you could build</p>
         <div className="flex flex-wrap gap-2">
-          {cfg.targetBranches.map((b) => (
+          {PICKER.map((b) => (
             <button
               type="button"
-              key={b}
+              key={b.label}
               onClick={() => {
-                setBranch(b);
+                setBranch(b.branch);
                 setProject("");
+                track("branch_picked", { branch: b.branch });
               }}
-              aria-pressed={branch === b}
-              className={`min-h-[44px] rounded-full border px-4 text-sm font-semibold ${
-                branch === b
+              aria-pressed={branch === b.branch}
+              className={`min-h-[44px] min-w-[64px] rounded-full border px-4 text-sm font-semibold ${
+                branch === b.branch
                   ? "border-[var(--color-primary)] bg-[var(--color-primary)] text-white"
                   : "border-[var(--color-border)] bg-white text-[var(--color-ink)]"
               }`}
             >
-              {b}
+              {b.label}
             </button>
           ))}
         </div>
@@ -137,17 +174,15 @@ export default function RegisterForm({ refCode }: { refCode?: string }) {
 
       {branch && (
         <div className="space-y-2">
-          <p className={label}>Pick the project you would like to build</p>
+          <p className={label}>3 AI projects you could build in 60 minutes. Pick one:</p>
           {IDEAS[branch]?.map((i) => (
             <button
               type="button"
               key={i.title}
               onClick={() => setProject(i.title)}
               aria-pressed={project === i.title}
-              className={`block w-full min-h-[44px] rounded-xl border p-3 text-left ${
-                project === i.title
-                  ? "border-[var(--color-primary)] bg-[#EEF2FF]"
-                  : "border-[var(--color-border)] bg-white"
+              className={`block min-h-[44px] w-full rounded-xl border p-3 text-left ${
+                project === i.title ? "border-[var(--color-primary)] bg-[#EEF2FF]" : "border-[var(--color-border)] bg-white"
               }`}
             >
               <span className="block text-sm font-bold">{i.title}</span>
@@ -160,7 +195,7 @@ export default function RegisterForm({ refCode }: { refCode?: string }) {
 
       <div>
         <label className={label} htmlFor="name">2. Your name</label>
-        <input id="name" name="name" required minLength={2} maxLength={80} autoComplete="name" className={input} />
+        <input id="name" name="name" required minLength={2} maxLength={80} autoComplete="name" className={input} onFocus={() => track("form_start")} />
       </div>
       <div>
         <label className={label} htmlFor="phone">WhatsApp number</label>
@@ -180,6 +215,15 @@ export default function RegisterForm({ refCode }: { refCode?: string }) {
         </datalist>
       </div>
       <div>
+        <label className={label} htmlFor="branch">Branch</label>
+        <select id="branch" value={branch} onChange={(e) => { setBranch(e.target.value); setProject(""); }} required className={input}>
+          <option value="" disabled>Select your branch</option>
+          {cfg.targetBranches.map((b) => (
+            <option key={b} value={b}>{b}</option>
+          ))}
+        </select>
+      </div>
+      <div>
         <label className={label} htmlFor="gradYear">Graduation year</label>
         <select id="gradYear" name="gradYear" defaultValue="2027" className={input}>
           {[2026, 2027, 2028, 2029].map((y) => (
@@ -188,7 +232,7 @@ export default function RegisterForm({ refCode }: { refCode?: string }) {
         </select>
       </div>
 
-      {/* Honeypot: hidden from people, tempting for bots */}
+      {/* Honeypot: invisible to people, tempting for bots */}
       <div aria-hidden="true" className="absolute -left-[9999px] h-0 w-0 overflow-hidden">
         <label>Website<input name="website" tabIndex={-1} autoComplete="off" /></label>
       </div>
@@ -198,9 +242,7 @@ export default function RegisterForm({ refCode }: { refCode?: string }) {
         <span>I agree to be contacted on WhatsApp/email about this workshop.</span>
       </label>
 
-      {error && (
-        <p role="alert" className="rounded-xl bg-red-50 p-3 text-sm font-medium text-red-700">{error}</p>
-      )}
+      {error && <p role="alert" className="rounded-xl bg-red-50 p-3 text-sm font-medium text-red-700">{error}</p>}
 
       <button id="cta-reserve-seat" type="submit" disabled={busy} className="btn-cta w-full text-lg">
         {busy ? "Reserving…" : "Reserve my free seat"}
