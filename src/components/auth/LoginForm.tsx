@@ -57,7 +57,7 @@ export default function LoginForm() {
     <AuthShell
       eyebrow="Welcome back"
       title="Log in"
-      lead="Students manage their profile and invite link here. Reviewers go straight to the dashboard."
+      lead="Log in to reserve your seat and manage your invite link."
       footer={
         <>
           New here?{" "}
