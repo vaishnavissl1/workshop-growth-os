@@ -22,6 +22,8 @@ const NAV = [
   ["/evaluate", "Project checker"],
   ["/faq", "FAQ"],
   ["/leaderboard", "Leaderboard"],
+  ["/why-niat", "Why NIAT"],
+  ["/help", "Help centre"],
 ];
 
 /** Footer: sliding highlights bar, page links, and the prototype notice. Hidden on /admin. */

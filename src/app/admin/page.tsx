@@ -1,5 +1,6 @@
 import AdminLogin from "@/components/admin/AdminLogin";
 import Dashboard from "@/components/admin/Dashboard";
+import HelpRequests from "@/components/admin/HelpRequests";
 import { currentRole } from "@/lib/auth";
 import { adminData, type Mode } from "@/lib/stats";
 
@@ -13,5 +14,10 @@ export default async function AdminPage({ searchParams }: { searchParams: Promis
   const { mode } = await searchParams;
   const requested = mode === "real" || mode === "sim" || mode === "all" ? (mode as Mode) : undefined;
   const data = await adminData(requested);
-  return <Dashboard data={data} role={role} />;
+  return (
+    <>
+      <Dashboard data={data} role={role} />
+      <HelpRequests />
+    </>
+  );
 }

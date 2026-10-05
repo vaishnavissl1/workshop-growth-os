@@ -11,6 +11,8 @@ const LINKS = [
   { href: "/evaluate", label: "Checker" },
   { href: "/faq", label: "FAQ" },
   { href: "/leaderboard", label: "Leaderboard" },
+  { href: "/why-niat", label: "Why NIAT" },
+  { href: "/help", label: "Help" },
 ];
 
 /**
