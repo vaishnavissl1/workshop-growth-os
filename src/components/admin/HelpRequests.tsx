@@ -6,7 +6,7 @@ export default async function HelpRequests() {
   const rows = data ?? [];
 
   return (
-    <div className="mx-auto w-full max-w-6xl px-4 pb-10">
+    <div className="mx-auto w-full max-w-5xl px-4 pb-10">
       <section className="card space-y-3">
         <h2 className="text-base font-bold">Help centre questions</h2>
         {rows.length === 0 ? (
