@@ -27,7 +27,7 @@ export default function LandingPage() {
 
         <div className="relative w-full px-6 py-16 sm:px-12 lg:px-16">
           <p className="text-xl font-semibold text-[#EF4444] sm:text-2xl">Start your journey in</p>
-          <h1 className="mt-4 text-[clamp(2.5rem,7vw,5rem)] font-bold leading-[1.08] text-white">
+          <h1 className="mt-4 text-[clamp(2.5rem,7vw,5rem)] font-bold leading-[1.08] !text-white">
             Generative AI <span aria-hidden="true" className="mx-1 inline-block align-middle text-[0.5em] text-[#EF4444]">✦</span> LLM Apps
             <br />
             Deployment &amp; More
