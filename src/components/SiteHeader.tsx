@@ -48,10 +48,10 @@ export default function SiteHeader() {
     <header className="sticky top-0 z-50 px-3 pt-3 sm:px-5 sm:pt-4">
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 rounded-2xl border border-white/10 bg-[#1E293B] px-4 py-3 shadow-lg shadow-slate-900/10">
         {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
-        <a href="/" className="flex min-w-0 items-center gap-3 !text-white" aria-label="NxtWave home">
-          {/* NxtWave's white logo (already includes the name). Swap public/nxtwave-logo.svg to change it. */}
+        <a href="/" className="flex min-w-0 items-center rounded-xl bg-white px-3 py-2" aria-label="NIAT home">
+          {/* NIAT's logo (crest + name) is crimson, so it sits on a white plate. Swap public/niat-logo.svg to change it. */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/nxtwave-logo.svg" alt="NxtWave" width={117} height={66} className="h-11 w-auto flex-shrink-0 sm:h-12" />
+          <img src="/niat-logo.svg" alt="NIAT: NxtWave of Innovation in Advanced Technologies" width={237} height={56} className="h-8 w-auto flex-shrink-0 sm:h-9" />
         </a>
 
         <nav aria-label="Main" className="hidden items-center gap-1 md:flex">
