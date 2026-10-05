@@ -28,7 +28,8 @@ const GROUPS: { title: string; items: [string, string][] }[] = [
     title: "Referrals and rewards",
     items: [
       ["How does the leaderboard work?", "Every registrant gets a personal invite link. Each friend who registers through it counts as a referral, and the leaderboard ranks the top referrers."],
-      ["What do referrals win?", `The top three referrers win ₹${cfg.referralRewards[0].amountINR}, ₹${cfg.referralRewards[1].amountINR} and ₹${cfg.referralRewards[2].amountINR}. Only verified referrals count: ${cfg.targetGradYear}-batch engineering students.`],
+      ["What do referrals win?", `The top three referrers win ₹${cfg.referralRewards[0].amountINR}, ₹${cfg.referralRewards[1].amountINR} and ₹${cfg.referralRewards[2].amountINR}. A referral counts for the prize only when your friend is a ${cfg.targetGradYear}-batch engineering student and finishes the workshop with a deployed project.`],
+      ["Is there a prize for the project itself?", `Yes. The three best deployed projects win ₹${cfg.projectPrizes[0].amountINR}, ₹${cfg.projectPrizes[1].amountINR} and ₹${cfg.projectPrizes[2].amountINR}, ranked by the project checker's score.`],
       ["What is the College Cup?", `Colleges are ranked by verified registrations. The top college wins ${cfg.collegeCupPrize}.`],
     ],
   },

@@ -136,7 +136,7 @@ export default async function ThanksPage({
             </div>
             <p className="mt-1 text-sm text-[var(--color-muted)]">
               {toTop3 > 0 ? `${toTop3} more verified referral${toTop3 === 1 ? "" : "s"} to reach the top 3` : "You're in the top 3 🎉"}
-              {" "}(₹{cfg.referralRewards[0].amountINR}/₹{cfg.referralRewards[1].amountINR}/₹{cfg.referralRewards[2].amountINR} for verified referrals).
+              {" "}(₹{cfg.referralRewards[0].amountINR}/₹{cfg.referralRewards[1].amountINR}/₹{cfg.referralRewards[2].amountINR} for friends who finish the workshop).
             </p>
           </div>
         </div>

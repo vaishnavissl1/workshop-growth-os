@@ -54,6 +54,9 @@ const MENTORS = [
   },
 ];
 
+/** What students can win: best-project prizes plus referral prizes. */
+const PRIZE_POOL = [...cfg.projectPrizes, ...cfg.referralRewards].reduce((n, p) => n + p.amountINR, 0);
+
 const WALK_AWAY = [
   { icon: "🔗", title: "A live public link to your AI app", note: "Add it to your resume tonight. Interviewers can open it and try it." },
   { icon: "📜", title: "Certificate with your name + project title", note: "LinkedIn-ready, issued when you finish the build." },
@@ -170,6 +173,27 @@ export default async function HomePage() {
             </li>
           ))}
         </ul>
+      </section>
+
+      {/* Prizes: the part of the ₹2,000 budget students can win. Paid on finished work only. */}
+      <section className="container-wide pt-24">
+        <div className="mb-12 text-center">
+          <p className="eyebrow mb-3">Prizes</p>
+          <h2 className="section-title">₹{PRIZE_POOL.toLocaleString("en-IN")} to win, for work you finish</h2>
+          <p className="lead mx-auto mt-4 max-w-2xl">No lucky draws. Prizes go to deployed projects and to the students who bring friends who finish.</p>
+        </div>
+        <div className="mx-auto grid max-w-5xl gap-6 md:grid-cols-2">
+          <div className="card !p-8">
+            <h3 className="text-xl font-semibold">Best project</h3>
+            <p className="mt-2 text-slate-500">The three best deployed apps on workshop day, ranked by the project checker&apos;s score.</p>
+            <p className="mt-5 text-3xl font-bold gradient-text">{cfg.projectPrizes.map((p) => `₹${p.amountINR}`).join(" · ")}</p>
+          </div>
+          <div className="card !p-8">
+            <h3 className="text-xl font-semibold">Top referrers</h3>
+            <p className="mt-2 text-slate-500">The three students whose invited friends register and finish the workshop with a deployed project.</p>
+            <p className="mt-5 text-3xl font-bold gradient-text">{cfg.referralRewards.map((p) => `₹${p.amountINR}`).join(" · ")}</p>
+          </div>
+        </div>
       </section>
 
       {/* Real, published reviews of NxtWave's existing workshop */}

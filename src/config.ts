@@ -30,18 +30,25 @@ export const WORKSHOP_CONFIG = {
   totalBudget: 2000,
 
   referralRewards: [
-    { rank: 1, label: "1st place referrer", amountINR: 400, minVerifiedReferrals: 1 },
+    { rank: 1, label: "1st place referrer", amountINR: 300, minVerifiedReferrals: 1 },
     { rank: 2, label: "2nd place referrer", amountINR: 200, minVerifiedReferrals: 1 },
     { rank: 3, label: "3rd place referrer", amountINR: 100, minVerifiedReferrals: 1 },
   ] as const,
 
+  /** Best deployed projects on workshop day, ranked by the project checker's score. */
+  projectPrizes: [
+    { rank: 1, label: "Best project", amountINR: 200 },
+    { rank: 2, label: "2nd best project", amountINR: 120 },
+    { rank: 3, label: "3rd best project", amountINR: 80 },
+  ] as const,
+
   ambassadorReward: {
-    label: "Top ambassador (verified registrations only)",
+    label: "Top ambassador (verified students who finish the workshop)",
     amountINR: 300,
   },
 
   metaTestBudget: 500, // INR incl. 18% GST ≈ ₹424 actual ad spend
-  reserveBudget: 500, // D4 reserve — follows the winning channel
+  reserveBudget: 200, // D4 reserve — follows the winning channel
 
   // ── College Cup Prize ────────────────────────────────────────────────────
   collegeCupPrize: "College Spotlight live Q&A session with the NxtWave team",

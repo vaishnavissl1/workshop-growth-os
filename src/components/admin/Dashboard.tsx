@@ -225,7 +225,7 @@ export default function Dashboard({ data, role }: { data: AdminData; role: "admi
           </tbody>
         </table>
         <p className="mt-2 text-xs text-[var(--color-muted)]">
-          Costs are what each channel&apos;s budget line is for: referral prizes ₹700, top ambassador ₹300, Meta test ₹500 (the other ₹500 is the D4 reserve).
+          Costs are what each channel&apos;s budget line is for: referral prizes ₹600, top ambassador ₹300, Meta test ₹500. The remaining ₹600 is the best-project prize pool (₹400) and the D4 reserve (₹200).
         </p>
       </section>
 
@@ -299,7 +299,6 @@ export default function Dashboard({ data, role }: { data: AdminData; role: "admi
         <div className="flex flex-wrap gap-3">
           <Link href="/live/demo/host" className="btn-secondary btn-sm">Host board (simulated session)</Link>
           <Link href="/live/session-1/host" className="btn-secondary btn-sm">Host board (Session 1)</Link>
-          <Link href="/live/session-1" className="btn-secondary btn-sm">Attendee checklist</Link>
         </div>
       </section>
 
