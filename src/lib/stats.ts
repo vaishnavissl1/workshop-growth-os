@@ -154,7 +154,7 @@ export async function adminData(requested?: Mode) {
       value: metaCpr === null ? "no Meta data" : `₹${metaCpr.toFixed(1)}`,
       threshold: "≤ ₹15 scale · > ₹25 stop",
       status: metaCpr === null ? "amber" : metaCpr <= 15 ? "green" : metaCpr <= 25 ? "amber" : "red",
-      action: "≤ ₹15: put the D4 reserve into Meta. > ₹25: stop Meta, reserve goes to an extra referral prize tier.",
+      action: "≤ ₹15: put the D4 reserve into Meta. Otherwise the reserve is added to the best-project prizes. > ₹25: stop Meta.",
     },
   ];
 
