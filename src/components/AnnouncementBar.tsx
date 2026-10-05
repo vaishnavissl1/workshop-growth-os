@@ -34,13 +34,13 @@ export default function AnnouncementBar() {
   ];
 
   return (
-    <div className="bg-[#991B1B] px-4 py-2.5 text-white sm:px-6">
+    <div className="border-b border-[#F0CDD0] bg-white px-4 py-2.5 text-[#991B1B] sm:px-6">
       <div className="mx-auto grid max-w-7xl items-center gap-x-5 gap-y-2.5 lg:grid-cols-[1fr_auto_1fr]">
         {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
         <a href="/" aria-label="NIAT home" className="justify-self-center lg:justify-self-start">
-          {/* White version of NIAT's logo (crest + name). Swap public/niat-logo-white.svg to change it. */}
+          {/* NIAT's logo (crest + name). Swap public/niat-logo.svg to change it. */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/niat-logo-white.svg" alt="NIAT: NxtWave of Innovation in Advanced Technologies" width={237} height={56} className="h-10 w-auto sm:h-11" />
+          <img src="/niat-logo.svg" alt="NIAT: NxtWave of Innovation in Advanced Technologies" width={237} height={56} className="h-10 w-auto sm:h-11" />
         </a>
 
         {open && (
@@ -51,7 +51,7 @@ export default function AnnouncementBar() {
             <div role="timer" aria-label={`${cells[0][0]} days ${cells[1][0]} hours ${cells[2][0]} minutes left to register`} className="flex items-center gap-1.5">
               {cells.map(([n, u], i) => (
                 <span key={u} className="flex items-center gap-1.5">
-                  <span className="flex min-w-[2.9rem] flex-col items-center rounded-md bg-white px-1.5 py-1 leading-none text-[#1E293B]">
+                  <span className="flex min-w-[2.9rem] flex-col items-center rounded-md bg-[#991B1B] px-1.5 py-1 leading-none text-white">
                     <span className="text-lg font-bold tabular-nums">{String(n).padStart(2, "0")}</span>
                     <span className="mt-0.5 text-[0.6rem] font-bold tracking-wide">{u}</span>
                   </span>
