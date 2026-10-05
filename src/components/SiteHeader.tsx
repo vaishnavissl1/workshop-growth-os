@@ -37,7 +37,7 @@ export default function SiteHeader() {
   }, []);
 
   // The landing page (/) has its own buttons, so the navigation bar starts on the pages after it.
-  if (pathname === "/" || pathname.startsWith("/admin")) return null;
+  if (pathname === "/" || pathname === "/login" || pathname.startsWith("/admin")) return null;
 
   const isActive = (href: string) => pathname === href || pathname.startsWith(`${href}/`);
   const linkCls = (href: string) =>
