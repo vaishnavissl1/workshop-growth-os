@@ -1,5 +1,6 @@
 import { WORKSHOP_CONFIG as cfg } from "@/config";
 import AuthGate from "@/components/auth/AuthGate";
+import LiveChecklist from "@/components/live/LiveChecklist";
 import PageGlow from "@/components/PageGlow";
 import PageHero from "@/components/PageHero";
 import ideas from "@/data/projectIdeas.json";
@@ -121,6 +122,18 @@ export default function ProgramPage() {
             </li>
           ))}
         </ol>
+      </section>
+
+      {/* Workshop-day checklist: students tick steps here; the host board reads the same data. */}
+      <section className="container-mid pt-24">
+        <div className="mb-10 text-center">
+          <p className="eyebrow mb-3">On workshop day</p>
+          <h2 className="section-title">Tick each step as you finish it</h2>
+          <p className="lead mx-auto mt-4 max-w-2xl">The host sees how far everyone has got, and slows down where people are stuck.</p>
+        </div>
+        <div className="mx-auto max-w-2xl">
+          <LiveChecklist session="session-1" />
+        </div>
       </section>
 
       <section className="container-mid pt-24">

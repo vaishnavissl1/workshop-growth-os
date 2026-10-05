@@ -19,7 +19,7 @@ A working growth system for one workshop: *"Build Your First AI Project in 60 Mi
 | **Ambassador kit** (`/ambassador?amb=CODE`) | Tracked link, three copy-ready messages in English, Telugu, Kannada and Hindi (AI-drafted, marked for native-speaker review), TPO email template. |
 | **Project checker** (`/evaluate`) | Paste a Hugging Face Space link and get a score out of 100 against a six-point rubric (live, uses a model, real interface, key kept secret, documented, own work), with a specific next step for each miss. Rule-based by default; a written AI review switches on when `ANTHROPIC_API_KEY` is set. |
 | **Starter kit** | On registering, each student gets a personalised, runnable `app.py` for the project they picked. |
-| **Workshop-day tracker** (`/live/session-1`, host view at `/live/session-1/host`) | Students tick off five checkpoints as they build; the host sees how far the room has got and the step where most people are stopped. Counts only, refreshed every 10 seconds. `/live/demo/host` shows it with a simulated room, labelled as such. |
+| **Workshop-day tracker** (on the Program page; host view at `/live/session-1/host`) | Students tick off five checkpoints on the Program page as they build; the host sees how far the room has got and the step where most people are stopped. Counts only, refreshed every 10 seconds. `/live/demo/host` shows it with a simulated room, labelled as such. |
 | **Urgency** | A site-wide bar and a home-page card count down to the real registration deadline in `src/config.ts`; the seat counter shows real seats left. The leaderboard has a second tab showing the simulated campaign, labelled as simulated. |
 | **Analytics** | PostHog with a 3-way `headline_variant` flag driving the home-page subhead. |
 
