@@ -22,7 +22,8 @@ export default function SiteTracker() {
         ambassador: q.get("amb") ?? prev.ambassador,
       };
       localStorage.setItem(STORE, JSON.stringify(next));
-      if (window.location.pathname === "/") {
+      if (window.location.pathname === "/") track("welcome_view", { source: next.source ?? "direct" });
+      if (window.location.pathname === "/home") {
         resolveVariant((v) =>
           track("landing_view", { headline_variant: v, source: next.source ?? "direct", ambassador_code: next.ambassador }),
         );

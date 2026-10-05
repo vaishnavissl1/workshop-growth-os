@@ -15,7 +15,7 @@ const STRIP = [
 ];
 
 const NAV = [
-  ["/", "Home"],
+  ["/home", "Home"],
   ["/register", "Register"],
   ["/program", "Program"],
   ["/certificate", "Certificate"],
