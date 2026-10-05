@@ -77,11 +77,6 @@ export default async function HomePage() {
       {/* Hero */}
       <section className="container-wide animate-fade-in-up grid items-center gap-12 pb-16 pt-14 sm:pt-20 lg:grid-cols-[1.25fr_1fr]">
         <div>
-          <div className="mb-6 flex flex-wrap gap-2">
-            <span className="badge badge-amber">Free</span>
-            <span className="badge badge-primary">60 min</span>
-            <span className="badge badge-success">2027 batch</span>
-          </div>
           <h1 className="display">
             Build Your First <span className="gradient-text">AI Project</span> in 60 Minutes
           </h1>

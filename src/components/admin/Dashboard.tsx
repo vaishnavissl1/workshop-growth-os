@@ -307,15 +307,6 @@ export default function Dashboard({ data, role }: { data: AdminData; role: "admi
         </div>
       </section>
 
-      <section className="card text-sm">
-        <h2 className="mb-1 text-base font-bold">Data access, by design</h2>
-        <p className="text-[var(--color-muted)]">
-          The two leaderboard views (<code>leaderboard_public</code>, <code>college_leaderboard</code>) show as &quot;UNRESTRICTED&quot; in
-          Supabase on purpose. Views can&apos;t have row-level security, so access is controlled by their columns and a SELECT-only grant. They
-          expose first name, college, invite code and counts only: no phone, email or surname. Every table is locked to the server.
-        </p>
-      </section>
-
     </div>
   );
 }
