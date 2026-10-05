@@ -273,27 +273,23 @@ export default function Dashboard({ data, role }: { data: AdminData; role: "admi
         </p>
       </section>
 
-      {/* Load scenario (admin only) */}
-      <section className="card space-y-3">
-        <h2 className="text-base font-bold">Load scenario into the database</h2>
-        {role === "admin" ? (
-          <>
-            <div className="flex flex-wrap gap-2">
-              {SCENARIOS.map((s) => (
-                <button key={s} disabled={!!busy} onClick={() => simulate(s, true)} className="btn-secondary !px-4 capitalize">
-                  {busy === s + true ? "Loading…" : `Load ${s}`}
-                </button>
-              ))}
-              <button disabled={!!busy} onClick={() => simulate("base", false)} className="btn-secondary !px-4">
-                {busy === "basefalse" ? "Clearing…" : "Clear simulated data"}
+      {/* Load scenario (admin only; reviewers don't see this card) */}
+      {role === "admin" && (
+        <section className="card space-y-3">
+          <h2 className="text-base font-bold">Load scenario into the database</h2>
+          <div className="flex flex-wrap gap-2">
+            {SCENARIOS.map((s) => (
+              <button key={s} disabled={!!busy} onClick={() => simulate(s, true)} className="btn-secondary !px-4 capitalize">
+                {busy === s + true ? "Loading…" : `Load ${s}`}
               </button>
-            </div>
-            {msg && <p role="status" className="text-sm">{msg}</p>}
-          </>
-        ) : (
-          <p className="text-sm text-[var(--color-muted)]">Read-only for reviewers. The base scenario is pre-loaded.</p>
-        )}
-      </section>
+            ))}
+            <button disabled={!!busy} onClick={() => simulate("base", false)} className="btn-secondary !px-4">
+              {busy === "basefalse" ? "Clearing…" : "Clear simulated data"}
+            </button>
+          </div>
+          {msg && <p role="status" className="text-sm">{msg}</p>}
+        </section>
+      )}
 
       <section className="card space-y-3">
         <h2 className="text-base font-bold">Workshop day</h2>
