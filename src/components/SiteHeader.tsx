@@ -51,7 +51,7 @@ export default function SiteHeader() {
         <a href="/" className="flex min-w-0 items-center rounded-xl bg-white px-3 py-2" aria-label="NIAT home">
           {/* NIAT's logo (crest + name) is crimson, so it sits on a white plate. Swap public/niat-logo.svg to change it. */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/niat-logo.svg" alt="NIAT: NxtWave of Innovation in Advanced Technologies" width={237} height={56} className="h-8 w-auto flex-shrink-0 sm:h-9" />
+          <img src="/niat-logo.svg" alt="NIAT: NxtWave of Innovation in Advanced Technologies" width={237} height={56} className="h-9 w-auto flex-shrink-0 sm:h-11" />
         </a>
 
         <nav aria-label="Main" className="hidden items-center gap-1 md:flex">
