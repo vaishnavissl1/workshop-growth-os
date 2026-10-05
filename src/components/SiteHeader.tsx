@@ -48,14 +48,12 @@ export default function SiteHeader() {
     <header className="sticky top-0 z-50 px-3 pt-3 sm:px-5 sm:pt-4">
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 rounded-2xl border border-white/10 bg-[#1E293B] px-4 py-3 shadow-lg shadow-slate-900/10">
         {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
-        <a href="/" className="flex min-w-0 items-center rounded-xl bg-white px-3 py-2" aria-label="NIAT home">
-          {/* NIAT's logo (crest + name) is crimson, so it sits on a white plate. Swap public/niat-logo.svg to change it. */}
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/niat-logo.svg" alt="NIAT: NxtWave of Innovation in Advanced Technologies" width={237} height={56} className="h-9 w-auto flex-shrink-0 sm:h-11" />
-        </a>
+        {/* The logo lives in the bar above. On phones, the workshop name sits beside the menu button. */}
+        {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
+        <a href="/" className="min-w-0 truncate text-[0.95rem] font-semibold !text-white md:hidden">{cfg.title}</a>
 
-        <nav aria-label="Main" className="hidden items-center gap-1 md:flex">
-          {LINKS.map((l) => (
+        <nav aria-label="Main" className="hidden flex-1 items-center justify-between gap-1 px-2 md:flex lg:px-6">
+          {[{ href: "/", label: "Home" }, ...LINKS].map((l) => (
             // eslint-disable-next-line @next/next/no-html-link-for-pages
             <a key={l.href} href={l.href} aria-current={isActive(l.href) ? "page" : undefined} className={linkCls(l.href)}>
               {l.label}
