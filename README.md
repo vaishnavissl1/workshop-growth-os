@@ -23,16 +23,7 @@ A working growth system for one workshop: *"Build Your First AI Project in 60 Mi
 | **Urgency** | A site-wide bar and a home-page card count down to the real registration deadline in `src/config.ts`; the seat counter shows real seats left. The leaderboard has a second tab showing the simulated campaign, labelled as simulated. |
 | **Analytics** | PostHog with a 3-way `headline_variant` flag driving the home-page subhead. |
 
-## What is *not* built
 
-Be honest about the edges:
-
-- No live WhatsApp reminders (the plan's reminder flow is not implemented).
-- The workshop-day tracker has only been run with a simulated room, never with real attendees. The project checker is rule-based; the written AI review needs an API key that this deployment does not have.
-- The starter code is valid Python and follows the workshop steps, but I have not run it against a live model.
-- The TPO email generator is a fill-in template, not an LLM call. The vernacular messages use pre-written drafts unless an `ANTHROPIC_API_KEY` is set.
-- PostHog has the events and the flag; I did not build the funnel insight or dashboard inside PostHog. The in-app funnel is computed from the database.
-- All conversion numbers in the plan are assumptions or simulated, not measured.
 
 ## Stack
 
